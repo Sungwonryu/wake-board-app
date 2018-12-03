@@ -1,0 +1,6 @@
+// global-preloads.scss is imported to all scss files throughout the app
+
+// compass-mixins, variables and mixins can be used throughout the app
+@import "~compass-mixins/lib/compass";
+@import "global-preloads/variables.scss";
+@import "global-preloads/mixins.scss";
