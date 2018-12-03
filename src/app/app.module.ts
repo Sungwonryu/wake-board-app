@@ -13,11 +13,15 @@ import { LoginComponent } from './auth/login/login.component';
 // crewboard
 import { CrewboardComponent } from './crewboard/crewboard.component';
 
+// main
+import { MainComponent } from './main/main.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CrewboardComponent
+    CrewboardComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
