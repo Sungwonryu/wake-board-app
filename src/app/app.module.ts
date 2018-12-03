@@ -16,12 +16,16 @@ import { CrewboardComponent } from './crewboard/crewboard.component';
 // main
 import { MainComponent } from './main/main.component';
 
+// current-assignments
+import { CurrentAssignmentsComponent } from './current-assignments/current-assignments.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CrewboardComponent,
-    MainComponent
+    MainComponent,
+    CurrentAssignmentsComponent
   ],
   imports: [
     BrowserModule,
