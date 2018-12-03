@@ -19,13 +19,17 @@ import { MainComponent } from './main/main.component';
 // current-assignments
 import { CurrentAssignmentsComponent } from './current-assignments/current-assignments.component';
 
+// past-assignments
+import { PastAssignmentsComponent } from './past-assignments/past-assignments.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CrewboardComponent,
     MainComponent,
-    CurrentAssignmentsComponent
+    CurrentAssignmentsComponent,
+    PastAssignmentsComponent
   ],
   imports: [
     BrowserModule,
