@@ -22,6 +22,9 @@ import { CurrentAssignmentsComponent } from './current-assignments/current-assig
 // past-assignments
 import { PastAssignmentsComponent } from './past-assignments/past-assignments.component';
 
+// manage-database
+import { ManageDatabaseComponent } from './manage-database/manage-database.component';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,8 @@ import { PastAssignmentsComponent } from './past-assignments/past-assignments.co
     CrewboardComponent,
     MainComponent,
     CurrentAssignmentsComponent,
-    PastAssignmentsComponent
+    PastAssignmentsComponent,
+    ManageDatabaseComponent
   ],
   imports: [
     BrowserModule,
