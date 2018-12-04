@@ -1,0 +1,28 @@
+@import '~@angular/material/theming';
+
+// Define a custom typography config that overrides the font-family
+// as well as the "headlines" and "body-1" levels.
+$general-typography: mat-typography-config(
+  $font-family: '"Lato", "Open Sans"'
+);
+
+// Include the common styles for Angular Material. We include this here so that
+// you only have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core($general-typography);
+
+// Define the palettes for your theme using the Material Design palettes
+// available in palette.scss (imported above). For each palette,
+// you can optionally specify a default, lighter, and darker hue.
+// Available color palettes: https://material.io/design/color/
+$wakeboard-app-primary: mat-palette($mat-indigo);
+$wakeboard-app-accent: mat-palette($mat-amber, A200, A100, A400);
+$wakeboard-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$wakeboard-app-theme: mat-light-theme($wakeboard-app-primary, $wakeboard-app-accent, $wakeboard-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins
+// for each component that you are using.
+@include angular-material-theme($wakeboard-app-theme);
