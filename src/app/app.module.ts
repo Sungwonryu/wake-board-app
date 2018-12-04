@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // app
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +42,7 @@ import { ManageDatabaseComponent } from './manage-database/manage-database.compo
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FlexLayoutModule,
     MaterialModule
   ],
   providers: [],
