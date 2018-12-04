@@ -1,7 +1,70 @@
-// Apply the default base CSS settings
+// the default base CSS settings
+
+// Lato fonts
+@font-face {
+  font-family: "Lato";
+  src: url($fonts-assets-path + 'Lato/Lato-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Lato Black";
+  src: url($fonts-assets-path + 'Lato/Lato-Black.ttf');
+}
+
+@font-face {
+  font-family: "Lato Bold";
+  src: url($fonts-assets-path + 'Lato/Lato-Bold.ttf');
+}
+
+@font-face {
+  font-family: "Lato Heavy";
+  src: url($fonts-assets-path + 'Lato/Lato-Heavy.ttf');
+}
+
+@font-face {
+  font-family: "Lato Light";
+  src: url($fonts-assets-path + 'Lato/Lato-Light.ttf');
+}
+
+@font-face {
+  font-family: "Lato Medium";
+  src: url($fonts-assets-path + 'Lato/Lato-Medium.ttf');
+}
+
+@font-face {
+  font-family: "Lato Italic";
+  src: url($fonts-assets-path + 'Lato/Lato-Italic.ttf');
+}
+
+// Helvetica Neue fonts
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url($fonts-assets-path + 'Helvetica-Neue/HelveticaNeue-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Helvetica Neue Light";
+  src: url($fonts-assets-path + 'Helvetica-Neue/HelveticaNeue-Light.ttf');
+}
+
+@font-face {
+  font-family: "Helvetica Neue Medium";
+  src: url($fonts-assets-path + 'Helvetica-Neue/HelveticaNeue-Medium.ttf');
+}
+
+@font-face {
+  font-family: "Helvetica Neue Condensed";
+  src: url($fonts-assets-path + 'Helvetica-Neue/HelveticaNeue-Condensed.ttf');
+}
+
+@font-face {
+  font-family: "Helvetica Neue Condensed Bold";
+  src: url($fonts-assets-path + 'Helvetica-Neue/HelveticaNeue-CondensedBold.ttf');
+}
 
 html {
   height: 100%;
+  font-family: "Lato";
 }
 
 body {
