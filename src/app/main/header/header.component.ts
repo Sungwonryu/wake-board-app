@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  navList = [
+    { text: `Current\nAssignments` },
+    { text: `Past\nAssignments` },
+    { text: `Crewboard\nPreview` },
+    { text: `Manage\nDatabase` }
+  ];
+
   constructor() { }
 
   ngOnInit() {
