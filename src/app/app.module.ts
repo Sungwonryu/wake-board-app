@@ -15,6 +15,7 @@ import { CrewboardComponent } from './crewboard/crewboard.component';
 
 // main
 import { MainComponent } from './main/main.component';
+import { HeaderComponent } from './main/header/header.component';
 
 // current-assignments
 import { CurrentAssignmentsComponent } from './current-assignments/current-assignments.component';
@@ -24,13 +25,14 @@ import { PastAssignmentsComponent } from './past-assignments/past-assignments.co
 
 // manage-database
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
- 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CrewboardComponent,
     MainComponent,
+    HeaderComponent,
     CurrentAssignmentsComponent,
     PastAssignmentsComponent,
     ManageDatabaseComponent
