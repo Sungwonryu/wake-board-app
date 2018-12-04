@@ -62,13 +62,8 @@
   src: url($fonts-assets-path + 'Helvetica-Neue/HelveticaNeue-CondensedBold.ttf');
 }
 
-html {
-  height: 100%;
-  font-family: "Lato";
-}
-
 body {
-  height: 100%;
+  font-family: "Lato", "Open Sans";
 }
 
 // Clearfix
