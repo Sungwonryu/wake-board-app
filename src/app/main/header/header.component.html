@@ -1,3 +1,27 @@
-<p>
-  header works!
-</p>
+<div
+  class="header"
+  fxLayout="row nowrap"
+  fxLayoutAlign="space-between center">
+
+  <div class="logo"></div>
+
+  <div
+    class="clock"
+    fxLayout="column nowrap"
+    fxLayoutAlign="center center">
+    <h1 class="time">16:15</h1>
+    <h2 class="date">August 2nd, 2018</h2>
+  </div>
+
+  <ul
+    class="nav"
+    fxLayout="row nowrap"
+    fxLayoutAlign="space-between center">
+    <li *ngFor="let navItem of navList; let i = index">
+      <button
+        mat-stroked-button
+        class="nav-button"
+        [ngClass]="{ 'active': i == 0 }">{{ navItem.text }}</button>
+    </li>
+  </ul>
+</div>
