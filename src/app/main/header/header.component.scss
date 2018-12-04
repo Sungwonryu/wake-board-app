@@ -1,0 +1,65 @@
+@import "global-preloads.scss";
+
+$header-bg-color: #041E42;
+$logo-img-url: $header-assets-path + "wake-board-logo.png";
+$clock-font-family: "Helvetica Neue Condensed";
+
+:host {
+  display: block;
+}
+
+.header {
+  height: 172px;
+  width: 1920px;
+  background-color: $header-bg-color;
+  color: #ffffff;
+}
+
+.logo {
+  height: 86px;
+  width: 233px;
+  margin-left: 38px;
+  background: url($logo-img-url) no-repeat center center;
+  background-size: contain;
+}
+
+.clock {
+  height: 100%;
+  width: 400px;
+  font-family: $clock-font-family;
+  font-weight: 800;
+
+  .time {
+    font-size: 60px;
+    line-height: 71px;
+  }
+
+  .date {
+    font-size: 30px;
+    line-height: 36px;
+    text-transform: uppercase;
+  }
+}
+
+.nav {
+  height: 100%;
+  width: 738px;
+  margin-right: 38px;
+
+  .nav-button {
+    height: 66px;
+    width: 168px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    white-space: pre-wrap;
+    font-family: "Lato";
+    font-size: 21px;
+    line-height: 25px;
+    color: #ffffff;
+    background: linear-gradient(rgba(159,157,157,1), rgba(111,110,110,1));
+
+    &.active {
+      background: linear-gradient(rgba(60,162,226,1), rgba(34,106,157,1));
+    }
+  }
+}
