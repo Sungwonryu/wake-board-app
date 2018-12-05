@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -40,6 +41,8 @@ import { ManageDatabaseComponent } from './manage-database/manage-database.compo
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
