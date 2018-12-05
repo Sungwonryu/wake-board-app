@@ -1,0 +1,64 @@
+@import "global-preloads.scss";
+
+$login-bg-img-url: $images-assets-path + "backgrounds/login-bg.png";
+$nycferry-logo-img-url: $images-assets-path + "logos/nycferry-logo.png";
+$wakeboard-logo-img-url: $images-assets-path + "logos/wakeboard-logo.png";
+$login-card-bg-color: #C8D6E1;
+
+:host {
+  display: block;
+}
+
+.login {
+  height: 1080px;
+  width: 1920px;
+  position: relative;
+  background: url($login-bg-img-url) no-repeat center center;
+  background-size: cover;
+}
+
+.nycferry-logo {
+  height: 92px;
+  width: 192px;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  background: url($nycferry-logo-img-url) no-repeat center center;
+  background-size: contain;
+}
+
+.wakeboard-logo {
+  height: 122px;
+  width: 332px;
+  position: absolute;
+  left: 50%;
+  top: 250px;
+  margin-left: -166px;
+
+  background: url($wakeboard-logo-img-url) no-repeat center center;
+  background-size: contain;
+}
+
+.login-card {
+  height: 284px;
+  width: 492px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -246px;
+  margin-top: -142px;
+  background-color: $login-card-bg-color;
+  border: 1px solid #1E1E1E;
+  border-radius: 13px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+
+  .card-subtitle {
+    width: 100%;
+    position: absolute;
+    top: 18px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+  }
+}
