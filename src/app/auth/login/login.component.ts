@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  subtitle = 'Log in with your Windows Active Directory Account using the fields below.';
+
   constructor() { }
 
   ngOnInit() {
