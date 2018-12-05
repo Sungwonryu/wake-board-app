@@ -1,7 +1,7 @@
 @import "global-preloads.scss";
 
 $header-bg-color: #041E42;
-$logo-img-url: $header-assets-path + "wake-board-logo.png";
+$wakeboard-logo-img-url: $images-assets-path + "logos/wakeboard-logo.png";
 $clock-font-family: "Helvetica Neue Condensed";
 
 :host {
@@ -15,11 +15,11 @@ $clock-font-family: "Helvetica Neue Condensed";
   color: #ffffff;
 }
 
-.logo {
+.wakeboard-logo {
   height: 86px;
   width: 233px;
   margin-left: 38px;
-  background: url($logo-img-url) no-repeat center center;
+  background: url($wakeboard-logo-img-url) no-repeat center center;
   background-size: contain;
 }
 
