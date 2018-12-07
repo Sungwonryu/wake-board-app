@@ -9,6 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 
+// shared
+import { TableComponent } from './shared/tables/table/table.component';
+
 // auth
 import { LoginComponent } from './auth/login/login.component';
 
@@ -31,6 +34,7 @@ import { ManageDatabaseComponent } from './manage-database/manage-database.compo
 @NgModule({
   declarations: [
     AppComponent,
+    TableComponent,
     LoginComponent,
     CrewboardComponent,
     MainComponent,
