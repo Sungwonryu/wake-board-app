@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 
 // shared
 import { TableComponent } from './shared/tables/table/table.component';
+import { TableWrapperComponent } from './shared/tables/table-wrapper/table-wrapper.component';
 
 // auth
 import { LoginComponent } from './auth/login/login.component';
@@ -35,6 +36,7 @@ import { ManageDatabaseComponent } from './manage-database/manage-database.compo
   declarations: [
     AppComponent,
     TableComponent,
+    TableWrapperComponent,
     LoginComponent,
     CrewboardComponent,
     MainComponent,
