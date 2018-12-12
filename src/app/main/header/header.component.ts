@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   navList = [
-    { text: `Current\nAssignments` },
-    { text: `Past\nAssignments` },
-    { text: `Crewboard\nPreview` },
-    { text: `Manage\nDatabase` }
+    { routerLink: '/main/current-assignments', caption: `Current\nAssignments` },
+    { routerLink: '/main/past-assignments', caption: `Past\nAssignments` },
+    { routerLink: '/crewboard', caption: `Crewboard\nPreview` },
+    { routerLink: '/main/manage-database', caption: `Manage\nDatabase` }
   ];
 
   constructor() { }
