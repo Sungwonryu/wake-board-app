@@ -1,3 +1,122 @@
-<p>
-  table works!
-</p>
+<section
+  class="table-container table-container-header"
+  [ngStyle]="{ 'height': tableView.headerHeight }">
+
+  <mat-table
+    matSort
+    class="table table-header"
+    fxLayout="row nowrap"
+    fxLayoutAlign="flex-start"
+    [dataSource]="dataSource">
+
+    <ng-container
+      *ngFor="let column of tableColumns"
+      [matColumnDef]="column.columnDef">
+
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        [fxFlex]="column.width"
+        fxLayout="row"
+        fxLayoutAlign="center center">{{ column.header }}</mat-header-cell>
+
+      <mat-cell
+        *matCellDef="let row"
+        [fxFlex]="column.width"
+        fxLayout="row"
+        fxLayoutAlign="center center">
+        <div
+          *ngIf="!column.isModifyEntry"
+          class="non-modify-entry">{{ column.cellFn(row) }}</div>
+        <div
+          *ngIf="column.isModifyEntry"
+          class="modify-entry">
+          <button
+            *ngIf="HArray.includes(column.modifyEntryButtons, 'delete')"
+            mat-stroked-button
+            (click)="modifyEntry('edit', row)">Edit</button>
+          <button
+            *ngIf="HArray.includes(column.modifyEntryButtons, 'delete')"
+            mat-stroked-button
+            (click)="modifyEntry('delete', row)">Delete</button>
+          <button
+            *ngIf="HArray.includes(column.modifyEntryButtons, 'duplicate')"
+            mat-stroked-button
+            (click)="modifyEntry('duplicate', row)">Duplicate</button>
+        </div>
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns"
+      fxFlex="100%"
+      fxLayout="row nowrap"
+      fxLayoutAlign="center center"
+      class="row-header"></mat-header-row>
+
+  </mat-table>
+</section>
+
+<section
+  class="table-container table-container-body"
+  [ngStyle]="{ 'height': tableView.bodyHeight }">
+
+  <mat-table
+    matSort
+    class="table table-body"
+    fxLayout="column nowrap"
+    fxLayoutAlign="flex-start center"
+    [dataSource]="dataSource">
+
+    <ng-container
+      *ngFor="let column of tableColumns"
+      [matColumnDef]="column.columnDef">
+
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        [fxFlex]="column.width"
+        fxLayout="row"
+        fxLayoutAlign="center center">{{ column.header }}</mat-header-cell>
+
+      <mat-cell
+        *matCellDef="let row"
+        [fxFlex]="column.width"
+        fxLayout="row"
+        fxLayoutAlign="center center">
+        <div
+          *ngIf="!column.isModifyEntry"
+          class="non-modify-entry">{{ column.cellFn(row) }}</div>
+        <div
+          *ngIf="column.isModifyEntry"
+          class="modify-entry">
+          <button
+            *ngIf="HArray.includes(column.modifyEntryButtons, 'edit')"
+            mat-stroked-button
+            class="button-edit"
+            (click)="modifyEntry('edit', row)">Edit</button>
+          <button
+            *ngIf="HArray.includes(column.modifyEntryButtons, 'delete')"
+            mat-stroked-button
+            class="button-delete"
+            (click)="modifyEntry('delete', row)">Delete</button>
+          <button
+            *ngIf="HArray.includes(column.modifyEntryButtons, 'duplicate')"
+            mat-stroked-button
+            class="button-duplicate-entry"
+            (click)="modifyEntry('duplicate', row)">Duplicate Entry</button>
+        </div>
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns;"
+      fxFlex="40px"
+      fxLayout="row wrap"
+      fxLayoutAlign="center center"
+      class="row-body"></mat-row>
+
+  </mat-table>
+</section>
