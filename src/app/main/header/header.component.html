@@ -21,7 +21,8 @@
       <button
         mat-stroked-button
         class="nav-button"
-        [ngClass]="{ 'active': i == 0 }">{{ navItem.text }}</button>
+        [routerLink]="[navItem.routerLink]"
+        [routerLinkActive]="['active']">{{ navItem.caption }}</button>
     </li>
   </ul>
 </div>
