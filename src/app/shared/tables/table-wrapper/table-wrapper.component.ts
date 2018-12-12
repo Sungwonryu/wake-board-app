@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { HArray } from '../../common/h-array';
+import { HArray } from '../../lib/h-array';
 
 import { TableActionData, TableColumn, TableView, TitlebarView } from '../table.model';
 

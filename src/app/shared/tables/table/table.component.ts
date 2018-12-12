@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { HArray } from '../../common/h-array';
+import { HArray } from '../../lib/h-array';
 
 import { TableActionData, TableActionType, TableColumn, TableView } from '../table.model';
 
