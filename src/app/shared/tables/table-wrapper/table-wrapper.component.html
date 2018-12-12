@@ -1,3 +1,48 @@
-<p>
-  table-wrapper works!
-</p>
+<section
+  class="table-wrapper"
+  fxLayout="column"
+  fxLayoutAlign="flex-start center">
+
+  <div
+    class="table-title-bar"
+    [fxFlex]="titlebarView.height"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    [ngStyle]="{ 'background-color': titlebarView?.bgColor }">
+
+    <div class="left-pane">
+      <span class="table-title">{{ tableTitle }}</span>
+      <button
+        *ngIf="HArray.includes(titlebarView.titlebarComponents, 'add')"
+        mat-stroked-button
+        class="table-button"
+        (click)="addEntry()">Add New +</button>
+      <button
+        *ngIf="HArray.includes(titlebarView.titlebarComponents, 'duplicateAll')"
+        mat-stroked-button
+        class="table-button"
+        (click)="duplicateAllEntries()">Duplicate All Entries</button>
+    </div>
+
+    <div class="right-pane">
+      <div class="search-input-wrapper">
+        <input
+          *ngIf="HArray.includes(titlebarView.titlebarComponents, 'search')"
+          class="search-input"
+          type="text"
+          placeholder="Search"
+          (keyup)="applyFilter($event.target.value)">
+        <mat-icon class="search-icon">search</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <app-table
+    fxFlex="100%"
+    [tableView]="tableView"
+    [tableColumns]="tableColumns"
+    [data]="data"
+    [dataType]="dataType"
+    [filterValue]="filterValue"
+    (onModifyEntry)="modify($event)"></app-table>
+</section>
