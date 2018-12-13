@@ -9,8 +9,13 @@
     class="clock"
     fxLayout="column nowrap"
     fxLayoutAlign="center center">
-    <h1 class="time">16:15</h1>
-    <h2 class="date">August 2nd, 2018</h2>
+    <div class="time">
+      <app-clock [format]="'HH:mm'"></app-clock>
+    </div>
+    <div class="date">
+      <app-clock [format]="'MMMM d'" [ordinalSuffix]="true"></app-clock>
+      <app-clock [format]="', yyyy'"></app-clock>
+    </div>
   </div>
 
   <ul
