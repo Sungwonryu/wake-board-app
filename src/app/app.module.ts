@@ -32,6 +32,7 @@ import { PastAssignmentsComponent } from './past-assignments/past-assignments.co
 // manage-database
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
 import { BasicTablesComponent } from './manage-database/basic-tables/basic-tables.component';
+import { RelationshipTablesComponent } from './manage-database/relationship-tables/relationship-tables.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BasicTablesComponent } from './manage-database/basic-tables/basic-table
     CurrentAssignmentsComponent,
     PastAssignmentsComponent,
     ManageDatabaseComponent,
-    BasicTablesComponent
+    BasicTablesComponent,
+    RelationshipTablesComponent
   ],
   imports: [
     BrowserModule,
