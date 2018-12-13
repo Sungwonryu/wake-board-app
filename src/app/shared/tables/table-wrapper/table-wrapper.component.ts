@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { HArray } from '../../lib/h-array';
+import { HList } from '../../lib/h-list';
 
 import { TableActionData, TableColumn, TableView, TitlebarView } from '../table.model';
 
@@ -10,7 +10,7 @@ import { TableActionData, TableColumn, TableView, TitlebarView } from '../table.
 })
 export class TableWrapperComponent implements OnInit {
 
-  HArray = HArray;
+  HList = HList;
 
   // table titlebar view settings
   @Input() titlebarView: TitlebarView = {};

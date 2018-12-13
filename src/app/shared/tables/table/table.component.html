@@ -32,15 +32,15 @@
           *ngIf="column.isModifyEntry"
           class="modify-entry">
           <button
-            *ngIf="HArray.includes(column.modifyEntryButtons, 'delete')"
+            *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
             mat-stroked-button
             (click)="modifyEntry('edit', row)">Edit</button>
           <button
-            *ngIf="HArray.includes(column.modifyEntryButtons, 'delete')"
+            *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
             mat-stroked-button
             (click)="modifyEntry('delete', row)">Delete</button>
           <button
-            *ngIf="HArray.includes(column.modifyEntryButtons, 'duplicate')"
+            *ngIf="HList.includes(column.modifyEntryButtons, 'duplicate')"
             mat-stroked-button
             (click)="modifyEntry('duplicate', row)">Duplicate</button>
         </div>
@@ -92,17 +92,17 @@
           *ngIf="column.isModifyEntry"
           class="modify-entry">
           <button
-            *ngIf="HArray.includes(column.modifyEntryButtons, 'edit')"
+            *ngIf="HList.includes(column.modifyEntryButtons, 'edit')"
             mat-stroked-button
             class="button-edit"
             (click)="modifyEntry('edit', row)">Edit</button>
           <button
-            *ngIf="HArray.includes(column.modifyEntryButtons, 'delete')"
+            *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
             mat-stroked-button
             class="button-delete"
             (click)="modifyEntry('delete', row)">Delete</button>
           <button
-            *ngIf="HArray.includes(column.modifyEntryButtons, 'duplicate')"
+            *ngIf="HList.includes(column.modifyEntryButtons, 'duplicate')"
             mat-stroked-button
             class="button-duplicate-entry"
             (click)="modifyEntry('duplicate', row)">Duplicate Entry</button>

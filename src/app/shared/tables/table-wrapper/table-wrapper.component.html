@@ -13,12 +13,12 @@
     <div class="left-pane">
       <span class="table-title">{{ tableTitle }}</span>
       <button
-        *ngIf="HArray.includes(titlebarView.titlebarComponents, 'add')"
+        *ngIf="HList.includes(titlebarView.titlebarComponents, 'add')"
         mat-stroked-button
         class="table-button"
         (click)="addEntry()">Add New +</button>
       <button
-        *ngIf="HArray.includes(titlebarView.titlebarComponents, 'duplicateAll')"
+        *ngIf="HList.includes(titlebarView.titlebarComponents, 'duplicateAll')"
         mat-stroked-button
         class="table-button"
         (click)="duplicateAllEntries()">Duplicate All Entries</button>
@@ -27,7 +27,7 @@
     <div class="right-pane">
       <div class="search-input-wrapper">
         <input
-          *ngIf="HArray.includes(titlebarView.titlebarComponents, 'search')"
+          *ngIf="HList.includes(titlebarView.titlebarComponents, 'search')"
           class="search-input"
           type="text"
           placeholder="Search"
