@@ -1,3 +1,2 @@
-<p>
-  clock works!
-</p>
+<span class="clock">{{ clock | date: format }}</span>
+<span class="ordinal-suffix" *ngIf="ordinalSuffix">{{ clock | date: 'd' | ordinalSuffix }}</span>
