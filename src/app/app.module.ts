@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 // shared
 import { TableComponent } from './shared/tables/table/table.component';
 import { TableWrapperComponent } from './shared/tables/table-wrapper/table-wrapper.component';
+import { ClockComponent } from './shared/clock/clock.component';
 
 // auth
 import { LoginComponent } from './auth/login/login.component';
@@ -37,6 +38,7 @@ import { RelationshipTablesComponent } from './manage-database/relationship-tabl
     AppComponent,
     TableComponent,
     TableWrapperComponent,
+    ClockComponent,
     LoginComponent,
     CrewboardComponent,
     MainComponent,
