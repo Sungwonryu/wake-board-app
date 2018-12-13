@@ -10,6 +10,7 @@ import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 
 // shared
+import { OrdinalSuffixPipe } from './shared/pipes/ordinal-suffix.pipe';
 import { TableComponent } from './shared/tables/table/table.component';
 import { TableWrapperComponent } from './shared/tables/table-wrapper/table-wrapper.component';
 import { ClockComponent } from './shared/clock/clock.component';
@@ -36,15 +37,22 @@ import { RelationshipTablesComponent } from './manage-database/relationship-tabl
 @NgModule({
   declarations: [
     AppComponent,
+    // share
+    OrdinalSuffixPipe,
     TableComponent,
     TableWrapperComponent,
     ClockComponent,
+    // auth
     LoginComponent,
+    // crewboard
     CrewboardComponent,
+    // main
     MainComponent,
     HeaderComponent,
+    // assignments
     CurrentAssignmentsComponent,
     PastAssignmentsComponent,
+    // manage-database
     ManageDatabaseComponent,
     BasicTablesComponent,
     RelationshipTablesComponent
