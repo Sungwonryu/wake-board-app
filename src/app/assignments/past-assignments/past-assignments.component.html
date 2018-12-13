@@ -1,0 +1,53 @@
+<div class="content-container">
+
+  <div>
+    PastAssignmentsComponent
+  </div>
+  <div>
+    <button (click)="updateData()">Update Data</button>
+  </div>
+
+  <div class="table-container table-container-vesselassignment">
+    <app-table-wrapper
+      [titlebarView]="vesselassignmentTableData.titlebarView"
+      [tableTitle]="vesselassignmentTableData.tableTitle"
+      [tableView]="vesselassignmentTableData.tableView"
+      [tableColumns]="vesselassignmentTableData.tableColumns"
+      [dataType]="vesselassignmentTableData.dataType"
+      [data]="data"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div class="table-container table-container-slipassignment">
+    <app-table-wrapper
+      [titlebarView]="slipassignmentTableData.titlebarView"
+      [tableTitle]="slipassignmentTableData.tableTitle"
+      [tableView]="slipassignmentTableData.tableView"
+      [tableColumns]="slipassignmentTableData.tableColumns"
+      [dataType]="slipassignmentTableData.dataType"
+      [data]="data"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div class="table-container table-container-note">
+    <app-table-wrapper
+      [titlebarView]="noteTableData.titlebarView"
+      [tableTitle]="noteTableData.tableTitle"
+      [tableView]="noteTableData.tableView"
+      [tableColumns]="noteTableData.tableColumns"
+      [dataType]="noteTableData.dataType"
+      [data]="data"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div class="table-container table-container-crewswap">
+    <app-table-wrapper
+      [titlebarView]="crewswapTableData.titlebarView"
+      [tableTitle]="crewswapTableData.tableTitle"
+      [tableView]="crewswapTableData.tableView"
+      [tableColumns]="crewswapTableData.tableColumns"
+      [dataType]="crewswapTableData.dataType"
+      [data]="data"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+</div>
