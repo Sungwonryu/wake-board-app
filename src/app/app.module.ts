@@ -23,11 +23,9 @@ import { CrewboardComponent } from './crewboard/crewboard.component';
 import { MainComponent } from './main/main.component';
 import { HeaderComponent } from './main/header/header.component';
 
-// current-assignments
-import { CurrentAssignmentsComponent } from './current-assignments/current-assignments.component';
-
-// past-assignments
-import { PastAssignmentsComponent } from './past-assignments/past-assignments.component';
+// assignments
+import { CurrentAssignmentsComponent } from './assignments/current-assignments/current-assignments.component';
+import { PastAssignmentsComponent } from './assignments/past-assignments/past-assignments.component';
 
 // manage-database
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';

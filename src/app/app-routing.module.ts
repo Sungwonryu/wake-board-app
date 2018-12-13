@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { CrewboardComponent } from './crewboard/crewboard.component';
 import { MainComponent } from './main/main.component';
-import { CurrentAssignmentsComponent } from './current-assignments/current-assignments.component';
-import { PastAssignmentsComponent } from './past-assignments/past-assignments.component';
+import { CurrentAssignmentsComponent } from './assignments/current-assignments/current-assignments.component';
+import { PastAssignmentsComponent } from './assignments/past-assignments/past-assignments.component';
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
 
 const defaultPath = 'main/current-assignments';
