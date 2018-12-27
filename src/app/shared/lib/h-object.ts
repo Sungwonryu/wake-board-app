@@ -54,7 +54,7 @@ export class HObject {
    *  to snakecaseObj with snake case properties and return snakecaseObj
    *  If obj is not an object, undefined will be returned
   */
-  static camelToSankeCase(obj: any, excludeProps?: string[]) {
+  static camelToSnakeCase(obj: any, excludeProps: string[] = []) {
     if (obj && typeof obj === 'object') {
       const snakecaseObj = {};
       for (let prop in obj) {
@@ -65,7 +65,7 @@ export class HObject {
               // When excludeProp is not an array
             excludeProps = [];
           }
-          if (!excludeProps.length || !excludeProps.includes(prop)) {
+          if (!excludeProps.includes(prop)) {
             // When excludeProps has 0 length or prop is not included in excludeProps
             const snakecaseProp = HString.camelToSnakeCase(prop);
             snakecaseObj[snakecaseProp] = obj[prop];
@@ -92,9 +92,9 @@ export class HObject {
               // When excludeProp is not an array
             excludeProps = [];
           }
-          if (!excludeProps.length || !excludeProps.includes(prop)) {
+          if (!excludeProps.includes(prop)) {
             // When excludeProps has 0 length or prop is not included in excludeProps
-            const camelcaseProp = HString.camelToSnakeCase(prop);
+            const camelcaseProp = HString.snakeToCamelCase(prop);
             camelcaseObj[camelcaseProp] = obj[prop];
           }
         }
