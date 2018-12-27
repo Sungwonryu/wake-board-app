@@ -21,9 +21,12 @@ export class HString {
   */
   static snakeToCamelCase(str: any) {
     if (typeof str === 'string') {
-      const convertedStr = str.replace(/(\_\w)/g, (substr: string) => {
-        return substr[1].toUpperCase();
-      });
+      let convertedStr = str;
+      if (str.includes('_')) {        
+        convertedStr = str.replace(/(\_\w)/g, (substr: string) => {
+          return substr[1].toUpperCase();
+        });
+      }
       return convertedStr;
     }
   }
