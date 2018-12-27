@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -14,8 +15,14 @@ import { OrdinalSuffixPipe } from './shared/pipes/ordinal-suffix.pipe';
 import { TableComponent } from './shared/tables/table/table.component';
 import { TableWrapperComponent } from './shared/tables/table-wrapper/table-wrapper.component';
 import { ClockComponent } from './shared/clock/clock.component';
+import { ParamsService } from './shared/services/params.service';
+import { UIService } from './shared/services/ui.service';
+
+// api-storage
+import { ApiStorageService } from './api-storage/api-storage.service';
 
 // auth
+import { AuthService } from './auth/auth.service';
 import { LoginComponent } from './auth/login/login.component';
 
 // crewboard
@@ -33,6 +40,8 @@ import { PastAssignmentsComponent } from './assignments/past-assignments/past-as
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
 import { BasicTablesComponent } from './manage-database/basic-tables/basic-tables.component';
 import { RelationshipTablesComponent } from './manage-database/relationship-tables/relationship-tables.component';
+
+import { VesseltypeService } from './manage-database/vesseltype/vesseltype.service';
 
 @NgModule({
   declarations: [
@@ -61,12 +70,19 @@ import { RelationshipTablesComponent } from './manage-database/relationship-tabl
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    ApiStorageService,
+    ParamsService,
+    UIService,
+    VesseltypeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
