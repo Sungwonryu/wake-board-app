@@ -1,9 +1,11 @@
-interface SearchOption {
+import { HObject } from './h-object';
+
+export interface SearchOption {
   property: string,
   value: any,
 }
 
-interface SortOption {
+export interface SortOption {
   property: string,
   isDescending?: boolean
 }
@@ -46,16 +48,19 @@ export class HList {
   }
 
   static findProperty(list: any, { property, value }: SearchOption, findProps: string[]) {
+    let result = null;
     // When list is an array
-    if (list && typeof list === 'object' && list.constructor === Array) {
+    if (list && typeof list === 'object' && list.constructor === Array && list.length &&
+        typeof property === 'string' && property.length) {
+
       const matchedItem = list.filter((item: any) => {
         if (item && typeof item === 'object') {
           return item[property] === value;
         }
       });
+      let findProp;
+      let findVal;
       if (matchedItem && typeof matchedItem === 'object') {
-        let findProp;
-        let findVal;
         for (let i = 0; i < findProps.length; i++) {
           findProp = findProp[i];
           findVal = matchedItem[findProp];
@@ -64,9 +69,64 @@ export class HList {
           }
         }
         if (findVal) {
-          return findVal;
+          result = findVal;
         }
       }
+    }
+    return result;
+  }
+
+  static camelToSnakeCase(list: any, excludeProps: string[] = []) {
+    // When list is an array
+    if (list && typeof list === 'object' && list.constructor === Array) {
+      const convertedList = list.map((obj: any) => {
+        const convertedObj = HObject.camelToSnakeCase(obj, excludeProps);
+        if (convertedObj) {
+          return convertedObj;
+        }
+      });
+      if (convertedList.length) {
+        return convertedList;
+      }
+    }
+  }
+
+  static snakeToCamelCase(list: any, excludeProps: string[] = []) {
+    // When list is an array
+    if (list && typeof list === 'object' && list.constructor === Array) {
+      const convertedList = list.map((obj: any) => {
+        const convertedObj = HObject.snakeToCamelCase(obj, excludeProps);
+        if (convertedObj) {
+          return convertedObj;
+        }
+      });
+      if (convertedList.length) {
+        return convertedList;
+      }
+    }
+  }
+
+  static isSame(oldList, newList) {
+    if (oldList && typeof oldList === 'object' && oldList.constructor === Array &&
+        newList && typeof newList === 'object' && newList.constructor === Array) {
+      // When oldList and newList are arrays
+
+      let isSame = true;
+      if (oldList.length !== newList.length) {
+        // When the lengths of newList and oldList are different
+       isSame = false;
+      } else {
+        // When the lengths of newList and oldList are same
+        for (let i = 0; i < newList.length; i++) {
+          // If newList[i] is different from oldList[i], set isUpdated as true and break out the loop
+          // if (!newList[i].isSame(oldList[i])) {
+          if (!HObject.isSame(newList[i], oldList[i])) {
+            isSame = false;
+            break;
+          }
+        }
+      }
+      return isSame;
     }
   }
 
@@ -198,4 +258,5 @@ export class HList {
       return sortedList;
     } // end of if
   }
+
 }
