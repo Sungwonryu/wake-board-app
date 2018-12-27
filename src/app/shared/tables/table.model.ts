@@ -20,6 +20,10 @@ export interface TableColumn {
 export interface TableView {
   headerHeight?: string, // e.g. '20px'
   bodyHeight?: string, // e.g. '200px'
+  headerBgColor?: string, // e.g. '#ECECEC'
+  headerColor?: string, // e.g. '#FFFFFF'
+  headerFontFamily?: string, // e.g. 'Lato Bold'
+  headerFontSize?: string // e.g. '14px'
 }
 
 export interface TitlebarView {
