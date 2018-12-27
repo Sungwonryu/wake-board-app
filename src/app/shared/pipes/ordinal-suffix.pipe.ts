@@ -5,7 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class OrdinalSuffixPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
+  // transform(value: any, args?: any): any {
+  transform(value: any): any {
     const suffixes = ['th', 'st', 'nd', 'rd'];
     let num = +value;
     if (num && typeof num === 'number' && Number.isInteger(num)) {
