@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urls: {
+    userData: 'assets/data/user-data.json',
+    api: 'https://nycferry.hialabs.com/action.php'
+  }
 };
 
 /*
