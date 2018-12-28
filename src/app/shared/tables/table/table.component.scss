@@ -14,8 +14,20 @@ $table-color: #222222;
   }
 }
 
-.table-container-body {
+.table-body {
   overflow-y: auto;
+  background: linear-gradient(
+    180deg,
+    $table-body-row-bg-color-odd,
+    $table-body-row-bg-color-odd 39px,
+    $table-border-color 39px,
+    $table-border-color 40px,
+    $table-body-row-bg-color-even 40px,
+    $table-body-row-bg-color-even 79px,
+    $table-border-color 79px,
+    $table-border-color
+  );
+  background-size: 100% 80px
 }
 
 .row-header {
@@ -31,11 +43,11 @@ $table-color: #222222;
   border-bottom: 1px solid $table-border-color;
 
   &:nth-child(odd) {
-    background-color: $table-body-row-bg-color-odd;
+    background: $table-body-row-bg-color-odd;
   }
 
   &:nth-child(even) {
-    background-color: $table-body-row-bg-color-even;
+    background: $table-body-row-bg-color-even;
   }
 }
 
@@ -44,18 +56,20 @@ mat-header-cell,
 mat-header-row,
 mat-row {
   min-height: 38px;
-  color: $table-color;
+  // color: $table-color;
 }
 
 mat-header-cell {
   font-family: "Lato Bold";
   font-size: 14px;
+  padding: 0 !important; // Override mat-header-cell:last-of-type and mat-header-cell:first-of-type
 }
 
 mat-cell {
   font-family: 'Lato Medium';
   font-size: 14px;
   border-right: 1px solid $table-border-color;
+  padding: 0 !important; // Override mat-cell:last-of-type and mat-cell:first-of-type
 }
 
 .modify-entry {
