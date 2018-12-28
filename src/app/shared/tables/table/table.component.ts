@@ -13,6 +13,13 @@ export class TableComponent implements OnChanges, OnInit {
 
   HList = HList;
 
+  defaults = {
+    headerColor: '#222222',
+    headerBgColor: '#ECECEC',
+    headerFontFamily: 'Lato',
+    headerFontSize: '14px'
+  };
+
   // table column and view settings
   @Input() tableView: TableView = {};
   @Input() tableColumns: TableColumn[] = [];
