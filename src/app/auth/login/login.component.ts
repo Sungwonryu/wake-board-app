@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +12,18 @@ export class LoginComponent implements OnInit {
 
   subtitle = 'Log in with your Windows Active Directory Account using the fields below.';
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(form: NgForm) {
+    this.authService.login({
+      email: form.value.email,
+      password: form.value.password
+    });
   }
 
 }
