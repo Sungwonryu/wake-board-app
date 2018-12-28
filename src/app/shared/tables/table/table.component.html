@@ -1,6 +1,6 @@
 <section
   class="table-container table-container-header"
-  [ngStyle]="{ 'height': tableView.headerHeight }">
+  [ngStyle]="{'height': tableView.headerHeight, 'color': tableView.headerColor || defaults.headerColor, 'background-color': tableView.headerBgColor || defaults.headerBgColor}">
 
   <mat-table
     matSort
@@ -18,7 +18,8 @@
         mat-sort-header
         [fxFlex]="column.width"
         fxLayout="row"
-        fxLayoutAlign="center center">{{ column.header }}</mat-header-cell>
+        fxLayoutAlign="center center"
+        [ngStyle]="{'color': tableView.headerColor || defaults.headerColor, 'font-family': tableView.headerFontFamily || defaults.headerFontFamily, 'font-size': tableView.headerFontSize || defaults.headerFontSize}">{{ column.header }}</mat-header-cell>
 
       <mat-cell
         *matCellDef="let row"
@@ -53,7 +54,8 @@
       fxFlex="100%"
       fxLayout="row nowrap"
       fxLayoutAlign="center center"
-      class="row-header"></mat-header-row>
+      class="row-header"
+      [ngStyle]= "{ 'height': tableView.headerHeight || defaults.headerHeight, 'background-color': tableView.headerBgColor || defaults.headerBgColor }"></mat-header-row>
 
   </mat-table>
 </section>
