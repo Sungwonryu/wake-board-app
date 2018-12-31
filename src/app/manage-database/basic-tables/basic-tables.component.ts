@@ -2,9 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ListUpdate } from '../../api-storage/api-storage.model';
-import { VesseltypeService } from '../vesseltype/vesseltype.service'
-import { VesselcapacityService } from '../vesselcapacity/vesselcapacity.service'
-import { CalltimeService } from '../calltime/calltime.service'
+import { VesseltypeService } from '../vesseltype/vesseltype.service';
+import { VesselcapacityService } from '../vesselcapacity/vesselcapacity.service';
+import { ShiftService } from '../shift/shift.service';
+import { RouteService } from '../route/route.service';
+import { LocationService } from '../location/location.service';;
+import { CalltimeService } from '../calltime/calltime.service';
+import { JobService } from '../job/job.service';
 
 // import { HDate } from '../../shared/lib/h-date';
 // import { TableActionData } from '../../shared/tables/table.model';
@@ -34,27 +38,69 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     tableTitle: 'Vessel Capacity',
     dataType: 'vesselcapacities'
   }
+  shiftTableSettings = {
+    ...this.commonTableSettings,
+    tableColumns: [{ columnDef: 'shift', header: 'Shift', width: '130px', cellFn: (row: any) => `${row.shift.slice(0, 5)}` }],
+    tableTitle: 'Shift',
+    dataType: 'shifts'
+  }
+  routeTableSettings = {
+    ...this.commonTableSettings,
+    tableColumns: [{ columnDef: 'route', header: 'Route', width: '130px', cellFn: (row: any) => `${row.route.slice(0, 5)}` }],
+    tableTitle: 'Route',
+    dataType: 'routes'
+  }
   calltimeTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'callTime', header: 'Call time', width: '130px', cellFn: (row: any) => `${row.callTime.slice(0, 5)}` }],
+    tableColumns: [{ columnDef: 'callTime', header: 'Call Time', width: '130px', cellFn: (row: any) => `${row.callTime.slice(0, 5)}` }],
     tableTitle: 'Calltime',
     dataType: 'calltimes'
   }
+  locationTableSettings = {
+    tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
+    tableColumns: [{ columnDef: 'location', header: 'Location', width: '130px', cellFn: (row: any) => `${row.location}` }],
+    tableTitle: 'Pick Up Location',
+    dataType: 'location'
+  }
+  jobTableSettings = {
+    tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
+    tableColumns: [{ columnDef: 'job', header: 'Job Title', width: '130px', cellFn: (row: any) => `${row.job}` }],
+    tableTitle: 'Job Title',
+    dataType: 'job'
+  }
+
 
   filterValue = '';
 
   vesseltypeList: any[] = [];
-  vesselcapacityList: any[] = [];
-  calltimeList: any[] = [];
-
   $vesseltypeListUpdateSub: Subscription;
+
+  vesselcapacityList: any[] = [];
   $vesselcapacityListUpdateSub: Subscription;
+
+  shiftList: any[] = [];
+  $shiftListUpdateSub: Subscription;
+
+  routeList: any[] = [];
+  $routeListUpdateSub: Subscription;
+
+  calltimeList: any[] = [];
   $calltimeListUpdateSub: Subscription;
+
+  locationList: any[] = [];
+  $locationListUpdateSub: Subscription;
+
+  jobList: any[] = [];
+  $jobListUpdateSub: Subscription;
 
   constructor(
     private vesseltypeService: VesseltypeService,
     private vesselcapacityService: VesselcapacityService,
-    private calltimeService: CalltimeService
+    private shiftService: ShiftService,
+    private routeService: RouteService,
+    private calltimeService: CalltimeService,
+    private locationService: LocationService,
+    private jobService: JobService,
   ) { }
 
   ngOnInit() {
@@ -78,11 +124,39 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
         this.vesselcapacityList = this.vesselcapacityService.getList();
       }
     });
-    // calltimes
+    // shift
+    this.$shiftListUpdateSub = this.shiftService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.shiftService.object} - list is fetched`);
+      if (listUpdate && listUpdate.isUpdated === true) {
+        this.shiftList = this.shiftService.getList();
+      }
+    });
+    // route
+    this.$routeListUpdateSub = this.routeService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.routeService.object} - list is fetched`);
+      if (listUpdate && listUpdate.isUpdated === true) {
+        this.routeList = this.routeService.getList();
+      }
+    });
+    // calltime
     this.$calltimeListUpdateSub = this.calltimeService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
       console.log(`${this.calltimeService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
         this.calltimeList = this.calltimeService.getList();
+      }
+    });
+    // location
+    this.$locationListUpdateSub = this.locationService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.locationService.object} - list is fetched`);
+      if (listUpdate && listUpdate.isUpdated === true) {
+        this.locationList = this.locationService.getList();
+      }
+    });
+    // job
+    this.$jobListUpdateSub = this.jobService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.jobService.object} - list is fetched`);
+      if (listUpdate && listUpdate.isUpdated === true) {
+        this.jobList = this.jobService.getList();
       }
     });
   }
@@ -90,13 +164,21 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
   initList() {
     this.vesseltypeList = this.vesseltypeService.getList();
     this.vesselcapacityList = this.vesselcapacityService.getList();
+    this.shiftList = this.shiftService.getList();
+    this.routeList = this.routeService.getList();
     this.calltimeList = this.calltimeService.getList();
+    this.locationList = this.locationService.getList();
+    this.jobList = this.jobService.getList();
   }
 
   initService() {
     this.vesseltypeService.api('read');
     this.vesselcapacityService.api('read');
+    this.shiftService.api('read');
+    this.routeService.api('read');
     this.calltimeService.api('read');
+    this.locationService.api('read');
+    this.jobService.api('read');
   }
 
   ngOnDestroy() {
@@ -106,8 +188,20 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     if (this.$vesselcapacityListUpdateSub) {
       this.$vesselcapacityListUpdateSub.unsubscribe();
     }
+    if (this.$shiftListUpdateSub) {
+      this.$shiftListUpdateSub.unsubscribe();
+    }
+    if (this.$routeListUpdateSub) {
+      this.$routeListUpdateSub.unsubscribe();
+    }
     if (this.$calltimeListUpdateSub) {
       this.$calltimeListUpdateSub.unsubscribe();
+    }
+    if (this.$locationListUpdateSub) {
+      this.$locationListUpdateSub.unsubscribe();
+    }
+    if (this.$jobListUpdateSub) {
+      this.$jobListUpdateSub.unsubscribe();
     }
   }
 
