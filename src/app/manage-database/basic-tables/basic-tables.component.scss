@@ -101,32 +101,6 @@ $table-width: 130px;
     overflow: hidden;
   }
 
-  // .title-bar {
-  //   height: 58px;
-  //   width: 100%;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   background-color: #041E42;
-  //   font-style: "Lato Bold";
-  //   font-size: 16px;
-  //   color: #ffffff;
-  // }
-
-  // .table-body {
-  //   width: 240px;
-  //   // height: 148px;
-  //   background: linear-gradient(
-  //     0deg,
-  //     #D8D8D8,
-  //     #979797 1.25%,
-  //     #D8D8D8 48.75%,
-  //     #979797 1.25%
-  //     #ECECEC 48.75%,
-  //   );
-  //   background-size: 100% 80px;
-  // }
-
   .edit-button {
     height: 26px;
     width: 80px;
@@ -139,23 +113,22 @@ $table-width: 130px;
   }
 
   .table-wrapper-vesseltype,
+  .table-wrapper-location,
   .table-wrapper-job {
     height: 256px;
   }
 
-  .table-wrapper-vesselcapacity,
-  .table-wrapper-location {
+  .table-wrapper-vesselcapacity {
     height: 220px;
   }
 
   .table-vesseltype,
+  .table-location,
   .table-job {
     height: 210px;
   }
 
-  .table-vesselcapacity,
-  .table-location {
+  .table-vesselcapacity {
     height: 174px;
   }
-
 }
