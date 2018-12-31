@@ -1,0 +1,161 @@
+$table-width: 130px;
+
+.basic-tables {
+  width: 1920px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+}
+
+.master-database {
+  height: 656px;
+  width: 1842px;
+  position: relative;
+  margin-top: 72px;
+  border: 1px solid #979797;
+  border-radius: 15px;
+  background-color: #ECECEC;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.5);
+  overflow: hidden;
+
+  .master-header {
+    height: 44px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3CA2E2;
+  }
+
+  .master-title {
+    margin-left: 20px;
+    font-family: "Lato Bold";
+    font-size: 22px;
+    color: #ffffff;
+  }
+
+  .master-header-message {
+    height: 48px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #979797;
+
+    p {
+      font-family: 'Lato Italic';
+      font-size: 17px;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+  }
+
+  .master-body {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .table-group {
+    height: 564px;
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 64px 0;
+    align-items: flex-start;
+  }
+
+  .table-group-vessel {
+    width: 610px;
+    border-right: 1px solid #979797;
+  }
+
+  .table-group-shift {
+    width: 794px;
+    border-right: 1px solid #979797;
+  }
+
+  .table-group-employee {
+    width: 458px;
+  }
+
+  .table-wrapper,
+  .table-wrapper-group {
+    height: 508px;
+    width: 132px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .table {
+    height: 462px;
+    width: 132px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #041E42;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  // .title-bar {
+  //   height: 58px;
+  //   width: 100%;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   background-color: #041E42;
+  //   font-style: "Lato Bold";
+  //   font-size: 16px;
+  //   color: #ffffff;
+  // }
+
+  // .table-body {
+  //   width: 240px;
+  //   // height: 148px;
+  //   background: linear-gradient(
+  //     0deg,
+  //     #D8D8D8,
+  //     #979797 1.25%,
+  //     #D8D8D8 48.75%,
+  //     #979797 1.25%
+  //     #ECECEC 48.75%,
+  //   );
+  //   background-size: 100% 80px;
+  // }
+
+  .edit-button {
+    height: 26px;
+    width: 80px;
+    margin-top: 20px;
+    border: 1px solid #393939;
+    border-radius: 15px;
+    background: linear-gradient(#EEEEEE, #D8D8D8);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    font-size: 12px;
+  }
+
+  .table-wrapper-vesseltype,
+  .table-wrapper-job {
+    height: 256px;
+  }
+
+  .table-wrapper-vesselcapacity,
+  .table-wrapper-location {
+    height: 220px;
+  }
+
+  .table-vesseltype,
+  .table-job {
+    height: 210px;
+  }
+
+  .table-vesselcapacity,
+  .table-location {
+    height: 174px;
+  }
+
+}
