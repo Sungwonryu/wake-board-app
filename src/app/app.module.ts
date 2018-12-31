@@ -43,8 +43,13 @@ import { RelationshipTablesComponent } from './manage-database/relationship-tabl
 
 import { VesseltypeService } from './manage-database/vesseltype/vesseltype.service';
 import { VesselcapacityService } from './manage-database/vesselcapacity/vesselcapacity.service';
-import { LocationService } from './manage-database/location/location.service';
+
+
+import { ShiftService } from './manage-database/shift/shift.service';
+import { RouteService } from './manage-database/route/route.service';
 import { CalltimeService } from './manage-database/calltime/calltime.service';
+import { LocationService } from './manage-database/location/location.service';
+
 import { JobService } from './manage-database/job/job.service';
 
 @NgModule({
@@ -87,6 +92,8 @@ import { JobService } from './manage-database/job/job.service';
     UIService,
     VesseltypeService,
     VesselcapacityService,
+    ShiftService,
+    RouteService,
     LocationService,
     CalltimeService,
     JobService
