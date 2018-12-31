@@ -47,11 +47,23 @@
 
       <div class="table-group table-group-shift">
         <div class="table-wrapper">
-          <div class="table"></div>
+          <app-table
+            class="table"
+            [tableView]="shiftTableSettings.tableView"
+            [tableColumns]="shiftTableSettings.tableColumns"
+            [data]="shiftList"
+            [dataType]="shiftTableSettings.dataType"
+            [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
         <div class="table-wrapper">
-          <div class="table"></div>
+          <app-table
+            class="table"
+            [tableView]="routeTableSettings.tableView"
+            [tableColumns]="routeTableSettings.tableColumns"
+            [data]="routeList"
+            [dataType]="routeTableSettings.dataType"
+            [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
         <div class="table-wrapper">
@@ -64,8 +76,14 @@
             [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
-        <div class="table-wrapper">
-          <div class="table"></div>
+        <div class="table-wrapper table-wrapper-location">
+          <app-table
+            class="table table-location"
+            [tableView]="locationTableSettings.tableView"
+            [tableColumns]="locationTableSettings.tableColumns"
+            [data]="locationList"
+            [dataType]="locationTableSettings.dataType"
+            [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
       </div>
@@ -76,11 +94,13 @@
         </div>
         <div class="table-wrapper-group">
           <div class="table-wrapper table-wrapper-job">
-            <div class="table table-job"></div>
-            <button class="edit-button">Edit Table</button>
-          </div>
-          <div class="table-wrapper table-wrapper-location">
-            <div class="table table-location"></div>
+            <app-table
+              class="table table-job"
+              [tableView]="jobTableSettings.tableView"
+              [tableColumns]="jobTableSettings.tableColumns"
+              [data]="jobList"
+              [dataType]="locationTableSettings.dataType"
+              [filterValue]="filterValue"></app-table>
             <button class="edit-button">Edit Table</button>
           </div>
         </div>
