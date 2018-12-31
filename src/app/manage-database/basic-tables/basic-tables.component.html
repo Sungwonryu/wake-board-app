@@ -1,3 +1,80 @@
-<p>
-  basic-tables works!
-</p>
+<div class="basic-tables">
+  <div class="master-database">
+    <div class="master-header">
+      <span class="master-title">MASTER DATABASE</span>
+      <span class="search-input"></span>
+    </div>
+
+    <div class="master-header-message">
+      <p>{{ headerMessage }}</p>
+    </div>
+
+    <div class="master-body">
+      <div class="table-group table-group-vessel">
+        <div class="table-wrapper">
+          <div class="table"></div>
+          <button class="edit-button">Edit Table</button>
+        </div>
+        <div class="table-wrapper">
+          <div class="table"></div>
+          <button class="edit-button">Edit Table</button>
+        </div>
+        <div class="table-wrapper-group">
+          <div class="table-wrapper table-wrapper-vesseltype">
+            <app-table
+              class="table table-vesseltype"
+              [ngStyle]="{'height': vesseltypeTableData.tableView.bodyHeight}"
+              [tableView]="vesseltypeTableData.tableView"
+              [tableColumns]="vesseltypeTableData.tableColumns"
+              [data]="vesseltypeList"
+              [dataType]="vesseltypeTableData.dataType"
+              [filterValue]="filterValue"></app-table>
+            <button class="edit-button">Edit Table</button>
+
+          </div>
+          <div class="table-wrapper table-wrapper-vesselcapacity">
+            <div class="table table-vesselcapacity"></div>
+            <button class="edit-button">Edit Table</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="table-group table-group-shift">
+        <div class="table-wrapper">
+          <div class="table"></div>
+          <button class="edit-button">Edit Table</button>
+        </div>
+        <div class="table-wrapper">
+          <div class="table"></div>
+          <button class="edit-button">Edit Table</button>
+        </div>
+        <div class="table-wrapper">
+          <div class="table"></div>
+          <button class="edit-button">Edit Table</button>
+        </div>
+        <div class="table-wrapper">
+          <div class="table"></div>
+          <button class="edit-button">Edit Table</button>
+        </div>
+      </div>
+      <div class="table-group table-group-employee">
+        <div class="table-wrapper">
+          <div class="table"></div>
+          <button class="edit-button">Edit Table</button>
+        </div>
+        <div class="table-wrapper-group">
+          <div class="table-wrapper table-wrapper-job">
+            <div class="table table-job"></div>
+            <button class="edit-button">Edit Table</button>
+          </div>
+          <div class="table-wrapper table-wrapper-location">
+            <div class="table table-location"></div>
+            <button class="edit-button">Edit Table</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
