@@ -42,6 +42,8 @@ import { BasicTablesComponent } from './manage-database/basic-tables/basic-table
 import { RelationshipTablesComponent } from './manage-database/relationship-tables/relationship-tables.component';
 
 import { VesseltypeService } from './manage-database/vesseltype/vesseltype.service';
+import { VesselcapacityService } from './manage-database/vesselcapacity/vesselcapacity.service';
+import { CalltimeService } from './manage-database/calltime/calltime.service';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { VesseltypeService } from './manage-database/vesseltype/vesseltype.servi
     ApiStorageService,
     ParamsService,
     UIService,
-    VesseltypeService
+    VesseltypeService,
+    VesselcapacityService,
+    CalltimeService
   ],
   bootstrap: [AppComponent]
 })
