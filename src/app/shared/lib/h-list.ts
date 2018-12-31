@@ -62,7 +62,7 @@ export class HList {
       let findVal;
       if (matchedItem && typeof matchedItem === 'object') {
         for (let i = 0; i < findProps.length; i++) {
-          findProp = findProp[i];
+          findProp = findProps[i];
           findVal = matchedItem[findProp];
           if (findVal) {
             break;
