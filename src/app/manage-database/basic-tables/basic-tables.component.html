@@ -23,17 +23,22 @@
           <div class="table-wrapper table-wrapper-vesseltype">
             <app-table
               class="table table-vesseltype"
-              [ngStyle]="{'height': vesseltypeTableData.tableView.bodyHeight}"
-              [tableView]="vesseltypeTableData.tableView"
-              [tableColumns]="vesseltypeTableData.tableColumns"
+              [tableView]="vesseltypeTableSettings.tableView"
+              [tableColumns]="vesseltypeTableSettings.tableColumns"
               [data]="vesseltypeList"
-              [dataType]="vesseltypeTableData.dataType"
+              [dataType]="vesseltypeTableSettings.dataType"
               [filterValue]="filterValue"></app-table>
             <button class="edit-button">Edit Table</button>
 
           </div>
           <div class="table-wrapper table-wrapper-vesselcapacity">
-            <div class="table table-vesselcapacity"></div>
+            <app-table
+              class="table table-vesselcapacity"
+              [tableView]="vesselcapacityTableSettings.tableView"
+              [tableColumns]="vesselcapacityTableSettings.tableColumns"
+              [data]="vesselcapacityList"
+              [dataType]="vesselcapacityTableSettings.dataType"
+              [filterValue]="filterValue"></app-table>
             <button class="edit-button">Edit Table</button>
           </div>
         </div>
@@ -50,7 +55,13 @@
           <button class="edit-button">Edit Table</button>
         </div>
         <div class="table-wrapper">
-          <div class="table"></div>
+          <app-table
+            class="table"
+            [tableView]="calltimeTableSettings.tableView"
+            [tableColumns]="calltimeTableSettings.tableColumns"
+            [data]="calltimeList"
+            [dataType]="calltimeTableSettings.dataType"
+            [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
         <div class="table-wrapper">
