@@ -1,133 +1,125 @@
-<div class="tab-group">
-  <div class="tab tab-tables active">Tables</div>
-  <div class="tab tab-relationships">Relationships</div>
-</div>
+<div class="master-database">
+  <div class="master-header">
+    <span class="master-title">MASTER DATABASE</span>
+    <span class="search-input"></span>
+  </div>
 
-<div class="basic-tables">
-  <div class="master-database">
-    <div class="master-header">
-      <span class="master-title">MASTER DATABASE</span>
-      <span class="search-input"></span>
-    </div>
+  <div class="master-header-message">
+    <p>{{ headerMessage }}</p>
+  </div>
 
-    <div class="master-header-message">
-      <p>{{ headerMessage }}</p>
-    </div>
-
-    <div class="master-body">
-      <div class="table-group table-group-vessel">
-        <div class="table-wrapper">
-          <app-table
-            class="table table-vesselname"
-            [tableView]="vesselnameTableSettings.tableView"
-            [tableColumns]="vesselnameTableSettings.tableColumns"
-            [data]="vesselnameList"
-            [dataType]="vesselnameTableSettings.dataType"
-            [filterValue]="filterValue"></app-table>
-          <button class="edit-button">Edit Table</button>
-        </div>
-        <div class="table-wrapper">
-          <app-table
-            class="table table-vesselnumber"
-            [tableView]="vesselnumberTableSettings.tableView"
-            [tableColumns]="vesselnumberTableSettings.tableColumns"
-            [data]="vesselnumberList"
-            [dataType]="vesselnumberTableSettings.dataType"
-            [filterValue]="filterValue"></app-table>
-          <button class="edit-button">Edit Table</button>
-        </div>
-        <div class="table-wrapper-group">
-          <div class="table-wrapper table-wrapper-vesseltype">
-            <app-table
-              class="table table-vesseltype"
-              [tableView]="vesseltypeTableSettings.tableView"
-              [tableColumns]="vesseltypeTableSettings.tableColumns"
-              [data]="vesseltypeList"
-              [dataType]="vesseltypeTableSettings.dataType"
-              [filterValue]="filterValue"></app-table>
-            <button class="edit-button">Edit Table</button>
-          </div>
-          <div class="table-wrapper table-wrapper-vesselcapacity">
-            <app-table
-              class="table table-vesselcapacity"
-              [tableView]="vesselcapacityTableSettings.tableView"
-              [tableColumns]="vesselcapacityTableSettings.tableColumns"
-              [data]="vesselcapacityList"
-              [dataType]="vesselcapacityTableSettings.dataType"
-              [filterValue]="filterValue"></app-table>
-            <button class="edit-button">Edit Table</button>
-          </div>
-        </div>
-
+  <div class="master-body">
+    <div class="table-group table-group-vessel">
+      <div class="table-wrapper">
+        <app-table
+          class="table table-vesselname"
+          [tableView]="vesselnameTableSettings.tableView"
+          [tableColumns]="vesselnameTableSettings.tableColumns"
+          [data]="vesselnameList"
+          [dataType]="vesselnameTableSettings.dataType"
+          [filterValue]="filterValue"></app-table>
+        <button class="edit-button">Edit Table</button>
       </div>
-
-      <div class="table-group table-group-shift">
-        <div class="table-wrapper">
+      <div class="table-wrapper">
+        <app-table
+          class="table table-vesselnumber"
+          [tableView]="vesselnumberTableSettings.tableView"
+          [tableColumns]="vesselnumberTableSettings.tableColumns"
+          [data]="vesselnumberList"
+          [dataType]="vesselnumberTableSettings.dataType"
+          [filterValue]="filterValue"></app-table>
+        <button class="edit-button">Edit Table</button>
+      </div>
+      <div class="table-wrapper-group">
+        <div class="table-wrapper table-wrapper-vesseltype">
           <app-table
-            class="table"
-            [tableView]="shiftTableSettings.tableView"
-            [tableColumns]="shiftTableSettings.tableColumns"
-            [data]="shiftList"
-            [dataType]="shiftTableSettings.dataType"
+            class="table table-vesseltype"
+            [tableView]="vesseltypeTableSettings.tableView"
+            [tableColumns]="vesseltypeTableSettings.tableColumns"
+            [data]="vesseltypeList"
+            [dataType]="vesseltypeTableSettings.dataType"
             [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
-        <div class="table-wrapper">
+        <div class="table-wrapper table-wrapper-vesselcapacity">
           <app-table
-            class="table"
-            [tableView]="routeTableSettings.tableView"
-            [tableColumns]="routeTableSettings.tableColumns"
-            [data]="routeList"
-            [dataType]="routeTableSettings.dataType"
-            [filterValue]="filterValue"></app-table>
-          <button class="edit-button">Edit Table</button>
-        </div>
-        <div class="table-wrapper">
-          <app-table
-            class="table"
-            [tableView]="calltimeTableSettings.tableView"
-            [tableColumns]="calltimeTableSettings.tableColumns"
-            [data]="calltimeList"
-            [dataType]="calltimeTableSettings.dataType"
-            [filterValue]="filterValue"></app-table>
-          <button class="edit-button">Edit Table</button>
-        </div>
-        <div class="table-wrapper table-wrapper-location">
-          <app-table
-            class="table table-location"
-            [tableView]="locationTableSettings.tableView"
-            [tableColumns]="locationTableSettings.tableColumns"
-            [data]="locationList"
-            [dataType]="locationTableSettings.dataType"
+            class="table table-vesselcapacity"
+            [tableView]="vesselcapacityTableSettings.tableView"
+            [tableColumns]="vesselcapacityTableSettings.tableColumns"
+            [data]="vesselcapacityList"
+            [dataType]="vesselcapacityTableSettings.dataType"
             [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
       </div>
-      <div class="table-group table-group-employee">
-        <div class="table-wrapper">
+
+    </div>
+
+    <div class="table-group table-group-shift">
+      <div class="table-wrapper">
+        <app-table
+          class="table"
+          [tableView]="shiftTableSettings.tableView"
+          [tableColumns]="shiftTableSettings.tableColumns"
+          [data]="shiftList"
+          [dataType]="shiftTableSettings.dataType"
+          [filterValue]="filterValue"></app-table>
+        <button class="edit-button">Edit Table</button>
+      </div>
+      <div class="table-wrapper">
+        <app-table
+          class="table"
+          [tableView]="routeTableSettings.tableView"
+          [tableColumns]="routeTableSettings.tableColumns"
+          [data]="routeList"
+          [dataType]="routeTableSettings.dataType"
+          [filterValue]="filterValue"></app-table>
+        <button class="edit-button">Edit Table</button>
+      </div>
+      <div class="table-wrapper">
+        <app-table
+          class="table"
+          [tableView]="calltimeTableSettings.tableView"
+          [tableColumns]="calltimeTableSettings.tableColumns"
+          [data]="calltimeList"
+          [dataType]="calltimeTableSettings.dataType"
+          [filterValue]="filterValue"></app-table>
+        <button class="edit-button">Edit Table</button>
+      </div>
+      <div class="table-wrapper table-wrapper-location">
+        <app-table
+          class="table table-location"
+          [tableView]="locationTableSettings.tableView"
+          [tableColumns]="locationTableSettings.tableColumns"
+          [data]="locationList"
+          [dataType]="locationTableSettings.dataType"
+          [filterValue]="filterValue"></app-table>
+        <button class="edit-button">Edit Table</button>
+      </div>
+    </div>
+    <div class="table-group table-group-employee">
+      <div class="table-wrapper">
+        <app-table
+          class="table table"
+          [tableView]="employeeTableSettings.tableView"
+          [tableColumns]="employeeTableSettings.tableColumns"
+          [data]="employeeList"
+          [dataType]="employeeTableSettings.dataType"
+          [filterValue]="filterValue"></app-table>
+        <button class="edit-button">Edit Table</button>
+      </div>
+      <div class="table-wrapper-group">
+        <div class="table-wrapper table-wrapper-job">
           <app-table
-            class="table table"
-            [tableView]="employeeTableSettings.tableView"
-            [tableColumns]="employeeTableSettings.tableColumns"
-            [data]="employeeList"
-            [dataType]="employeeTableSettings.dataType"
+            class="table table-job"
+            [tableView]="jobTableSettings.tableView"
+            [tableColumns]="jobTableSettings.tableColumns"
+            [data]="jobList"
+            [dataType]="jobTableSettings.dataType"
             [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
-        </div>
-        <div class="table-wrapper-group">
-          <div class="table-wrapper table-wrapper-job">
-            <app-table
-              class="table table-job"
-              [tableView]="jobTableSettings.tableView"
-              [tableColumns]="jobTableSettings.tableColumns"
-              [data]="jobList"
-              [dataType]="jobTableSettings.dataType"
-              [filterValue]="filterValue"></app-table>
-            <button class="edit-button">Edit Table</button>
-          </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>

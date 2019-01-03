@@ -13,9 +13,6 @@ import { CalltimeService } from '../calltime/calltime.service';
 import { EmployeeService } from '../employee/employee.service';
 import { JobService } from '../job/job.service';
 
-// import { HDate } from '../../shared/lib/h-date';
-// import { TableActionData } from '../../shared/tables/table.model';
-
 @Component({
   selector: 'app-basic-tables',
   templateUrl: './basic-tables.component.html',
@@ -27,7 +24,7 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
 
   commonTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '404px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-  }
+  };
 
   vesselnameTableSettings = {
     ...this.commonTableSettings,
@@ -35,45 +32,45 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     tableTitle: 'Vessel Name',
     // dataType: 'vessel_names'
     dataType: 'vessels'
-  }
+  };
   vesselnumberTableSettings = {
     ...this.commonTableSettings,
     tableColumns: [{ columnDef: 'vesselNo', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${row.vesselNo}` }],
     // tableColumns: [{ columnDef: 'vesselNumber', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${row.vesselNumber}` }],
     tableTitle: 'Vessel ID',
-    // dataType: 'vessel_names'
+    // dataType: 'vessel_numbers'
     dataType: 'vessels'
-  }
+  };
   vesseltypeTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
     tableColumns: [{ columnDef: 'vesselType', header: 'Vessel Type', width: '130px', cellFn: (row: any) => `${row.vesselType}` }],
     tableTitle: 'Vessel Type',
     dataType: 'vessel_types'
-  }
+  };
   vesselcapacityTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '116px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
     tableColumns: [{ columnDef: 'vesselCapacity', header: 'Vessel Capacity', width: '130px', cellFn: (row: any) => `${row.vesselCapacity}` }],
     tableTitle: 'Vessel Capacity',
     dataType: 'vessel_capacities'
-  }
+  };
   shiftTableSettings = {
     ...this.commonTableSettings,
     tableColumns: [{ columnDef: 'shift', header: 'Shift', width: '130px', cellFn: (row: any) => `${row.shift.slice(0, 5)}` }],
     tableTitle: 'Shift',
     dataType: 'shifts'
-  }
+  };
   routeTableSettings = {
     ...this.commonTableSettings,
     tableColumns: [{ columnDef: 'route', header: 'Route', width: '130px', cellFn: (row: any) => `${row.route.slice(0, 5)}` }],
     tableTitle: 'Route',
     dataType: 'routes'
-  }
+  };
   calltimeTableSettings = {
     ...this.commonTableSettings,
     tableColumns: [{ columnDef: 'callTime', header: 'Call Time', width: '130px', cellFn: (row: any) => `${row.callTime.slice(0, 5)}` }],
     tableTitle: 'Call Time',
     dataType: 'call_times'
-  }
+  };
   locationTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
     tableColumns: [{ columnDef: 'location', header: 'Location', width: '130px', cellFn: (row: any) => `${row.location}` }],
@@ -85,13 +82,13 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     tableColumns: [{ columnDef: 'job', header: 'Job Title', width: '130px', cellFn: (row: any) => `${row.job}` }],
     tableTitle: 'Job Title',
     dataType: 'jobs'
-  }
+  };
   employeeTableSettings = {
     ...this.commonTableSettings,
     tableColumns: [{ columnDef: 'employee', header: 'Employee', width: '130px', cellFn: (row: any) => `${row.employee}` }],
     tableTitle: 'Employee',
     dataType: 'employees'
-  }
+  };
 
   filterValue = '';
 
