@@ -55,6 +55,7 @@ import { LocationService } from './manage-database/location/location.service';
 import { EmployeeService } from './manage-database/employee/employee.service';
 import { JobService } from './manage-database/job/job.service';
 
+import { VesselTableComponent } from './manage-database/vessel-table/vessel-table.component';
 import { VesselService } from './manage-database/vessel/vessel.service';
 
 @NgModule({
@@ -80,6 +81,7 @@ import { VesselService } from './manage-database/vessel/vessel.service';
     BasicTablesComponent,
     RelationshipTablesComponent,
     NavTabsComponent,
+    VesselTableComponent
   ],
   imports: [
     BrowserModule,
