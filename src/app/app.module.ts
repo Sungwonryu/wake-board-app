@@ -41,15 +41,17 @@ import { ManageDatabaseComponent } from './manage-database/manage-database.compo
 import { BasicTablesComponent } from './manage-database/basic-tables/basic-tables.component';
 import { RelationshipTablesComponent } from './manage-database/relationship-tables/relationship-tables.component';
 
+import { VesselnameService } from './manage-database/vesselname/vesselname.service';
+import { VesselnumberService } from './manage-database/vesselnumber/vesselnumber.service';
 import { VesseltypeService } from './manage-database/vesseltype/vesseltype.service';
 import { VesselcapacityService } from './manage-database/vesselcapacity/vesselcapacity.service';
-
 
 import { ShiftService } from './manage-database/shift/shift.service';
 import { RouteService } from './manage-database/route/route.service';
 import { CalltimeService } from './manage-database/calltime/calltime.service';
 import { LocationService } from './manage-database/location/location.service';
 
+import { EmployeeService } from './manage-database/employee/employee.service';
 import { JobService } from './manage-database/job/job.service';
 
 @NgModule({
@@ -90,12 +92,15 @@ import { JobService } from './manage-database/job/job.service';
     ApiStorageService,
     ParamsService,
     UIService,
+    VesselnameService,
+    VesselnumberService,
     VesseltypeService,
     VesselcapacityService,
     ShiftService,
     RouteService,
     LocationService,
     CalltimeService,
+    EmployeeService,
     JobService
   ],
   bootstrap: [AppComponent]
