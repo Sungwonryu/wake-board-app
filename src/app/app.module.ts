@@ -40,6 +40,7 @@ import { PastAssignmentsComponent } from './assignments/past-assignments/past-as
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
 import { BasicTablesComponent } from './manage-database/basic-tables/basic-tables.component';
 import { RelationshipTablesComponent } from './manage-database/relationship-tables/relationship-tables.component';
+import { NavTabsComponent } from './manage-database/nav-tabs/nav-tabs.component';
 
 import { VesselnameService } from './manage-database/vesselname/vesselname.service';
 import { VesselnumberService } from './manage-database/vesselnumber/vesselnumber.service';
@@ -53,6 +54,8 @@ import { LocationService } from './manage-database/location/location.service';
 
 import { EmployeeService } from './manage-database/employee/employee.service';
 import { JobService } from './manage-database/job/job.service';
+
+import { VesselService } from './manage-database/vessel/vessel.service';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,8 @@ import { JobService } from './manage-database/job/job.service';
     // manage-database
     ManageDatabaseComponent,
     BasicTablesComponent,
-    RelationshipTablesComponent
+    RelationshipTablesComponent,
+    NavTabsComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +105,8 @@ import { JobService } from './manage-database/job/job.service';
     LocationService,
     CalltimeService,
     EmployeeService,
-    JobService
+    JobService,
+    VesselService
   ],
   bootstrap: [AppComponent]
 })
