@@ -1,3 +1,8 @@
+<div class="tab-group">
+  <div class="tab tab-tables active">Tables</div>
+  <div class="tab tab-relationships">Relationships</div>
+</div>
+
 <div class="basic-tables">
   <div class="master-database">
     <div class="master-header">
@@ -12,11 +17,23 @@
     <div class="master-body">
       <div class="table-group table-group-vessel">
         <div class="table-wrapper">
-          <div class="table"></div>
+          <app-table
+            class="table table-vesselname"
+            [tableView]="vesselnameTableSettings.tableView"
+            [tableColumns]="vesselnameTableSettings.tableColumns"
+            [data]="vesselnameList"
+            [dataType]="vesselnameTableSettings.dataType"
+            [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
         <div class="table-wrapper">
-          <div class="table"></div>
+          <app-table
+            class="table table-vesselnumber"
+            [tableView]="vesselnumberTableSettings.tableView"
+            [tableColumns]="vesselnumberTableSettings.tableColumns"
+            [data]="vesselnumberList"
+            [dataType]="vesselnumberTableSettings.dataType"
+            [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
         <div class="table-wrapper-group">
@@ -29,7 +46,6 @@
               [dataType]="vesseltypeTableSettings.dataType"
               [filterValue]="filterValue"></app-table>
             <button class="edit-button">Edit Table</button>
-
           </div>
           <div class="table-wrapper table-wrapper-vesselcapacity">
             <app-table
@@ -89,7 +105,13 @@
       </div>
       <div class="table-group table-group-employee">
         <div class="table-wrapper">
-          <div class="table"></div>
+          <app-table
+            class="table table"
+            [tableView]="employeeTableSettings.tableView"
+            [tableColumns]="employeeTableSettings.tableColumns"
+            [data]="employeeList"
+            [dataType]="employeeTableSettings.dataType"
+            [filterValue]="filterValue"></app-table>
           <button class="edit-button">Edit Table</button>
         </div>
         <div class="table-wrapper-group">
@@ -99,7 +121,7 @@
               [tableView]="jobTableSettings.tableView"
               [tableColumns]="jobTableSettings.tableColumns"
               [data]="jobList"
-              [dataType]="locationTableSettings.dataType"
+              [dataType]="jobTableSettings.dataType"
               [filterValue]="filterValue"></app-table>
             <button class="edit-button">Edit Table</button>
           </div>
