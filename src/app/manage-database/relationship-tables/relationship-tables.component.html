@@ -1,3 +1,25 @@
-<p>
-  relationship-tables works!
-</p>
+<div class="master-database">
+  <div class="master-header">
+    <span class="master-title">MASTER DATABASE</span>
+    <span class="search-input"></span>
+  </div>
+
+  <div class="master-header-message">
+    <p>{{ headerMessage }}</p>
+  </div>
+
+  <div class="master-body">
+    <div class="table-link-group">
+      <button
+        *ngFor="let link of tableLinkList"
+        class="table-link"
+        [routerLink]="link.routerLink"
+        [routerLinkActive]="['active']">{{ link.linkText }}</button>
+    </div>
+
+    <div class="table-container">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>
