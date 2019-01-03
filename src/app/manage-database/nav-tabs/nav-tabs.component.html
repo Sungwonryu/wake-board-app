@@ -1,3 +1,10 @@
-<p>
-  nav-tabs works!
-</p>
+<div class="tab-group">
+  <div
+    class="tab tab-tables active"
+    [routerLink]="['/main/manage-database/basic-tables']"
+    [routerLinkActive]="['active']">Tables</div>
+  <div
+    class="tab tab-relationships"
+    [routerLink]="['/main/manage-database/relationship-tables']"
+    [routerLinkActive]="['active']">Relationships</div>
+</div>
