@@ -1,8 +1,49 @@
 $table-width: 130px;
 
+.tab-group {
+  position: absolute;
+  height: 54px;
+  width: 400px;
+  top: 204px;
+  left: 46px;
+  display: flex;
+  justify-content: flex-start;
+
+  .tab {
+    height: 54px;
+    margin-right: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 14px;
+    background: linear-gradient(#CBC7CF, #F1F1F1);
+    border: 1px solid #434343;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    font-family: "Lato Bold";
+    font-size: 17px;
+    // font-weight: bold;
+    color: #222222;
+
+    &.active {
+      background: linear-gradient(#0A4077, #041E42);
+      color: #ffffff;
+    }
+  }
+
+  .tab-tables {
+    width: 107px;
+  }
+
+  .tab-relationships {
+    width: 120px;
+  }
+}
+
 .basic-tables {
   width: 1920px;
   position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: top;
