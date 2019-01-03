@@ -2,12 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ListUpdate } from '../../api-storage/api-storage.model';
+import { VesselnameService } from '../vesselname/vesselname.service';
+import { VesselnumberService } from '../vesselnumber/vesselnumber.service';
 import { VesseltypeService } from '../vesseltype/vesseltype.service';
 import { VesselcapacityService } from '../vesselcapacity/vesselcapacity.service';
 import { ShiftService } from '../shift/shift.service';
 import { RouteService } from '../route/route.service';
 import { LocationService } from '../location/location.service';;
 import { CalltimeService } from '../calltime/calltime.service';
+import { EmployeeService } from '../employee/employee.service';
 import { JobService } from '../job/job.service';
 
 // import { HDate } from '../../shared/lib/h-date';
@@ -26,17 +29,32 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     tableView: { headerHeight: '58px', bodyHeight: '404px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
   }
 
+  vesselnameTableSettings = {
+    ...this.commonTableSettings,
+    tableColumns: [{ columnDef: 'vesselName', header: 'Vessel Name', width: '130px', cellFn: (row: any) => `${row.vesselName}` }],
+    tableTitle: 'Vessel Name',
+    // dataType: 'vessel_names'
+    dataType: 'vessels'
+  }
+  vesselnumberTableSettings = {
+    ...this.commonTableSettings,
+    tableColumns: [{ columnDef: 'vesselNo', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${row.vesselNo}` }],
+    // tableColumns: [{ columnDef: 'vesselNumber', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${row.vesselNumber}` }],
+    tableTitle: 'Vessel ID',
+    // dataType: 'vessel_names'
+    dataType: 'vessels'
+  }
   vesseltypeTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
     tableColumns: [{ columnDef: 'vesselType', header: 'Vessel Type', width: '130px', cellFn: (row: any) => `${row.vesselType}` }],
     tableTitle: 'Vessel Type',
-    dataType: 'vesseltype'
+    dataType: 'vessel_types'
   }
   vesselcapacityTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '116px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
     tableColumns: [{ columnDef: 'vesselCapacity', header: 'Vessel Capacity', width: '130px', cellFn: (row: any) => `${row.vesselCapacity}` }],
     tableTitle: 'Vessel Capacity',
-    dataType: 'vesselcapacities'
+    dataType: 'vessel_capacities'
   }
   shiftTableSettings = {
     ...this.commonTableSettings,
@@ -53,27 +71,38 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
   calltimeTableSettings = {
     ...this.commonTableSettings,
     tableColumns: [{ columnDef: 'callTime', header: 'Call Time', width: '130px', cellFn: (row: any) => `${row.callTime.slice(0, 5)}` }],
-    tableTitle: 'Calltime',
-    dataType: 'calltimes'
+    tableTitle: 'Call Time',
+    dataType: 'call_times'
   }
   locationTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
     tableColumns: [{ columnDef: 'location', header: 'Location', width: '130px', cellFn: (row: any) => `${row.location}` }],
     tableTitle: 'Pick Up Location',
-    dataType: 'location'
+    dataType: 'locations'
   }
   jobTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
     tableColumns: [{ columnDef: 'job', header: 'Job Title', width: '130px', cellFn: (row: any) => `${row.job}` }],
     tableTitle: 'Job Title',
-    dataType: 'job'
+    dataType: 'jobs'
   }
-
+  employeeTableSettings = {
+    ...this.commonTableSettings,
+    tableColumns: [{ columnDef: 'employee', header: 'Employee', width: '130px', cellFn: (row: any) => `${row.employee}` }],
+    tableTitle: 'Employee',
+    dataType: 'employees'
+  }
 
   filterValue = '';
 
+  vesselnameList: any[] = [];
+  $vesselnameListUpdateSub: Subscription;
+
   vesseltypeList: any[] = [];
   $vesseltypeListUpdateSub: Subscription;
+
+  vesselnumberList: any[] = [];
+  $vesselnumberListUpdateSub: Subscription;
 
   vesselcapacityList: any[] = [];
   $vesselcapacityListUpdateSub: Subscription;
@@ -93,13 +122,19 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
   jobList: any[] = [];
   $jobListUpdateSub: Subscription;
 
+  employeeList: any[] = [];
+  $employeeListUpdateSub: Subscription;
+
   constructor(
+    private vesselnameService: VesselnameService,
+    private vesselnumberService: VesselnumberService,
     private vesseltypeService: VesseltypeService,
     private vesselcapacityService: VesselcapacityService,
     private shiftService: ShiftService,
     private routeService: RouteService,
     private calltimeService: CalltimeService,
     private locationService: LocationService,
+    private employeeService: EmployeeService,
     private jobService: JobService,
   ) { }
 
@@ -110,6 +145,20 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
   }
 
   initListUpdate() {
+    // vesselname
+    this.$vesselnameListUpdateSub = this.vesselnameService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.vesselnameService.object} - list is fetched`);
+      if (listUpdate && listUpdate.isUpdated === true) {
+        this.vesselnameList = this.vesselnameService.getList();
+      }
+    });
+    // vesselnumber
+    this.$vesselnumberListUpdateSub = this.vesselnumberService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.vesselnumberService.object} - list is fetched`);
+      if (listUpdate && listUpdate.isUpdated === true) {
+        this.vesselnumberList = this.vesselnumberService.getList();
+      }
+    });
     // vesseltype
     this.$vesseltypeListUpdateSub = this.vesseltypeService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
       console.log(`${this.vesseltypeService.object} - list is fetched`);
@@ -152,6 +201,13 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
         this.locationList = this.locationService.getList();
       }
     });
+    // employee
+    this.$employeeListUpdateSub = this.employeeService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.employeeService.object} - list is fetched`);
+      if (listUpdate && listUpdate.isUpdated === true) {
+        this.employeeList = this.employeeService.getList();
+      }
+    });
     // job
     this.$jobListUpdateSub = this.jobService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
       console.log(`${this.jobService.object} - list is fetched`);
@@ -162,26 +218,37 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
   }
 
   initList() {
+    this.vesselnameList = this.vesselnameService.getList();
     this.vesseltypeList = this.vesseltypeService.getList();
     this.vesselcapacityList = this.vesselcapacityService.getList();
     this.shiftList = this.shiftService.getList();
     this.routeList = this.routeService.getList();
     this.calltimeList = this.calltimeService.getList();
     this.locationList = this.locationService.getList();
+    this.employeeList = this.employeeService.getList();
     this.jobList = this.jobService.getList();
   }
 
   initService() {
+    this.vesselnameService.api('read');
+    this.vesselnumberService.api('read');
     this.vesseltypeService.api('read');
     this.vesselcapacityService.api('read');
     this.shiftService.api('read');
     this.routeService.api('read');
     this.calltimeService.api('read');
     this.locationService.api('read');
+    this.employeeService.api('read');
     this.jobService.api('read');
   }
 
   ngOnDestroy() {
+    if (this.$vesselnameListUpdateSub) {
+      this.$vesselnameListUpdateSub.unsubscribe();
+    }
+    if (this.$vesselnumberListUpdateSub) {
+      this.$vesselnumberListUpdateSub.unsubscribe();
+    }
     if (this.$vesseltypeListUpdateSub) {
       this.$vesseltypeListUpdateSub.unsubscribe();
     }
