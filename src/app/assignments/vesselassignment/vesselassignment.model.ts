@@ -1,0 +1,61 @@
+import { BaseApiObj, BaseDataObj } from '../../api-storage/base-data';
+
+/**
+ *  ShiftApiObj is the interface of returning objects from API
+ *  ShiftApiObj interface uses underscore case for its property names
+*/
+export interface ShiftApiObj extends BaseApiObj {
+  'date'?: string | null;
+  'shift'?: string | null;
+  'route'?: string | null;
+  'call_time'?: string | null;
+  'first_departure'?: string | null;
+  'vessel_no'?: string | null;
+  'vessel_name'?: string | null;
+  'captain1'?: string | null;
+  'captain2'?: string | null;
+  'deckhand1'?: string | null;
+  'deckhand2'?: string | null;
+  'deckhand3'?: string | null;
+  'deckhand4'?: string | null;
+  'gsa1'?: string | null;
+  'gsa2'?: string | null;
+  'captain1_message'?: string | null;
+  'captain2_message'?: string | null;
+  'deckhand1_message'?: string | null;
+  'deckhand2_message'?: string | null;
+  'deckhand3_message'?: string | null;
+  'deckhand4_message'?: string | null;
+  'gsa1_message'?: string | null;
+  'gsa2_message'?: string | null;
+}
+
+/**
+ *  Shift is the base interface for the objects used in the front-end
+ *  Shift interface uses underscore case for its property names
+*/
+export interface Shift extends BaseDataObj {
+  date?: string | null;
+  shift?: string | null;
+  route?: string | null;
+  callTime?: string | null;
+  firstDeparture?: string | null;
+  vesselNo?: string | null;
+  vesselName?: string | null;
+  captain1?: string | null;
+  captain2?: string | null;
+  deckhand1?: string | null;
+  deckhand2?: string | null;
+  deckhand3?: string | null;
+  deckhand4?: string | null;
+  gsa1?: string | null;
+  gsa2?: string | null;
+  captain1Message?: string | null;
+  captain2Message?: string | null;
+  deckhand1Message?: string | null;
+  deckhand2Message?: string | null;
+  deckhand3Message?: string | null;
+  deckhand4Message?: string | null;
+  gsa1Message?: string | null;
+  gsa2Message?: string | null;
+}
