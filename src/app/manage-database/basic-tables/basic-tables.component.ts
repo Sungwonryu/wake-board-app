@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { HString } from '../../shared/lib/h-string';
 
 import { ListUpdate } from '../../api-storage/api-storage.model';
 import { VesselnameService } from '../vesselname/vesselname.service';
 import { VesselnumberService } from '../vesselnumber/vesselnumber.service';
 import { VesseltypeService } from '../vesseltype/vesseltype.service';
 import { VesselcapacityService } from '../vesselcapacity/vesselcapacity.service';
-import { ShiftService } from '../shift/shift.service';
+import { ShiftnameService } from '../shiftname/shiftname.service';
 import { RouteService } from '../route/route.service';
 import { LocationService } from '../location/location.service';;
 import { CalltimeService } from '../calltime/calltime.service';
@@ -20,6 +21,8 @@ import { JobService } from '../job/job.service';
 })
 export class BasicTablesComponent implements OnInit, OnDestroy {
 
+  HString = HString;
+
   headerMessage = 'The Master Database houses the information used to create Crewboard assignments. To modify or add data, select “Edit Table” underneath the corresponding item.';
 
   commonTableSettings = {
@@ -28,64 +31,64 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
 
   vesselnameTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'vesselName', header: 'Vessel Name', width: '130px', cellFn: (row: any) => `${row.vesselName}` }],
+    tableColumns: [{ columnDef: 'vesselName', header: 'Vessel Name', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselName)}` }],
     tableTitle: 'Vessel Name',
     // dataType: 'vessel_names'
     dataType: 'vessels'
   };
   vesselnumberTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'vesselNo', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${row.vesselNo}` }],
-    // tableColumns: [{ columnDef: 'vesselNumber', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${row.vesselNumber}` }],
+    tableColumns: [{ columnDef: 'vesselNo', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNo)}` }],
+    // tableColumns: [{ columnDef: 'vesselNumber', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` }],
     tableTitle: 'Vessel ID',
     // dataType: 'vessel_numbers'
     dataType: 'vessels'
   };
   vesseltypeTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-    tableColumns: [{ columnDef: 'vesselType', header: 'Vessel Type', width: '130px', cellFn: (row: any) => `${row.vesselType}` }],
+    tableColumns: [{ columnDef: 'vesselType', header: 'Vessel Type', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselType)}` }],
     tableTitle: 'Vessel Type',
     dataType: 'vessel_types'
   };
   vesselcapacityTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '116px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-    tableColumns: [{ columnDef: 'vesselCapacity', header: 'Vessel Capacity', width: '130px', cellFn: (row: any) => `${row.vesselCapacity}` }],
+    tableColumns: [{ columnDef: 'vesselCapacity', header: 'Vessel Capacity', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselCapacity)}` }],
     tableTitle: 'Vessel Capacity',
     dataType: 'vessel_capacities'
   };
-  shiftTableSettings = {
+  shiftnameTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'shift', header: 'Shift', width: '130px', cellFn: (row: any) => `${row.shift.slice(0, 5)}` }],
+    tableColumns: [{ columnDef: 'shift', header: 'Shift', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` }],
     tableTitle: 'Shift',
     dataType: 'shifts'
   };
   routeTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'route', header: 'Route', width: '130px', cellFn: (row: any) => `${row.route.slice(0, 5)}` }],
+    tableColumns: [{ columnDef: 'route', header: 'Route', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.route)}` }],
     tableTitle: 'Route',
     dataType: 'routes'
   };
   calltimeTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'callTime', header: 'Call Time', width: '130px', cellFn: (row: any) => `${row.callTime.slice(0, 5)}` }],
+    tableColumns: [{ columnDef: 'callTime', header: 'Call Time', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0, 5)}` }],
     tableTitle: 'Call Time',
     dataType: 'call_times'
   };
   locationTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-    tableColumns: [{ columnDef: 'location', header: 'Location', width: '130px', cellFn: (row: any) => `${row.location}` }],
+    tableColumns: [{ columnDef: 'location', header: 'Location', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }],
     tableTitle: 'Pick Up Location',
     dataType: 'locations'
   }
   jobTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-    tableColumns: [{ columnDef: 'job', header: 'Job Title', width: '130px', cellFn: (row: any) => `${row.job}` }],
+    tableColumns: [{ columnDef: 'job', header: 'Job Title', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.job)}` }],
     tableTitle: 'Job Title',
     dataType: 'jobs'
   };
   employeeTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'employee', header: 'Employee', width: '130px', cellFn: (row: any) => `${row.employee}` }],
+    tableColumns: [{ columnDef: 'employee', header: 'Employee', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.employee)}` }],
     tableTitle: 'Employee',
     dataType: 'employees'
   };
@@ -104,8 +107,8 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
   vesselcapacityList: any[] = [];
   $vesselcapacityListUpdateSub: Subscription;
 
-  shiftList: any[] = [];
-  $shiftListUpdateSub: Subscription;
+  shiftnameList: any[] = [];
+  $shiftnameListUpdateSub: Subscription;
 
   routeList: any[] = [];
   $routeListUpdateSub: Subscription;
@@ -127,7 +130,7 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     private vesselnumberService: VesselnumberService,
     private vesseltypeService: VesseltypeService,
     private vesselcapacityService: VesselcapacityService,
-    private shiftService: ShiftService,
+    private shiftnameService: ShiftnameService,
     private routeService: RouteService,
     private calltimeService: CalltimeService,
     private locationService: LocationService,
@@ -171,10 +174,10 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
       }
     });
     // shift
-    this.$shiftListUpdateSub = this.shiftService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.shiftService.object} - list is fetched`);
+    this.$shiftnameListUpdateSub = this.shiftnameService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.shiftnameService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
-        this.shiftList = this.shiftService.getList();
+        this.shiftnameList = this.shiftnameService.getList();
       }
     });
     // route
@@ -216,9 +219,10 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
 
   initList() {
     this.vesselnameList = this.vesselnameService.getList();
+    this.vesselnumberList = this.vesselnumberService.getList();
     this.vesseltypeList = this.vesseltypeService.getList();
     this.vesselcapacityList = this.vesselcapacityService.getList();
-    this.shiftList = this.shiftService.getList();
+    this.shiftnameList = this.shiftnameService.getList();
     this.routeList = this.routeService.getList();
     this.calltimeList = this.calltimeService.getList();
     this.locationList = this.locationService.getList();
@@ -231,7 +235,7 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     this.vesselnumberService.api('read');
     this.vesseltypeService.api('read');
     this.vesselcapacityService.api('read');
-    this.shiftService.api('read');
+    this.shiftnameService.api('read');
     this.routeService.api('read');
     this.calltimeService.api('read');
     this.locationService.api('read');
@@ -252,8 +256,8 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     if (this.$vesselcapacityListUpdateSub) {
       this.$vesselcapacityListUpdateSub.unsubscribe();
     }
-    if (this.$shiftListUpdateSub) {
-      this.$shiftListUpdateSub.unsubscribe();
+    if (this.$shiftnameListUpdateSub) {
+      this.$shiftnameListUpdateSub.unsubscribe();
     }
     if (this.$routeListUpdateSub) {
       this.$routeListUpdateSub.unsubscribe();
