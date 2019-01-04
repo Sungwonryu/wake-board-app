@@ -1,3 +1,10 @@
-<p>
-  crewswap-table works!
-</p>
+<div class="table-container">
+  <app-table-wrapper
+    [titlebarView]="tableData.titlebarView"
+    [tableTitle]="tableData.tableTitle"
+    [tableView]="tableData.tableView"
+    [tableColumns]="tableData.tableColumns"
+    [dataType]="tableData.dataType"
+    [data]="shiftList"
+    (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+</div>
