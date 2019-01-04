@@ -6,6 +6,10 @@ import { BaseApiObj, BaseDataObj } from '../../api-storage/base-data';
 */
 export interface ShiftApiObj extends BaseApiObj {
   'shift'?: string | null;
+  'route'?: string | null;
+  'first_departure'?: string | null;
+  'call_time'?: string | null;
+  'location'?: string | null;
 }
 
 /**
@@ -14,4 +18,8 @@ export interface ShiftApiObj extends BaseApiObj {
 */
 export interface Shift extends BaseDataObj {
   shift?: string | null;
+  route?: string | null;
+  firstDeparture?: Date | null;
+  callTime?: Date | null;
+  location?: string | null;
 }
