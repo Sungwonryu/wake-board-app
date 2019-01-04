@@ -26,6 +26,12 @@ $search-input-color: #282727;
   width: 100%;
   font-family: "Lato";
 
+  .left-pane {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
   .table-title {
     font-size: 22px;
     color: #ffffff;
@@ -35,6 +41,7 @@ $search-input-color: #282727;
 
   .table-button {
     font-size: 14px;
+    line-height: 22px;
     color: $table-color;
     padding: 0 20px;
     height: 27px;
