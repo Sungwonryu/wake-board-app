@@ -12,7 +12,7 @@ export class RelationshipTablesComponent implements OnInit, OnDestroy {
 
   tableLinkList = [
     { routerLink: ['/main/manage-database/relationship-tables/vessel'], linkText: 'Vessels' },
-    { routerLink: ['/main/manage-database/relationship-tables/shift'], linkText: 'Shiftss' },
+    { routerLink: ['/main/manage-database/relationship-tables/shift'], linkText: 'Shifts' },
     { routerLink: ['/main/manage-database/relationship-tables/crew-member'], linkText: 'Crew Members' },
     { routerLink: ['/main/manage-database/relationship-tables/crew-swap'], linkText: 'Crew Swaps' }
   ];
