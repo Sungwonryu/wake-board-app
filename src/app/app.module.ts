@@ -59,6 +59,7 @@ import { VesselService } from './manage-database/vessel/vessel.service';
 
 import { VesselTableComponent } from './manage-database/vessel-table/vessel-table.component';
 import { ShiftTableComponent } from './manage-database/shift-table/shift-table.component';
+import { CrewmemberTableComponent } from './manage-database/crewmember-table/crewmember-table.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { ShiftTableComponent } from './manage-database/shift-table/shift-table.c
     RelationshipTablesComponent,
     NavTabsComponent,
     VesselTableComponent,
-    ShiftTableComponent
+    ShiftTableComponent,
+    CrewmemberTableComponent
   ],
   imports: [
     BrowserModule,
