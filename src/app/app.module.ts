@@ -33,6 +33,7 @@ import { MainComponent } from './main/main.component';
 import { HeaderComponent } from './main/header/header.component';
 
 // assignments
+import { AssignmentsComponent } from './assignments/assignments.component';
 import { CurrentAssignmentsComponent } from './assignments/current-assignments/current-assignments.component';
 import { PastAssignmentsComponent } from './assignments/past-assignments/past-assignments.component';
 
@@ -80,6 +81,7 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     MainComponent,
     HeaderComponent,
     // assignments
+    AssignmentsComponent,
     CurrentAssignmentsComponent,
     PastAssignmentsComponent,
     // manage-database
