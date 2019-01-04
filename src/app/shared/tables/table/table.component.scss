@@ -76,9 +76,10 @@ mat-cell {
   button {
     font-family: 'Lato Medium';
     font-size: 12px;
+    line-height: 22px;
     border: 1px solid $modify-entry-button-border-color;
     border-radius: 15px;
-    padding: 4px 10px;
+    // padding: 4px 10px;
     background: linear-gradient(rgba(203,199,207,1), rgba(241,241,241,1));
     margin: 0 10px;
   }
