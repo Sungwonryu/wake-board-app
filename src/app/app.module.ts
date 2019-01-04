@@ -60,6 +60,7 @@ import { VesselService } from './manage-database/vessel/vessel.service';
 import { VesselTableComponent } from './manage-database/vessel-table/vessel-table.component';
 import { ShiftTableComponent } from './manage-database/shift-table/shift-table.component';
 import { CrewmemberTableComponent } from './manage-database/crewmember-table/crewmember-table.component';
+import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswap-table.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { CrewmemberTableComponent } from './manage-database/crewmember-table/cre
     NavTabsComponent,
     VesselTableComponent,
     ShiftTableComponent,
-    CrewmemberTableComponent
+    CrewmemberTableComponent,
+    CrewswapTableComponent
   ],
   imports: [
     BrowserModule,
