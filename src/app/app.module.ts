@@ -47,7 +47,7 @@ import { VesselnumberService } from './manage-database/vesselnumber/vesselnumber
 import { VesseltypeService } from './manage-database/vesseltype/vesseltype.service';
 import { VesselcapacityService } from './manage-database/vesselcapacity/vesselcapacity.service';
 
-import { ShiftService } from './manage-database/shift/shift.service';
+import { ShiftnameService } from './manage-database/shiftname/shiftname.service';
 import { RouteService } from './manage-database/route/route.service';
 import { CalltimeService } from './manage-database/calltime/calltime.service';
 import { LocationService } from './manage-database/location/location.service';
@@ -55,7 +55,9 @@ import { LocationService } from './manage-database/location/location.service';
 import { EmployeeService } from './manage-database/employee/employee.service';
 import { JobService } from './manage-database/job/job.service';
 
-import { VesselService } from './manage-database/vessel/vessel.service';
+import { VesselService } from './manage-database/vessel-table/vessel.service';
+import { ShiftService } from './manage-database/shift-table/shift.service';
+import { CrewmemberService } from './manage-database/crewmember-table/crewmember.service';
 
 import { VesselTableComponent } from './manage-database/vessel-table/vessel-table.component';
 import { ShiftTableComponent } from './manage-database/shift-table/shift-table.component';
@@ -109,13 +111,15 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     VesselnumberService,
     VesseltypeService,
     VesselcapacityService,
-    ShiftService,
+    ShiftnameService,
     RouteService,
     LocationService,
     CalltimeService,
     EmployeeService,
     JobService,
-    VesselService
+    VesselService,
+    ShiftService,
+    CrewmemberService
   ],
   bootstrap: [AppComponent]
 })
