@@ -22,7 +22,7 @@ export class HString {
   static snakeToCamelCase(str: any) {
     if (typeof str === 'string') {
       let convertedStr = str;
-      if (str.includes('_')) {        
+      if (str.includes('_')) {
         convertedStr = str.replace(/(\_\w)/g, (substr: string) => {
           return substr[1].toUpperCase();
         });
@@ -132,7 +132,7 @@ export class HString {
    *  toDefaultString() returns the defaultStr
    *  if str is not a string such as undefined and null or ''
    */
-  static toDefaultString(str: any, defaultStr: string = '') {
+  static toDefaultString(str: any, defaultStr: string = ''): string {
     if (str && typeof str === 'string') {
       return str;
     } else {
