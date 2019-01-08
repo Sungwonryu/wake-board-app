@@ -33,16 +33,13 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     ...this.commonTableSettings,
     tableColumns: [{ columnDef: 'vesselName', header: 'Vessel Name', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselName)}` }],
     tableTitle: 'Vessel Name',
-    // dataType: 'vessel_names'
-    dataType: 'vessels'
+    dataType: 'vessel_names'
   };
   vesselnumberTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'vesselNo', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNo)}` }],
-    // tableColumns: [{ columnDef: 'vesselNumber', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` }],
+    tableColumns: [{ columnDef: 'vesselNumber', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` }],
     tableTitle: 'Vessel ID',
-    // dataType: 'vessel_numbers'
-    dataType: 'vessels'
+    dataType: 'vessel_numbers'
   };
   vesseltypeTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
