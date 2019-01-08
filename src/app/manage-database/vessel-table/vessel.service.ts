@@ -16,7 +16,7 @@ import { UIService } from '../../shared/services/ui.service';
 export class VesselService extends BaseDataService {
   object = 'vessels';
   sortOrder = [
-    { property: 'vesselNo', isDescending: false }
+    { property: 'Vesselnumber', isDescending: false }
   ];
 
   constructor(

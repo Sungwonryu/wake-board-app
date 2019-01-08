@@ -18,7 +18,7 @@ export class VesselTableComponent implements OnInit, OnDestroy {
     titlebarView: { height: '50px', bgColor: '#041E42', titlebarComponents: ['add', 'search'] },
     tableView: { headerHeight: '40px', bodyHeight: '350px' },
     tableColumns: [
-      { columnDef: 'vesselNo', header: 'Vessel ID', width: '160px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNo)}` },
+      { columnDef: 'vesselNumber', header: 'Vessel ID', width: '160px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` },
       { columnDef: 'vesselName', header: 'Vessel Name', width: '180px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselName)}` },
       { columnDef: 'vesselCapacity', header: 'Vessel Capacity', width: '160px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselCapacity)}` },
       { columnDef: 'vesselType', header: 'Vessel Type', width: '160px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselType)}` },
