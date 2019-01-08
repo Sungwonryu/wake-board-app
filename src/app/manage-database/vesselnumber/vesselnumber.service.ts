@@ -8,10 +8,9 @@ import { UIService } from '../../shared/services/ui.service';
 
 @Injectable()
 export class VesselnumberService extends BaseDataService {
-  // object = 'vessel_numbers';
-  object = 'vessels';
+  object = 'vessel_numbers';
   sortOrder = [
-    { property: 'vesselNo', isDescending: false }
+    { property: 'vesselNumber', isDescending: false }
   ];
 
   constructor(

@@ -5,8 +5,7 @@ import { BaseApiObj, BaseDataObj } from '../../api-storage/base-data';
  *  VesselnumberApiObj interface uses underscore case for its property names
 */
 export interface VesselnumberApiObj extends BaseApiObj {
-  // 'vessel_number'?: string | null;
-  'vessel_no'?: string | null;
+  'vessel_number'?: string | null;
 }
 
 /**
@@ -14,6 +13,5 @@ export interface VesselnumberApiObj extends BaseApiObj {
  *  Vesselnumber interface uses underscore case for its property names
 */
 export interface Vesselnumber extends BaseDataObj {
-  // vesselNumber?: string | null;
-  vesselNo?: string | null;
+  vesselNumber?: string | null;
 }
