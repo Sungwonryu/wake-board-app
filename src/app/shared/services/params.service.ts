@@ -7,24 +7,26 @@ export class ParamsService {
 
   date: Date = null;
 
-  $dateUpdate = new Subject<Date>();
+  $dateChange = new Subject<Date>();
 
   constructor() {
-    // Set this.date as today Date instance
-    this.setDate();
+    // Set this.date as today's Date instance
+    this.initDate();
   }
 
-  setDate(dateStr?: string) {
-    let newDate = this.HDate.toDate(dateStr);
-    if (newDate) {
-      newDate = newDate;
-    } else {
-      // Remove hours, minutes and secondes in newDate
-      newDate = this.HDate.toDate(this.HDate.toDateString(new Date()));
-    }
-    if (!this.date || this.date.getTime() !== newDate.getTime()) {
-      this.date = newDate;
-      this.$dateUpdate.next(newDate);
+  initDate() {
+    // Remove hours, minutes and secondes in newDate
+    this.date = this.HDate.toDate(this.HDate.toDateString(new Date()));
+  }
+
+  setDate(newDate?: any) {
+    if (newDate && typeof newDate === 'object' && newDate instanceof Date) {
+      // When newDate is not the same time as this.date,
+      // emit this.$dateChange with newDate
+      if (this.date.getTime() !== newDate.getTime()) {
+        this.date = newDate;
+        this.$dateChange.next(newDate);
+      }
     }
   }
 
