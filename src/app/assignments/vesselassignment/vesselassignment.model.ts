@@ -1,10 +1,10 @@
 import { BaseApiObj, BaseDataObj } from '../../api-storage/base-data';
 
 /**
- *  ShiftApiObj is the interface of returning objects from API
- *  ShiftApiObj interface uses underscore case for its property names
+ *  VesselassignmentApiObj is the interface of returning objects from API
+ *  VesselassignmentApiObj interface uses underscore case for its property names
 */
-export interface ShiftApiObj extends BaseApiObj {
+export interface VesselassignmentApiObj extends BaseApiObj {
   'date'?: string | null;
   'shift'?: string | null;
   'route'?: string | null;
@@ -31,10 +31,10 @@ export interface ShiftApiObj extends BaseApiObj {
 }
 
 /**
- *  Shift is the base interface for the objects used in the front-end
- *  Shift interface uses underscore case for its property names
+ *  Vesselassignment is the base interface for the objects used in the front-end
+ *  Vesselassignment interface uses underscore case for its property names
 */
-export interface Shift extends BaseDataObj {
+export interface Vesselassignment extends BaseDataObj {
   date?: string | null;
   shift?: string | null;
   route?: string | null;
