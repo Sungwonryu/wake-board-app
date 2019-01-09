@@ -1,10 +1,14 @@
 <div class="tab-group">
   <div
     class="tab tab-tables active"
-    [routerLink]="['/main/manage-database/basic-tables']"
-    [routerLinkActive]="['active']">Tables</div>
+    [routerLink]="['/manage-database']"
+    [routerLinkActive]="['active']"
+    [routerLinkActiveOptions]="{ exact: true }"
+    queryParamsHandling="preserve">Tables</div>
   <div
     class="tab tab-relationships"
-    [routerLink]="['/main/manage-database/relationship-tables']"
-    [routerLinkActive]="['active']">Relationships</div>
+    [routerLink]="['/manage-database/relationship-tables']"
+    [routerLinkActive]="['active']"
+    [routerLinkActiveOptions]="{ exact: false }"
+    queryParamsHandling="preserve">Relationships</div>
 </div>
