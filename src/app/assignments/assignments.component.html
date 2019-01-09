@@ -1,3 +1,111 @@
-<p>
-  assignments works!
-</p>
+<app-header
+  [date]="date"
+  [hasDatePicker]="true"
+  (onChangeDate)="changeDate($event)"></app-header>
+
+<div class="content-container">
+
+  <div
+    *ngIf="!isPast"
+    class="table-container table-container-vesselassignment">
+    <app-table-wrapper
+      [titlebarView]="vesselassignmentTableData.titlebarView"
+      [tableTitle]="vesselassignmentTableData.tableTitle"
+      [tableView]="vesselassignmentTableData.tableView"
+      [tableColumns]="vesselassignmentTableData.tableColumns"
+      [dataType]="vesselassignmentTableData.dataType"
+      [data]="vesselassignmentList"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div
+    *ngIf="isPast"
+    class="table-container table-container-vesselassignment">
+    <app-table-wrapper
+      [titlebarView]="vesselassignmentTableDataPast.titlebarView"
+      [tableTitle]="vesselassignmentTableDataPast.tableTitle"
+      [tableView]="vesselassignmentTableDataPast.tableView"
+      [tableColumns]="vesselassignmentTableDataPast.tableColumns"
+      [dataType]="vesselassignmentTableDataPast.dataType"
+      [data]="vesselassignmentList"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div
+    *ngIf="!isPast"
+    class="table-container table-container-slipassignment">
+    <app-table-wrapper
+      [titlebarView]="slipassignmentTableData.titlebarView"
+      [tableTitle]="slipassignmentTableData.tableTitle"
+      [tableView]="slipassignmentTableData.tableView"
+      [tableColumns]="slipassignmentTableData.tableColumns"
+      [dataType]="slipassignmentTableData.dataType"
+      [data]="slipassignmentList"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div
+    *ngIf="isPast"
+    class="table-container table-container-slipassignment">
+    <app-table-wrapper
+      [titlebarView]="slipassignmentTableDataPast.titlebarView"
+      [tableTitle]="slipassignmentTableDataPast.tableTitle"
+      [tableView]="slipassignmentTableDataPast.tableView"
+      [tableColumns]="slipassignmentTableDataPast.tableColumns"
+      [dataType]="slipassignmentTableDataPast.dataType"
+      [data]="slipassignmentList"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div
+    *ngIf="!isPast"
+    class="table-container table-container-note">
+    <app-table-wrapper
+      [titlebarView]="noteTableData.titlebarView"
+      [tableTitle]="noteTableData.tableTitle"
+      [tableView]="noteTableData.tableView"
+      [tableColumns]="noteTableData.tableColumns"
+      [dataType]="noteTableData.dataType"
+      [data]="noteList"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div
+    *ngIf="isPast"
+    class="table-container table-container-note">
+    <app-table-wrapper
+      [titlebarView]="noteTableDataPast.titlebarView"
+      [tableTitle]="noteTableDataPast.tableTitle"
+      [tableView]="noteTableDataPast.tableView"
+      [tableColumns]="noteTableDataPast.tableColumns"
+      [dataType]="noteTableDataPast.dataType"
+      [data]="noteList"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div
+    *ngIf="!isPast"
+    class="table-container table-container-crewswap">
+    <app-table-wrapper
+      [titlebarView]="crewswapTableData.titlebarView"
+      [tableTitle]="crewswapTableData.tableTitle"
+      [tableView]="crewswapTableData.tableView"
+      [tableColumns]="crewswapTableData.tableColumns"
+      [dataType]="crewswapTableData.dataType"
+      [data]="crewswapList"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+
+  <div
+    *ngIf="isPast"
+    class="table-container table-container-crewswap">
+    <app-table-wrapper
+      [titlebarView]="crewswapTableDataPast.titlebarView"
+      [tableTitle]="crewswapTableDataPast.tableTitle"
+      [tableView]="crewswapTableDataPast.tableView"
+      [tableColumns]="crewswapTableDataPast.tableColumns"
+      [dataType]="crewswapTableDataPast.dataType"
+      [data]="crewswapList"
+      (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div>
+</div>
