@@ -42,6 +42,8 @@ import { SlipassignmentService } from './assignments/slipassignment/slipassignme
 import { NoteService } from './assignments/note/note.service';
 import { CrewswapService } from './assignments/crewswap/crewswap.service';
 
+import { NoteFormDialogComponent } from './assignments/note-form-dialog/note-form-dialog.component';
+
 // manage-database
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
 import { BasicTablesComponent } from './manage-database/basic-tables/basic-tables.component';
@@ -89,6 +91,7 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     AssignmentsComponent,
     CurrentAssignmentsComponent,
     PastAssignmentsComponent,
+    NoteFormDialogComponent,
     // manage-database
     ManageDatabaseComponent,
     BasicTablesComponent,
@@ -131,6 +134,9 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     SlipassignmentService,
     NoteService,
     CrewswapService
+  ],
+  entryComponents: [
+    NoteFormDialogComponent
   ],
   bootstrap: [AppComponent]
 })
