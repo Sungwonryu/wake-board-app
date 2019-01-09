@@ -14,7 +14,9 @@
         *ngFor="let link of tableLinkList"
         class="table-link"
         [routerLink]="link.routerLink"
-        [routerLinkActive]="['active']">{{ link.linkText }}</button>
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="link.routerLinkActiveOptions"
+        queryParamsHandling="preserve">{{ link.linkText }}</button>
     </div>
 
     <div class="table-container">
