@@ -6,6 +6,7 @@
   <div class="wakeboard-logo"></div>
 
   <div
+    *ngIf="!hasDatePicker"
     class="clock"
     fxLayout="column nowrap"
     fxLayoutAlign="center center">
@@ -18,16 +19,42 @@
     </div>
   </div>
 
+  <div
+    *ngIf="hasDatePicker"
+    class="date-picker-wrapper">
+    <div class="date-wrapper">
+      <div class="left-arrow">
+        <mat-icon class="arrow-icon" (click)="changeDateByOneDay('-')">arrow_left</mat-icon>
+      </div>
+      <div class="date">
+        <span>{{ date | date: 'MMMM d' }}</span>
+        <span>{{ date | date: 'd' | ordinalSuffix }}</span>
+        <span>{{ date | date: ', yyyy' }}</span>
+      </div>
+      <div class="right-arrow">
+        <mat-icon class="arrow-icon" (click)="changeDateByOneDay('+')">arrow_right</mat-icon>
+      </div>
+    </div>
+    <div
+      class="view-calendar"
+      (click)="openCalendarForm()">
+      <span class="view-calendar-caption">View Calendar</span>
+      <span class="calendar-icon"></span>
+    </div>
+  </div>
+
   <ul
     class="nav"
     fxLayout="row nowrap"
-    fxLayoutAlign="space-between center">
+    fxLayoutAlign="flex-end center">
     <li *ngFor="let navItem of navList; let i = index">
       <button
         mat-stroked-button
         class="nav-button"
         [routerLink]="[navItem.routerLink]"
-        [routerLinkActive]="['active']">{{ navItem.caption }}</button>
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="navItem.routerLinkActiveOptions"
+        queryParamsHandling="preserve">{{ navItem.caption }}</button>
     </li>
   </ul>
 </div>
