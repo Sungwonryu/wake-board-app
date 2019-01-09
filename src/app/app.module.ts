@@ -37,6 +37,11 @@ import { AssignmentsComponent } from './assignments/assignments.component';
 import { CurrentAssignmentsComponent } from './assignments/current-assignments/current-assignments.component';
 import { PastAssignmentsComponent } from './assignments/past-assignments/past-assignments.component';
 
+import { VesselassignmentService } from './assignments/vesselassignment/vesselassignment.service';
+import { SlipassignmentService } from './assignments/slipassignment/slipassignment.service';
+import { NoteService } from './assignments/note/note.service';
+import { CrewswapService } from './assignments/crewswap/crewswap.service';
+
 // manage-database
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
 import { BasicTablesComponent } from './manage-database/basic-tables/basic-tables.component';
@@ -121,7 +126,11 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     JobService,
     VesselService,
     ShiftService,
-    CrewmemberService
+    CrewmemberService,
+    VesselassignmentService,
+    SlipassignmentService,
+    NoteService,
+    CrewswapService
   ],
   bootstrap: [AppComponent]
 })
