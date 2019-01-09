@@ -2,6 +2,7 @@
 
 $header-bg-color: #041E42;
 $wakeboard-logo-img-url: $images-assets-path + "logos/wakeboard-logo.png";
+$calendar-icon-img-url: $images-assets-path + "icons/calendar.png";
 $clock-font-family: "Helvetica Neue Condensed";
 
 :host {
@@ -41,14 +42,79 @@ $clock-font-family: "Helvetica Neue Condensed";
   }
 }
 
+.date-picker-wrapper {
+  height: 120px;
+  width: 800px;
+  position: absolute;
+  left: 290px;
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .date-wrapper {
+    height: 70px;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Helvetica Neue Condensed';
+    font-size: 60px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .arrow-icon {
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+  }
+
+  .left-arrow {
+    margin-right: 22px;
+  }
+
+  .right-arrow {
+    margin-left: 22px;
+  }
+
+  .view-calendar {
+    height: 36px;
+    width: 182px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #A99191;
+    border-radius: 16px;
+    margin-top: 14px;
+  }
+
+  .view-calendar-caption {
+    padding-top: 2px;
+    font-family: "Helvetica Neue Condensed";
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .calendar-icon {
+    height: 24px;
+    width: 22px;
+    margin-left: 8px;
+    background: url($calendar-icon-img-url) no-repeat center center;
+    background-size: contain;
+  }
+}
+
 .nav {
   height: 100%;
   width: 738px;
-  margin-right: 38px;
+  margin-right: 40px;
 
   .nav-button {
     height: 66px;
     width: 168px;
+    margin-left: 20px;
     border: 2px solid #ffffff;
     border-radius: 10px;
     white-space: pre-wrap;
