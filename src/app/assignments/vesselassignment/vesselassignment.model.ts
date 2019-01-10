@@ -10,8 +10,7 @@ export interface VesselassignmentApiObj extends BaseApiObj {
   'route'?: string | null;
   'call_time'?: string | null;
   'first_departure'?: string | null;
-  'vessel_no'?: string | null;
-  'vessel_name'?: string | null;
+  'vessel_id'?: string | null;
   'captain1'?: string | null;
   'captain2'?: string | null;
   'deckhand1'?: string | null;
@@ -40,8 +39,7 @@ export interface Vesselassignment extends BaseDataObj {
   route?: string | null;
   callTime?: string | null;
   firstDeparture?: string | null;
-  vesselNo?: string | null;
-  vesselName?: string | null;
+  vesselId?: string | null;
   captain1?: string | null;
   captain2?: string | null;
   deckhand1?: string | null;

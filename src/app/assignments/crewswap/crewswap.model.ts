@@ -8,8 +8,7 @@ export interface CrewswapApiObj extends BaseApiObj {
   'date'?: string | null;
   'call_time'?: string | null;
   'first_departure'?: string | null;
-  'vessel_number'?: string | null;
-  'vessel_name'?: string | null;
+  'vessel_id'?: string | null;
   'shift'?: string | null;
   'location'?: string | null;
 }
@@ -22,8 +21,7 @@ export interface Crewswap extends BaseDataObj {
   date?: Date | null;
   callTime?: Date | null;
   firstDeparture?: Date | null;
-  vesselNo?: string | null;
-  vesselName?: string | null;
+  vesselId?: string | null;
   shift?: string | null;
   location?: string | null;
 }
