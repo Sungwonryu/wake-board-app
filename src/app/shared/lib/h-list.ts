@@ -53,7 +53,7 @@ export class HList {
     if (list && typeof list === 'object' && list.constructor === Array && list.length &&
         typeof property === 'string' && property.length) {
 
-      const matchedItem = list.filter((item: any) => {
+      const matchedItem = list.find((item: any) => {
         if (item && typeof item === 'object') {
           return item[property] === value;
         }
