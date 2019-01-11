@@ -10,9 +10,15 @@ import { UIService } from '../../shared/services/ui.service';
 export class SlipassignmentService extends BaseDataService {
   object = 'slip_assignments';
   sortOrder = [
-    // { property: 'slip', isDescending: false }
-    { property: 'id', isDescending: false }
+    { property: 'slip', isDescending: false }
   ];
+
+  availabilityList = [
+    { value: '1', text: 'Available' },
+    { value: '0', text: 'Unavailable' }
+  ];
+
+  slipList = [{ slip: '1' }, { slip: '2' }, { slip: '3' }, { slip: '4' }, { slip: '5' }, { slip: '6' }, { slip: '7' }, { slip: '8' }, { slip: '9' }, { slip: '10' }];
 
   constructor(
     protected apiStorageService: ApiStorageService,
