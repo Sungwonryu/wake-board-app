@@ -36,6 +36,21 @@ export class VesselService extends BaseDataService {
     );
   }
 
+  getVesselName(id: string) {
+    let str = '';
+    let item = this.list.find((item: any) => {
+      return item.id === id;
+    });
+    if (item) {
+      if (item.vesselName) {
+        str = item.vesselName;
+      } else {
+        str = item.vesselNumber;
+      }
+    }
+    return str;
+  }
+
   getVesselText(item: any): string {
     let str = '';
     if (item && typeof item === 'object') {
