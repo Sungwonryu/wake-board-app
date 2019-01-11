@@ -11,6 +11,8 @@ import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 
 // shared
+import { UniqueInputValidatorDirective } from './shared/directives/unique-input.directive';
+import { IncludeInputValidatorDirective } from './shared/directives/include-input.directive';
 import { OrdinalSuffixPipe } from './shared/pipes/ordinal-suffix.pipe';
 import { TableComponent } from './shared/tables/table/table.component';
 import { TableWrapperComponent } from './shared/tables/table-wrapper/table-wrapper.component';
@@ -42,6 +44,7 @@ import { SlipassignmentService } from './assignments/slipassignment/slipassignme
 import { NoteService } from './assignments/note/note.service';
 import { CrewswapService } from './assignments/crewswap/crewswap.service';
 
+import { SlipassignmentFormDialogComponent } from './assignments/slipassignment-form-dialog/slipassignment-form-dialog.component';
 import { NoteFormDialogComponent } from './assignments/note-form-dialog/note-form-dialog.component';
 
 // manage-database
@@ -76,6 +79,8 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
   declarations: [
     AppComponent,
     // share
+    UniqueInputValidatorDirective,
+    IncludeInputValidatorDirective,
     OrdinalSuffixPipe,
     TableComponent,
     TableWrapperComponent,
@@ -91,6 +96,7 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     AssignmentsComponent,
     CurrentAssignmentsComponent,
     PastAssignmentsComponent,
+    SlipassignmentFormDialogComponent,
     NoteFormDialogComponent,
     // manage-database
     ManageDatabaseComponent,
@@ -136,6 +142,7 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     CrewswapService
   ],
   entryComponents: [
+    SlipassignmentFormDialogComponent,
     NoteFormDialogComponent
   ],
   bootstrap: [AppComponent]
