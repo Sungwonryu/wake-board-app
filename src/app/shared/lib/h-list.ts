@@ -259,4 +259,21 @@ export class HList {
     } // end of if
   }
 
+  static filterAutocompletList(list: any[], prop: string, filterVal: string): any[] {
+    filterVal = filterVal.toLowerCase();
+    let matchedList = [];
+
+    if (filterVal && typeof filterVal === 'string') {
+      matchedList = list.filter((item: any) => {
+        const val = item[prop];
+        if (val && typeof val === 'string') {
+          return val.toLowerCase().indexOf(filterVal) !== -1;
+        }
+      });
+    } else {
+      matchedList = list;
+    }
+    return matchedList;
+  }
+
 }
