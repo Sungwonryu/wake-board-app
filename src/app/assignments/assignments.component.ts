@@ -1,15 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { HDate } from '../shared/lib/h-date';
 import { HString } from '../shared/lib/h-string';
-import { ParamsService } from '../shared/services/params.service';
 import { ListUpdate } from '../api-storage/api-storage.model';
+import { TableActionData } from '../shared/tables/table.model';
+
+import { ParamsService } from '../shared/services/params.service';
+import { VesselService } from '../manage-database/vessel-table/vessel.service';
 import { VesselassignmentService } from './vesselassignment/vesselassignment.service';
 import { SlipassignmentService } from './slipassignment/slipassignment.service';
 import { NoteService } from './note/note.service';
 import { CrewswapService } from './crewswap/crewswap.service';
+
+import { SlipassignmentFormDialogComponent } from './slipassignment-form-dialog/slipassignment-form-dialog.component';
 
 @Component({
   selector: 'app-assignments',
@@ -20,6 +26,27 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   HDate = HDate;
   HString = HString;
+
+  isPast: boolean = false;
+  date: Date = null;
+  dateChangeSub: Subscription;
+
+  vesselList: any[] = [];
+  $vesselListUpdateSub: Subscription;
+
+  vesselassignmentList: any[] = [];
+  $vesselassignmentListUpdateSub: Subscription;
+
+  slipassignmentList: any[] = [];
+  $slipassignmentListUpdateSub: Subscription;
+
+  noteList: any[] = [];
+  $noteListUpdateSub: Subscription;
+
+  crewswapList: any[] = [];
+  $crewswapListUpdateSub: Subscription;
+
+  formDialogRef: MatDialogRef<any>;
 
   commonTableData = {
     titlebarView: { height: '50px', bgColor: '#3CA2E2', titlebarComponents: ['add', 'search'] },
@@ -153,26 +180,12 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     ]
   };
 
-  isPast: boolean = false;
-  date: Date = null;
-  dateChangeSub: Subscription;
-
-  vesselassignmentList: any[] = [];
-  $vesselassignmentListUpdateSub: Subscription;
-
-  slipassignmentList: any[] = [];
-  $slipassignmentListUpdateSub: Subscription;
-
-  noteList: any[] = [];
-  $noteListUpdateSub: Subscription;
-
-  crewswapList: any[] = [];
-  $crewswapListUpdateSub: Subscription;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private dialog: MatDialog,
     private paramsService: ParamsService,
+    private vesselService: VesselService,
     private vesselassignmentService: VesselassignmentService,
     private slipassignmentService: SlipassignmentService,
     private noteService: NoteService,
@@ -237,6 +250,13 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   }
 
   initListUpdate() {
+    // vessel
+    this.$vesselListUpdateSub = this.vesselService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.vesselService.object} - list is fetched`);
+      if (listUpdate && listUpdate.isUpdated === true) {
+        this.vesselList = this.vesselService.getList();
+      }
+    });
     // vesselassignment
     this.$vesselassignmentListUpdateSub = this.vesselassignmentService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
       console.log(`${this.vesselassignmentService.object} - list is fetched`);
@@ -268,6 +288,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   }
 
   initList() {
+    this.vesselList = this.vesselService.getList();
     this.vesselassignmentList = this.vesselassignmentService.getList();
     this.slipassignmentList = this.slipassignmentService.getList();
     this.noteList = this.noteService.getList();
@@ -275,6 +296,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   }
 
   initService() {
+    this.vesselService.api('read');
     this.vesselassignmentService.api('read');
     this.slipassignmentService.api('read');
     this.noteService.api('read');
@@ -284,6 +306,12 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.dateChangeSub) {
       this.dateChangeSub.unsubscribe();
+    }
+    if (this.$vesselListUpdateSub) {
+      this.$vesselListUpdateSub.unsubscribe();
+    }
+    if (this.$vesselassignmentListUpdateSub) {
+      this.$vesselassignmentListUpdateSub.unsubscribe();
     }
     if (this.$slipassignmentListUpdateSub) {
       this.$slipassignmentListUpdateSub.unsubscribe();
@@ -301,4 +329,36 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     this.setDateParam(newDate);
   }
 
+  openFormDialog(formDialogComponent: any, tableActionData: TableActionData) {
+
+    // Open SlipassignmentFormDialogComponent
+    this.formDialogRef = this.dialog.open(formDialogComponent, {
+      panelClass: 'form-dialog-container',
+      // Disable the feature that the user can use escape or clicking outside to close a modal.
+      disableClose: true,
+      data: {
+        tableActionData: tableActionData
+      }
+    });
+
+    // After the formDialog is closed, refresh the lists
+    if (this.formDialogRef) {
+      this.formDialogRef.afterClosed().subscribe(() => {
+        this.initService();
+      });
+    }
+  }
+
+  modifyTable(tableActionData: TableActionData) {
+    let formDialogComponent;
+    switch(tableActionData.dataType) {
+      case 'slipassignment':
+        formDialogComponent = SlipassignmentFormDialogComponent;
+        break;
+    }
+
+    if (formDialogComponent) {
+      this.openFormDialog(formDialogComponent, tableActionData);
+    }
+  }
 }
