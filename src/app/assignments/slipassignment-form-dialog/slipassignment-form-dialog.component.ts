@@ -5,6 +5,7 @@ import { Observable, of, Subscription } from 'rxjs';
 
 import { HDate } from '../../shared/lib/h-date';
 import { HList } from '../../shared/lib/h-list';
+import { BaseData } from '../../api-storage/base-data';
 import { ApiResponse } from '../../api-storage/api-storage.model';
 import { ParamsService } from '../../shared/services/params.service';
 import { VesselService } from '../../manage-database/vessel-table/vessel.service';
@@ -19,22 +20,21 @@ export class SlipassignmentFormDialogComponent implements OnInit {
 
   HDate = HDate;
   HList = HList;
+  BaseData = BaseData;
 
-  list: any[] = [];
   item: any = {};
+  list: any[] = [];
   date: Date = null;
   tableAction: string = '';
 
+  slipList: any[] = [];
+  filteredSlipList: Observable<any[]>
 
-  slipList = [{ slip: '1' }, { slip: '2' }, { slip: '3' }, { slip: '4' }, { slip: '5' }, { slip: '6' }, { slip: '7' }, { slip: '8' }, { slip: '9' }, { slip: '10' }];
-  filteredSlipList: Observable<any[]>;
+  availabilityList: any[] = [];
+  filteredAvailablilityList: Observable<any[]>
 
   vesselList: any[] = [];
   filteredVesselList: Observable<any[]>;
-
-  // availabilityList = [{ value: '', text: '' }, { value: '1', text: 'Available' }, { value: '0', text: 'Unavailable' }];
-  availabilityList = [{ value: '1', text: 'Available' }, { value: '0', text: 'Unavailable' }];
-  filteredAvailablilityList: Observable<any[]>
 
   $listUpdateSub: Subscription;
   $apiResponseSub: Subscription;
@@ -55,17 +55,25 @@ export class SlipassignmentFormDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public paramsService: ParamsService,
     public vesselService: VesselService,
-    public slipassignmentService: SlipassignmentService,
+    public mainService: SlipassignmentService,
     public dialogRef: MatDialogRef<SlipassignmentFormDialogComponent>
   ) { }
 
   ngOnInit() {
-    this.date = this.paramsService.getDate();
-    this.list = this.slipassignmentService.getList();
+    this.initData();
     this.initAutocompleteLists();
     this.initApiResponse();
-    // this.initAutocompleteLists();
     this.initForm();
+  }
+
+  initData() {
+    this.date = this.paramsService.getDate();
+    this.slipList = this.mainService.slipList;
+    this.availabilityList = this.mainService.availabilityList;
+    this.list = this.mainService.getList();
+    if (this.data.tableActionData.tableAction === 'edit') {
+      this.item = this.data.tableActionData.entries[0];
+    }
   }
 
   initAutocompleteLists() {
@@ -73,6 +81,36 @@ export class SlipassignmentFormDialogComponent implements OnInit {
     this.filteredVesselList = of(this.vesselService.getAutocompleteList());
     this.filteredSlipList = of(this.slipList);
     this.filteredAvailablilityList = of(this.availabilityList);
+  }
+
+  initApiResponse() {
+    // Initialize Subscription $apiResponseSub
+    // this.$apiResponseSub = this.slipassignmentService.$apiResponse.subscribe((apiResponse: ApiResponse) => {
+    this.$apiResponseSub = this.mainService.$apiResponse.subscribe((apiResponse: ApiResponse) => {
+      if (apiResponse.success) {
+        // When apiResponse is successful
+        switch (apiResponse.apiOpts.baseParamsObj.action) {
+          case 'insert':
+          case 'update':
+            this.dialogRef.close();
+            break;
+        }
+      }
+    });
+  }
+
+  initForm() {
+    // If this.timeoutId id present, clear the previously invoked setTimeout()
+    if (this.formInitTimeoutId !== null) {
+      clearTimeout(this.formInitTimeoutId);
+    }
+    this.formInitTimeoutId = setTimeout(() => {
+      this.setFormValue(this.item);
+    }, this.formInitInterval);
+  }
+
+  onCloseForm() {
+    this.dialogRef.close();
   }
 
   setFormValue(item: any) {
@@ -89,41 +127,10 @@ export class SlipassignmentFormDialogComponent implements OnInit {
       vessel1 = this.HList.findProperty(this.vesselList, { property: 'id', value: item.vessel1Id }, ['vessel']) || '';
       vessel2 = this.HList.findProperty(this.vesselList, { property: 'id', value: item.vessel2Id }, ['vessel']) || '';
       vessel3 = this.HList.findProperty(this.vesselList, { property: 'id', value: item.vessel3Id }, ['vessel']) || '';
-      vessel1Availability = this.HList.findProperty(this.availabilityList, { property: 'value', value: vessel1Availability }, ['text']) || '';
-      vessel2Availability = this.HList.findProperty(this.availabilityList, { property: 'value', value: vessel2Availability }, ['text']) || '';
-      vessel3Availability = this.HList.findProperty(this.availabilityList, { property: 'value', value: vessel3Availability }, ['text']) || '';
+      vessel1Availability = this.HList.findProperty(this.availabilityList, { property: 'value', value: item.vessel1Availability }, ['text']) || '';
+      vessel2Availability = this.HList.findProperty(this.availabilityList, { property: 'value', value: item.vessel2Availability }, ['text']) || '';
+      vessel3Availability = this.HList.findProperty(this.availabilityList, { property: 'value', value: item.vessel3Availability }, ['text']) || '';
     }
-
-    // if (item && item.slip) {
-    //   slip = item.slip || '';
-    // }
-    // if (item && item.vessel1Id) {
-    //   const autocompleteItem = this.vesselService.findAutocompleteItem(item.vessel1Id);
-    //   if (autocompleteItem) {
-    //     vessel1 = autocompleteItem.vessel;
-    //   }
-    // }
-    // if (item && item.vessel2Id) {
-    //   const autocompleteItem = this.vesselService.findAutocompleteItem(item.vessel2Id);
-    //   if (autocompleteItem) {
-    //     vessel2 = autocompleteItem.vessel;
-    //   }
-    // }
-    // if (item && item.vessel3Id) {
-    //   const autocompleteItem = this.vesselService.findAutocompleteItem(item.vessel3Id);
-    //   if (autocompleteItem) {
-    //     vessel3 = autocompleteItem.vessel;
-    //   }
-    // }
-    // if (item && item.vessel1Availability) {
-    //   vessel1Availability = item.vessel1Availability || ''
-    // }
-    // if (item && item.vessel2Availability) {
-    //   vessel2Availability = item.vessel2Availability || ''
-    // }
-    // if (item && item.vessel3Availability) {
-    //   vessel3Availability = item.vessel3Availability || ''
-    // }
 
     this.form.setValue({
       slip: slip,
@@ -134,37 +141,6 @@ export class SlipassignmentFormDialogComponent implements OnInit {
       vessel2Availability: vessel2Availability,
       vessel3Availability: vessel3Availability
     })
-  }
-
-  initApiResponse() {
-    // Initialize Subscription $apiResponseSub
-    this.$apiResponseSub = this.slipassignmentService.$apiResponse.subscribe((apiResponse: ApiResponse) => {
-      if (apiResponse.success) {
-        // When apiResponse is successful
-        switch (apiResponse.apiOpts.baseParamsObj.action) {
-          case 'insert':
-          case 'update':
-            this.dialogRef.close();
-            break;
-        }
-      }
-    });
-  }
-
-  initForm() {
-    this.item = this.data.item;
-
-    // If this.timeoutId id present, clear the previously invoked setTimeout()
-    if (this.formInitTimeoutId !== null) {
-      clearTimeout(this.formInitTimeoutId);
-    }
-    this.formInitTimeoutId = setTimeout(() => {
-      this.setFormValue(this.item);
-    }, this.formInitInterval);
-  }
-
-  onCloseForm() {
-    this.dialogRef.close();
   }
 
   onFilterAutocomplete(type: string, filterVal: string) {
@@ -203,7 +179,55 @@ export class SlipassignmentFormDialogComponent implements OnInit {
   }
 
   onSave() {
-    console.log('onSave');
+    // Create an instance, newItem from this.form.value
+    // The properties that are undefined, null or '' are not set to newItem
+    // So, those properties won't be in queryParams
+    const value = this.form.value;
+    let newItem: any = {};
+
+    newItem['date'] = this.date;
+    if (this.data.tableActionData.tableAction === 'edit') {
+      newItem['id'] = this.item['id'];
+    }
+    const vesselList = this.vesselService.getAutocompleteList();
+    for (let prop in value) {
+      if (value.hasOwnProperty(prop)) {
+        if (value[prop] != null && value[prop] !== '') {
+          value[prop] = value[prop].trim();
+          switch(prop) {
+            case 'vessel1Id':
+            case 'vessel2Id':
+            case 'vessel3Id':
+              newItem[prop] = this.HList.findProperty(vesselList, { property: 'vessel', value: value[prop] }, ['id']) || '';
+              break;
+            case 'vessel1Availability':
+            case 'vessel2Availability':
+            case 'vessel3Availability':
+              newItem[prop] = this.HList.findProperty(this.availabilityList, { property: 'text', value: value[prop] }, ['value']) || '';
+              break;
+            default:
+              newItem[prop] = value[prop];
+              break;
+          }
+        }
+      }
+    }
+
+    // const newApiObj = this.BaseData.dataObjToApiObj(newItem);
+    console.log('newItem', newItem);
+    // console.log('newApiObj', newApiObj);
+    this.submitItem(newItem);
+
+  }
+
+  submitItem(newApiObj: any) {
+    switch(this.data.tableActionData.tableAction) {
+      case 'add':
+        this.mainService.api('insert', newApiObj);
+        break;
+      case 'edit':
+        this.mainService.api('update', newApiObj);
+    }
   }
 
 }
