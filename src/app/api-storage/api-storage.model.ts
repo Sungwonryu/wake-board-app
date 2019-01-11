@@ -5,7 +5,7 @@ export interface BaseParamsObj {
   'action'?: string;
   'object'?: string;
   'user_id'?: string;
-  'assign_date'?: string;
+  'date'?: string;
   'date'?: string;
 }
 

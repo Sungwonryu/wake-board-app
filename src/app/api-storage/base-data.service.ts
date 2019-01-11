@@ -214,12 +214,11 @@ export class BaseDataService {
     // if (this.date && this.date instanceof Date) {
     //   // baseParamsObj.date = this.dateFormatService.formatToDbDate(this.date);
     //   baseParamsObj['date'] = this.HDate.toDBDateString(this.date)
-    //   baseParamsObj['assign_date'] = this.HDate.toDBDateString(this.date)
     // }
     if (action === 'read' && this.requireDate(this.object)) {
       // If this.object requires date
       baseParamsObj['date'] = this.HDate.toDBDateString(this.paramsService.getDate());
-      baseParamsObj['assign_date'] = this.HDate.toDBDateString(this.paramsService.getDate());
+      baseParamsObj['date'] = this.HDate.toDBDateString(this.paramsService.getDate());
     }
 
     let apiOpts: ApiOpts = {
