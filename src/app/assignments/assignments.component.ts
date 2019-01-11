@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { HDate } from '../shared/lib/h-date';
 import { HString } from '../shared/lib/h-string';
+import { HList } from '../shared/lib/h-list';
 import { ListUpdate } from '../api-storage/api-storage.model';
 import { TableActionData } from '../shared/tables/table.model';
 
@@ -26,6 +27,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   HDate = HDate;
   HString = HString;
+  HList = HList;
 
   isPast: boolean = false;
   date: Date = null;
@@ -58,24 +60,26 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     titlebarView: { height: '50px', bgColor: '#3CA2E2', titlebarComponents: ['duplicateAll', 'search'] },
   };
 
-  modifyEntryColumn =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] };
-  modifyEntryColumnPast =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['duplicate'] };
+  // modifyEntryColumn =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] };
+  // modifyEntryColumnPast =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['duplicate'] };
+  modifyEntryColumn =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '204px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] };
+  modifyEntryColumnPast =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '204px', isModifyEntry: true, modifyEntryButtons: ['duplicate'] };
 
   vesselassignmentTableColumns = [
-    { columnDef: 'shift', header: 'Shift', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
+    { columnDef: 'shift', header: 'Shift', width: '124px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
     { columnDef: 'route', header: 'Route', width: '60px', cellFn: (row: any) => `${this.HString.toDefaultString(row.route)}` },
     { columnDef: 'callTime', header: 'Call Time', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0, 5)}` },
-    { columnDef: 'firstDeparture', header: 'First Departure', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0, 5)}` },
-    { columnDef: 'vesselNumber', header: 'Vessel ID', width: '90px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` },
-    { columnDef: 'vesselName', header: 'Vessel Name', width: '140px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselName)}` },
-    { columnDef: 'captain1', header: 'Captain 1', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain1)}` },
-    { columnDef: 'captain2', header: 'Captain 2', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain2)}` },
-    { columnDef: 'deckhand1', header: 'Deckhand 1', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand1)}` },
-    { columnDef: 'deckhand2', header: 'Deckhand 2', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand2)}` },
-    { columnDef: 'deckhand3', header: 'Deckhand 3', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand3)}` },
-    { columnDef: 'deckhand4', header: 'Deckhand 4', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand4)}` },
-    { columnDef: 'gsa1', header: 'GSA 1', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.gsa1)}` },
-    { columnDef: 'gsa2', header: 'GSA 2', width: '120px', cellFn: (row: any) => `${this.HString.toDefaultString(row.gsa2)}` }
+    { columnDef: 'firstDeparture', header: 'First Departure', width: '116px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0, 5)}` },
+    // { columnDef: 'vesselNumber', header: 'Vessel ID', width: '90px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` },
+    { columnDef: 'vesselId', header: 'Vessel', width: '230px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vesselId))}` },
+    { columnDef: 'captain1', header: 'Captain 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain1)}` },
+    { columnDef: 'captain2', header: 'Captain 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain2)}` },
+    { columnDef: 'deckhand1', header: 'Deckhand 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand1)}` },
+    { columnDef: 'deckhand2', header: 'Deckhand 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand2)}` },
+    { columnDef: 'deckhand3', header: 'Deckhand 3', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand3)}` },
+    { columnDef: 'deckhand4', header: 'Deckhand 4', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand4)}` },
+    { columnDef: 'gsa1', header: 'GSA 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.gsa1)}` },
+    { columnDef: 'gsa2', header: 'GSA 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.gsa2)}` }
   ];
 
   vesselassignmentTableData = {
@@ -99,14 +103,15 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   };
 
   slipassignmentTableColumns = [
-    { columnDef: 'slip', header: 'Slip', width: '100px', cellFn: (row: any) => `${row.slip}` },
-    { columnDef: 'vessel1Name', header: 'Vessel 1', width: '100px', cellFn: (row: any) => `${row.vessel1Name}` },
-    { columnDef: 'vessel2Name', header: 'Vessel 2', width: '100px', cellFn: (row: any) => `${row.vessel2Name}` },
-    { columnDef: 'vessel3Name', header: 'Vessel 3', width: '100px', cellFn: (row: any) => `${row.vessel3Name}` }
+    { columnDef: 'slip', header: 'Slip', width: '40px', cellFn: (row: any) => `${this.HString.toDefaultString(row.slip)}` },
+    { columnDef: 'vessel1Id', header: 'Vessel 1', width: '195px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel1Id))}` },
+    { columnDef: 'vessel2Id', header: 'Vessel 2', width: '195px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel2Id))}` },
+    { columnDef: 'vessel3Id', header: 'Vessel 3', width: '195px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel3Id))}` },
   ];
 
   slipassignmentTableData = {
     ...this.commonTableData,
+    tableView: { headerHeight: '40px', bodyHeight: '108px' },
     tableTitle: 'ASSIGN SLIPS',
     dataType: 'slipassignment',
     tableColumns: [
@@ -117,6 +122,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   slipassignmentTableDataPast = {
     ...this.commonTableDataPast,
+    tableView: { headerHeight: '40px', bodyHeight: '108px' },
     tableTitle: 'ASSIGN SLIPS',
     dataType: 'slipassignment',
     tableColumns: [
@@ -126,14 +132,15 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   };
 
   noteTableColumns = [
-    { columnDef: 'note', header: 'Note', width: '100px', cellFn: (row: any) => `${row.note}` },
-    { columnDef: 'priorityId', header: 'Priority', width: '100px', cellFn: (row: any) => `${row.priorityId}` },
-    { columnDef: 'durationId', header: 'Duration', width: '100px', cellFn: (row: any) => `${HDate.toTimeString(row.durationId)}` },
-    { columnDef: 'colorId', header: 'Color', width: '100px', cellFn: (row: any) => `${row.colorId}` }
+    { columnDef: 'note', header: 'Note', width: '340px', cellFn: (row: any) => `${this.HString.toDefaultString(row.note)}` },
+    { columnDef: 'priorityId', header: 'Priority', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(this.noteService.getItemProperty('priorityList', { property: 'id', value: row.priorityId }, ['text']))}` },
+    { columnDef: 'durationId', header: 'Duration', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(this.noteService.getItemProperty('durationList', { property: 'id', value: row.durationId }, ['text']))}` },
+    { columnDef: 'colorId', header: 'Color', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(this.noteService.getItemProperty('colorList', { property: 'id', value: row.colorId }, ['text']))}` }
   ];
 
   noteTableData = {
     ...this.commonTableData,
+    tableView: { headerHeight: '40px', bodyHeight: '108px' },
     tableTitle: 'NOTES',
     dataType: 'note',
     tableColumns: [
@@ -144,6 +151,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   noteTableDataPast = {
     ...this.commonTableDataPast,
+    tableView: { headerHeight: '40px', bodyHeight: '108px' },
     tableTitle: 'NOTES',
     dataType: 'note',
     tableColumns: [
@@ -153,15 +161,16 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   };
 
   crewswapTableColumns = [
-    { columnDef: 'callTime', header: 'Call Time', width: '100px', cellFn: (row: any) => `${row.callTime}` },
-    { columnDef: 'firstDeparture', header: 'First Departure', width: '100px', cellFn: (row: any) => `${row.firstDeparture}` },
-    { columnDef: 'vasselNumber', header: 'Vessel ID', width: '100px', cellFn: (row: any) => `${HDate.toDBDatetimeString(row.vasselNumber)}` },
-    { columnDef: 'shift', header: 'Shift', width: '100px', cellFn: (row: any) => `${row.shift}` },
-    { columnDef: 'location', header: 'Pick Up Location', width: '100px', cellFn: (row: any) => `${row.location}` }
+    { columnDef: 'callTime', header: 'Call Time', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0,5)}` },
+    { columnDef: 'firstDeparture', header: 'First Departure', width: '100px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0,5)}` },
+    { columnDef: 'vasselId', header: 'Vessel', width: '280px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vasselId))}` },
+    { columnDef: 'shift', header: 'Shift', width: '136px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
+    { columnDef: 'location', header: 'Pick Up Location', width: '100px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }
   ];
 
   crewswapTableData = {
     ...this.commonTableData,
+    tableView: { headerHeight: '40px', bodyHeight: '344px' },
     tableTitle: 'CREW SWAPS',
     dataType: 'crewswap',
     tableColumns: [
@@ -172,6 +181,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   crewswapTableDataPast = {
     ...this.commonTableDataPast,
+    tableView: { headerHeight: '40px', bodyHeight: '344px' },
     tableTitle: 'CREW SWAPS',
     dataType: 'crewswap',
     tableColumns: [
@@ -254,7 +264,8 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     this.$vesselListUpdateSub = this.vesselService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
       console.log(`${this.vesselService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
-        this.vesselList = this.vesselService.getList();
+        // this.vesselList = this.vesselService.getList();
+        this.vesselList = this.vesselService.getAutocompleteList();
       }
     });
     // vesselassignment
@@ -288,7 +299,9 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   }
 
   initList() {
-    this.vesselList = this.vesselService.getList();
+    // this.vesselList = this.vesselService.getList();
+    this.vesselList = this.vesselService.getAutocompleteList();
+    console.log('vesselList', this.vesselList);
     this.vesselassignmentList = this.vesselassignmentService.getList();
     this.slipassignmentList = this.slipassignmentService.getList();
     this.noteList = this.noteService.getList();
@@ -353,6 +366,9 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     let formDialogComponent;
     switch(tableActionData.dataType) {
       case 'slipassignment':
+        if (tableActionData.tableAction === 'edit') {
+          this.slipassignmentService.api('override', tableActionData.entries[0]);
+        }
         formDialogComponent = SlipassignmentFormDialogComponent;
         break;
     }
