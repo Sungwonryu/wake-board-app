@@ -13,6 +13,24 @@ export class NoteService extends BaseDataService {
     { property: 'expirationDate', isDescending: false }
   ];
 
+  priorityList = [
+    { id: '1', text: 'Critical' },
+    { id: '2', text: 'Low' }
+  ];
+
+  durationList = [
+    { id: '1', text: 'One Day', days: 1 },
+    { id: '2', text: 'One Week', days: 7 },
+    { id: '3', text: 'Ongoing', days: 0 }
+  ];
+
+  colorList = [
+    { id: '1', text: 'White - Low', colorCode: '#FFFFFF' },
+    { id: '2', text: 'Purple - Low', colorCode: '#D1C7DF' },
+    { id: '3', text: 'Orange - Low' , colorCode: '#FBE3CF' },
+    { id: '4', text: 'Red - Critical', colorCode: '#FF585C' }
+  ];
+
   constructor(
     protected apiStorageService: ApiStorageService,
     protected authService: AuthService,
