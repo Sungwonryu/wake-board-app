@@ -345,4 +345,13 @@ export class BaseDataService {
     }, this.autoUpdateInterval);
   }
 
+  getItemProperty(listName: string, { property, value }: { property: string, value: any }, props: string[]): any {
+    let result = '';
+    const list = this[listName];
+    if (list && typeof list === 'object' && list.constructor === Array) {
+      result = this.HList.findProperty(list, { property: property, value: value }, props) || '';
+    }
+    return result;
+  }
+
 }
