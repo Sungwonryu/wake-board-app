@@ -1,3 +1,45 @@
-<p>
-  date-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Date</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              name="date"
+              [matDatepicker]="datePicker"
+              ngModel
+              placeholder=""
+              required />
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Submit</button>
+
+    </form>
+  </div>
+</div>
