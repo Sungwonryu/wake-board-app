@@ -21,6 +21,7 @@ export class HeaderComponent implements OnChanges, OnInit {
   @Input() hasDatePicker: boolean = false;
   @Input() date: Date = null;
   @Output() onChangeDate = new EventEmitter<Date>();
+  @Output() onOpenDateForm = new EventEmitter<true>();
 
   constructor(
     private paramsService: ParamsService
@@ -57,8 +58,8 @@ export class HeaderComponent implements OnChanges, OnInit {
     }
   }
 
-  openCalendarForm() {
-    alert('hi');
+  openDateForm() {
+    this.onOpenDateForm.emit(true);
   }
 
 }
