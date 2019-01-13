@@ -16,6 +16,7 @@ import { SlipassignmentService } from './slipassignment/slipassignment.service';
 import { NoteService } from './note/note.service';
 import { CrewswapService } from './crewswap/crewswap.service';
 
+import { DateFormDialogComponent } from './date-form-dialog/date-form-dialog.component';
 import { SlipassignmentFormDialogComponent } from './slipassignment-form-dialog/slipassignment-form-dialog.component';
 
 @Component({
@@ -48,6 +49,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   crewswapList: any[] = [];
   $crewswapListUpdateSub: Subscription;
 
+  dateFormDialogRef: MatDialogRef<any>;
   formDialogRef: MatDialogRef<any>;
 
   commonTableData = {
@@ -342,11 +344,11 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     this.setDateParam(newDate);
   }
 
-  openFormDialog(formDialogComponent: any, tableActionData: TableActionData) {
+  openFormDialog(formDialogComponent: any, panelClass: string, tableActionData: TableActionData) {
 
     // Open SlipassignmentFormDialogComponent
     this.formDialogRef = this.dialog.open(formDialogComponent, {
-      panelClass: 'form-dialog-container',
+      panelClass: panelClass,
       // Disable the feature that the user can use escape or clicking outside to close a modal.
       disableClose: true,
       data: {
@@ -364,6 +366,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   modifyTable(tableActionData: TableActionData) {
     let formDialogComponent;
+    let panelClass = 'form-dialog-container';
     switch(tableActionData.dataType) {
       case 'slipassignment':
         if (tableActionData.tableAction === 'edit') {
@@ -374,7 +377,29 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     }
 
     if (formDialogComponent) {
-      this.openFormDialog(formDialogComponent, tableActionData);
+      this.openFormDialog(formDialogComponent, panelClass, tableActionData);
     }
   }
+
+  openDateForm() {
+    // Open DateFormDialogComponent
+    this.dateFormDialogRef = this.dialog.open(DateFormDialogComponent, {
+      panelClass: 'date-form-dialog-container',
+      // Disable the feature that the user can use escape or clicking outside to close a modal.
+      disableClose: true,
+      data: {
+        date: this.date
+      }
+    });
+
+    // After the formDialog is closed, refresh the lists
+    if (this.dateFormDialogRef) {
+      this.dateFormDialogRef.afterClosed().subscribe((data) => {
+        if (data && typeof data === 'object' && data.date instanceof Date) {
+          this.changeDate(data.date);
+        }
+      });
+    }
+  }
+
 }
