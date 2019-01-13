@@ -6,7 +6,6 @@ export interface BaseParamsObj {
   'object'?: string;
   'user_id'?: string;
   'date'?: string;
-  'date'?: string;
 }
 
 /*  ApiOpts is the interface for the parameter of apiStorageService
