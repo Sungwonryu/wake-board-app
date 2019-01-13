@@ -140,7 +140,7 @@ export class SlipassignmentFormDialogComponent implements OnInit {
       vessel1Availability: vessel1Availability,
       vessel2Availability: vessel2Availability,
       vessel3Availability: vessel3Availability
-    })
+    });
   }
 
   onFilterAutocomplete(type: string, filterVal: string) {
