@@ -1,3 +1,160 @@
-<p>
-  crewswap-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Shift</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="shift"
+              placeholder=""
+              #shiftInput="ngModel"
+              [matAutocomplete]="shiftListRef"
+              (keyup)="onFilterAutocomplete('shift', $event.target.value)"
+            />
+            <mat-hint *ngIf="!shiftInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #shiftListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredShiftList | async"
+              [value]="item.shift">
+              {{ item.shift }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Call Time</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="callTime"
+              placeholder=""
+              pattern="^(([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
+              #callTimeInput="ngModel"
+              [matAutocomplete]="callTimeListRef"
+              (keyup)="onFilterAutocomplete('callTime', $event.target.value)"
+            />
+            <mat-hint *ngIf="!callTimeInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="firstDepartureInput.hasError('pattern')">Call Time must match with 24 hour fromat.</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #callTimeListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCalltimeList | async"
+              [value]="item.callTime">
+              {{ item.callTime }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">First Departure</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              type="text"
+              name="firstDeparture"
+              placeholder=""
+              ngModel
+              pattern="^(([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
+              #firstDepartureInput="ngModel" />
+            <mat-hint>First Departure must be 24 hour format from "00:00" to "23:59"</mat-hint>
+            <mat-error *ngIf="firstDepartureInput.hasError('pattern')">Departure Time must match with 24 hour fromat.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="input-wrapper"></div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Vessel</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="vesselId"
+              placeholder=""
+              #vesselIdInput="ngModel"
+              [matAutocomplete]="vesselListRef"
+              (keyup)="onFilterAutocomplete('vessel', $event.target.value)"
+              appIncludeInput
+              [itemList]="vesselList"
+              [itemProp1]="'vessel'"
+              [itemType]="''"
+            />
+            <mat-hint *ngIf="!vesselIdInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="vesselIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #vesselListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredVesselList | async"
+              [value]="item.vessel">
+              {{ item.vessel }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Location</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="location"
+              placeholder=""
+              #locationInput="ngModel"
+              [matAutocomplete]="locationListRef"
+              (keyup)="onFilterAutocomplete('location', $event.target.value)"
+            />
+            <mat-hint *ngIf="!locationInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #locationListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredLocationList | async"
+              [value]="item.location">
+              {{ item.location }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper"></div>
+        <div class="input-wrapper"></div>
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Save Entry</button>
+
+    </form>
+  </div>
+</div>
