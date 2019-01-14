@@ -1,3 +1,50 @@
-<p>
-  duplicate-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span *ngIf="data.tableActionData.tableAction === 'duplicate'"class="title">{{ titleDuplicate }}</span>
+    <span *ngIf="data.tableActionData.tableAction === 'duplicateAll'"class="title">{{ titleDuplicateAll }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div *ngIf="data.tableActionData.tableAction === 'duplicate'"class="instruction">{{ instructionDuplicate }}</div>
+    <div *ngIf="data.tableActionData.tableAction === 'duplicateAll'"class="instruction">{{ instructionDuplicateAll }}</div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Date</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              name="date"
+              [matDatepicker]="datePicker"
+              ngModel
+              placeholder=""
+              required />
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Submit</button>
+
+      <!-- <button
+        class="cancel-button"
+        [disabled]="!f.valid"
+        (click)="onCloseForm()">Cancel</button> -->
+
+    </form>
+  </div>
+</div>
