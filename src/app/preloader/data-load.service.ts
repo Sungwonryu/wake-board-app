@@ -4,20 +4,22 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { DataLoad } from './data-load.model';
 
-// const dataLoadList: DataLoad[] = [
-//   { isReady: false, object: 'vessel_types' },
-//   { isReady: false, object: 'vessel_capacities' },
-//   { isReady: false, object: 'call_times' },
-//   { isReady: false, object: 'messages' },
-//   { isReady: false, object: 'jobs' },
-//   { isReady: false, object: 'departments' },
-//   { isReady: false, object: 'locations' },
-//   { isReady: false, object: 'routes' },
-//   { isReady: false, object: 'shifts' },
-//   { isReady: false, object: 'vessels' },
-//   { isReady: false, object: 'employees' }
-// ];
-const dataLoadList: DataLoad[] = [];
+const dataLoadList: DataLoad[] = [
+  { isReady: false, object: 'vessel_numbers' },
+  { isReady: false, object: 'vessel_names' },
+  { isReady: false, object: 'vessel_types' },
+  { isReady: false, object: 'vessel_capacities' },
+  { isReady: false, object: 'messages' },
+  { isReady: false, object: 'shift_names' },
+  { isReady: false, object: 'call_times' },
+  { isReady: false, object: 'locations' },
+  { isReady: false, object: 'employees' },
+  { isReady: false, object: 'jobs' },
+  { isReady: false, object: 'routes' },
+  { isReady: false, object: 'vessels' },
+  { isReady: false, object: 'shifts' },
+  { isReady: false, object: 'crew_members' }
+];
 
 const url = environment.urls.api;
 
@@ -27,7 +29,7 @@ export class DataLoadService {
     private httpClient: HttpClient
   ) {  }
 
-  loadAll(): any[] {
+  loadAll(): Promise<any> {
     let promiseList: any[] = [];
 
     if (url && typeof url === 'string') {
@@ -35,7 +37,14 @@ export class DataLoadService {
         return this.storeDataToLocalStorage(dataLoad);
       });
     }
-    return promiseList;
+
+    return new Promise((resolve) => {
+      Promise.all(promiseList).then(() => {
+        console.log('Preloader() finishes all promises - all data are stored in localStorage');
+        resolve();
+      });
+    });
+
   }
 
   storeDataToLocalStorage(dataLoad: DataLoad): Promise<any> {
@@ -49,10 +58,11 @@ export class DataLoadService {
         .get(url, { params: params })
         .subscribe(
           (res: any) => {
-            if (typeof res === 'object' && res.rowcount > 0) {
+            if (res && typeof res === 'object' && res.rowcount > 0) {
               // When res is an object with a positive rowcount
               const dataStr = JSON.stringify(res.data);
               localStorage.setItem(object, dataStr);
+
             }
             dataLoad.isReady = true;
             resolve();
