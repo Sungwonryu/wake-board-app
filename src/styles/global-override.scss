@@ -226,6 +226,16 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
   }
 }
 
+.relationship-form-dialog-container {
+  @extend .form-dialog-container;
+
+  .mat-dialog-container {
+    height: 500px;
+    width: 1306px;
+  }
+}
+
+
 .form-dialog-container {
   .input-wrapper-note {
     width: 614px;
