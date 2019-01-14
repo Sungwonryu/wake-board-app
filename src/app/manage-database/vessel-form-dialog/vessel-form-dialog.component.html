@@ -1,3 +1,135 @@
-<p>
-  vessel-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Vessel Name</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="vesselName"
+              placeholder=""
+              #vesselnameInput="ngModel"
+              [matAutocomplete]="vesselnameRef"
+              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+            />
+            <mat-hint *ngIf="!vesselnameInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #vesselnameRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredVesselnameList | async"
+              [value]="item.vesselName">
+              {{ item.vesselName }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Vessel ID</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="vesselNumber"
+              required
+              placeholder=""
+              #vesselnumberInput="ngModel"
+              [matAutocomplete]="vesselnumberRef"
+              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+              appUniqueInput="list"
+              [appProperty]="'vesselNumber'"
+              [appItem]="item"
+            />
+            <mat-hint *ngIf="!vesselnumberInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="vesselnumberInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="vesselnumberInput.hasError('uniqueInput')">Input must be unique from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #vesselnumberRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredVesselnumberList | async"
+              [value]="item.vesselNumber">
+              {{ item.vesselNumber }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Vessel Type</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="vesselType"
+              placeholder=""
+              #vesseltypeInput="ngModel"
+              [matAutocomplete]="vesseltypeRef"
+              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+            />
+            <mat-hint *ngIf="!vesseltypeInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #vesseltypeRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredVesseltypeList | async"
+              [value]="item.vesselType">
+              {{ item.vesselType }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Vessel Capacity</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="vesselCapacity"
+              placeholder=""
+              #vesselcapacityInput="ngModel"
+              [matAutocomplete]="vesselcapacityRef"
+              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+            />
+            <mat-hint *ngIf="!vesselcapacityInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #vesselcapacityRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredVesselcapacityList | async"
+              [value]="item.vesselCapacity">
+              {{ item.vesselCapacity }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Save Entry</button>
+
+    </form>
+  </div>
+</div>
