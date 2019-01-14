@@ -148,24 +148,24 @@ export class VesselFormDialogComponent implements OnInit {
     let list = [];
     let filteredList = [];
     switch (type) {
-      case 'vesselnumber':
+      case 'vesselNumber':
         list = this.vesselnumberList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        filteredList = this.HList.filterAutocompletList(list, 'vesselNumber', filterVal);
         this.filteredVesselnumberList = of(filteredList);
         break;
-      case 'vesselname':
+      case 'vesselName':
         list = this.vesselnameList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        filteredList = this.HList.filterAutocompletList(list, 'vesselName', filterVal);
         this.filteredVesselnameList = of(filteredList);
         break;
-      case 'vesseltype':
+      case 'vesselType':
         list = this.vesseltypeList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        filteredList = this.HList.filterAutocompletList(list, 'vesselType', filterVal);
         this.filteredVesseltypeList = of(filteredList);
         break;
-      case 'vesselcapacity':
+      case 'vesselCapacity':
         list = this.vesselcapacityList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        filteredList = this.HList.filterAutocompletList(list, 'vesselCapacity', filterVal);
         this.filteredVesselcapacityList = of(filteredList);
         break;
     }

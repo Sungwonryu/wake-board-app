@@ -30,7 +30,7 @@
               placeholder=""
               #vesselnameInput="ngModel"
               [matAutocomplete]="vesselnameRef"
-              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+              (keyup)="onFilterAutocomplete('vesselName', $event.target.value)"
             />
             <mat-hint *ngIf="!vesselnameInput.hasError()">Choose an option</mat-hint>
           </mat-form-field>
@@ -56,7 +56,7 @@
               placeholder=""
               #vesselnumberInput="ngModel"
               [matAutocomplete]="vesselnumberRef"
-              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+              (keyup)="onFilterAutocomplete('vesselNumber', $event.target.value)"
               appUniqueInput="list"
               [appProperty]="'vesselNumber'"
               [appItem]="item"
@@ -86,7 +86,7 @@
               placeholder=""
               #vesseltypeInput="ngModel"
               [matAutocomplete]="vesseltypeRef"
-              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+              (keyup)="onFilterAutocomplete('vesselType', $event.target.value)"
             />
             <mat-hint *ngIf="!vesseltypeInput.hasError()">Choose an option</mat-hint>
           </mat-form-field>
@@ -111,7 +111,7 @@
               placeholder=""
               #vesselcapacityInput="ngModel"
               [matAutocomplete]="vesselcapacityRef"
-              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+              (keyup)="onFilterAutocomplete('vesselCapacity', $event.target.value)"
             />
             <mat-hint *ngIf="!vesselcapacityInput.hasError()">Choose an option</mat-hint>
           </mat-form-field>
