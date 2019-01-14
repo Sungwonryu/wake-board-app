@@ -1,3 +1,125 @@
-<p>
-  shift-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Shift</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="shift"
+              placeholder=""
+              #shiftInput="ngModel"
+              [matAutocomplete]="shiftRef"
+              (keyup)="onFilterAutocomplete('shift', $event.target.value)"
+            />
+            <mat-hint *ngIf="!shiftInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #shiftRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredShiftnameList | async"
+              [value]="item.shift">
+              {{ item.shift }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Route</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="route"
+              required
+              placeholder=""
+              #routeInput="ngModel"
+              [matAutocomplete]="routeRef"
+              (keyup)="onFilterAutocomplete('route', $event.target.value)"
+            />
+            <mat-hint *ngIf="!routeInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="routeInput.hasError('required')">Input must not be empty</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #routeRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredRouteList | async"
+              [value]="item.route">
+              {{ item.route }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Call Time</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="callTime"
+              placeholder=""
+              pattern="^(([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
+              #callTimeInput="ngModel"
+              [matAutocomplete]="callTimeListRef"
+              (keyup)="onFilterAutocomplete('callTime', $event.target.value)"
+            />
+            <mat-hint *ngIf="!callTimeInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="firstDepartureInput.hasError('pattern')">Call Time must match with 24 hour fromat.</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #callTimeListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCalltimeList | async"
+              [value]="item.callTime">
+              {{ item.callTime }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">First Departure</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              type="text"
+              name="firstDeparture"
+              placeholder=""
+              ngModel
+              pattern="^(([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
+              #firstDepartureInput="ngModel" />
+            <mat-hint>First Departure must be 24 hour format from "00:00" to "23:59"</mat-hint>
+            <mat-error *ngIf="firstDepartureInput.hasError('pattern')">Departure Time must match with 24 hour fromat.</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Save Entry</button>
+
+    </form>
+  </div>
+</div>
