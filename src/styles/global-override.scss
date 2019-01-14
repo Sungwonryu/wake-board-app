@@ -1,4 +1,4 @@
-@import "global-preloads.scss";
+ @import "global-preloads.scss";
 
 $close-button-img-url: $images-assets-path + "icons/close-button.png";
 
@@ -29,8 +29,6 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
   }
 
   .form-dialog {
-    // height: 700px;
-    // width: 1306px;
     height: 100%;
     width: 100%;
     position: relative;
@@ -89,11 +87,21 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
   .subtitle {
     height: 26px;
     width: 1180px;
+    display: flex;
+    justify-content: flex-start;
     border-bottom: 2px solid #000000;
     margin-bottom: 12px;
     font-family: "Lato Heavy";
     font-size: 22px;
     text-align: left;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .input-group {
@@ -206,6 +214,15 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
     align-items: center;
     font-family: "Lato Heavy";
     font-size: 23px;
+  }
+}
+
+.vesselassignment-form-dialog-container {
+  @extend .form-dialog-container;
+
+  .mat-dialog-container {
+    height: 833px;
+    width: 1306px;
   }
 }
 
