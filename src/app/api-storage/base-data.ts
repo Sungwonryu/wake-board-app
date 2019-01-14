@@ -31,8 +31,8 @@ export interface BaseDataObj {
 }
 
 const excludeProps: string[] = ['editUser', 'deleteUser'];
-const datetimeProps = ['editTime', 'deletedAt', 'updatedAt', 'expiration', 'expirationTime'];
-const dateProps = ['date', 'assignDate'];
+const datetimeProps = ['editTime', 'deletedAt', 'updatedAt'];
+const dateProps = ['date', 'assignDate', 'expirationDate'];
 // const timeProps = ['callTime', 'firstDeparture'];
 const timeProps = [];
 
