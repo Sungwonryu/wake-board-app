@@ -129,12 +129,12 @@ export class CrewmemberFormDialogComponent implements OnInit {
     switch (type) {
       case 'employee':
         list = this.employeeList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        filteredList = this.HList.filterAutocompletList(list, 'employee', filterVal);
         this.filteredEmployeeList = of(filteredList);
         break;
       case 'job':
-        list = this.employeeList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        list = this.jobList;
+        filteredList = this.HList.filterAutocompletList(list, 'job', filterVal);
         this.filteredJobList = of(filteredList);
         break;
     }
