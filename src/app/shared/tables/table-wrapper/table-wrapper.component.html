@@ -21,7 +21,8 @@
         *ngIf="HList.includes(titlebarView.titlebarComponents, 'duplicateAll')"
         mat-stroked-button
         class="table-button"
-        (click)="duplicateAllEntries()">Duplicate All Entries</button>
+        (click)="duplicateAllEntries()"
+        [disabled]="!data.length">Duplicate All Entries</button>
     </div>
 
     <div class="right-pane">

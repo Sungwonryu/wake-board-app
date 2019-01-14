@@ -9,7 +9,7 @@ export class UIService {
 
   snackbarDuration = 2000; // 2 secs
   shortSnackbarDuration = 800; // 800 millisecs
-  actionsShowSuccessMessage = ['insert', 'update', 'delete'];
+  actionsShowSuccessMessage = ['insert', 'update', 'delete', 'duplicate'];
   $loadingStateChange = new Subject<boolean>();
 
   constructor(
