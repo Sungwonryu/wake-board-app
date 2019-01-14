@@ -144,17 +144,17 @@ export class ShiftFormDialogComponent implements OnInit {
     switch (type) {
       case 'shift':
         list = this.shiftnameList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        filteredList = this.HList.filterAutocompletList(list, 'shift', filterVal);
         this.filteredShiftnameList = of(filteredList);
         break;
       case 'route':
         list = this.routeList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        filteredList = this.HList.filterAutocompletList(list, 'route', filterVal);
         this.filteredRouteList = of(filteredList);
         break;
       case 'calltime':
         list = this.calltimeList;
-        filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
+        filteredList = this.HList.filterAutocompletList(list, 'calltime', filterVal);
         this.filteredCalltimeList = of(filteredList);
         break;
     }
