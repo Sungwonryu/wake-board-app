@@ -19,8 +19,9 @@ import { CrewswapService } from './crewswap/crewswap.service';
 import { DateFormDialogComponent } from './date-form-dialog/date-form-dialog.component';
 import { DuplicateFormDialogComponent } from './duplicate-form-dialog/duplicate-form-dialog.component';
 import { NoteFormDialogComponent } from './note-form-dialog/note-form-dialog.component';
-import { SlipassignmentFormDialogComponent } from './slipassignment-form-dialog/slipassignment-form-dialog.component';
 import { CrewswapFormDialogComponent } from './crewswap-form-dialog/crewswap-form-dialog.component';
+import { SlipassignmentFormDialogComponent } from './slipassignment-form-dialog/slipassignment-form-dialog.component';
+import { VesselassignmentFormDialogComponent } from './vesselassignment-form-dialog/vesselassignment-form-dialog.component';
 
 @Component({
   selector: 'app-assignments',
@@ -70,11 +71,10 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   vesselassignmentTableColumns = [
     { columnDef: 'shift', header: 'Shift', width: '124px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
-    { columnDef: 'route', header: 'Route', width: '60px', cellFn: (row: any) => `${this.HString.toDefaultString(row.route)}` },
+    { columnDef: 'route', header: 'Route', width: '106px', cellFn: (row: any) => `${this.HString.toDefaultString(row.route)}` },
     { columnDef: 'callTime', header: 'Call Time', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0, 5)}` },
-    { columnDef: 'firstDeparture', header: 'First Departure', width: '116px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0, 5)}` },
-    // { columnDef: 'vesselNumber', header: 'Vessel ID', width: '90px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` },
-    { columnDef: 'vesselId', header: 'Vessel', width: '230px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vesselId))}` },
+    { columnDef: 'firstDeparture', header: 'First Departure', width: '90px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0, 5)}` },
+    { columnDef: 'vesselId', header: 'Vessel', width: '210px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vesselId))}` },
     { columnDef: 'captain1', header: 'Captain 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain1)}` },
     { columnDef: 'captain2', header: 'Captain 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain2)}` },
     { columnDef: 'deckhand1', header: 'Deckhand 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand1)}` },
@@ -166,9 +166,9 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   crewswapTableColumns = [
     { columnDef: 'callTime', header: 'Call Time', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0,5)}` },
     { columnDef: 'firstDeparture', header: 'First Departure', width: '100px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0,5)}` },
-    { columnDef: 'vesselId', header: 'Vessel', width: '280px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vesselId))}` },
-    { columnDef: 'shift', header: 'Shift', width: '136px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
-    { columnDef: 'location', header: 'Pick Up Location', width: '100px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }
+    { columnDef: 'vesselId', header: 'Vessel', width: '240px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vesselId))}` },
+    { columnDef: 'shift', header: 'Shift', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
+    { columnDef: 'location', header: 'Pick Up Location', width: '150px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }
   ];
 
   crewswapTableData = {
@@ -380,6 +380,11 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
         panelClass = 'form-dialog-container';
 
         switch(tableActionData.dataType) {
+          case 'vesselassignment':
+            panelClass = 'vesselassignment-form-dialog-container';
+            formDialogComponent = VesselassignmentFormDialogComponent;
+            mainService = this.vesselassignmentService;
+            break;
           case 'slipassignment':
             formDialogComponent = SlipassignmentFormDialogComponent;
             mainService = this.slipassignmentService;
