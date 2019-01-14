@@ -85,6 +85,7 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
 
 import { VesselFormDialogComponent } from './manage-database/vessel-form-dialog/vessel-form-dialog.component';
 import { ShiftFormDialogComponent } from './manage-database/shift-form-dialog/shift-form-dialog.component';
+import { CrewmemberFormDialogComponent } from './manage-database/crewmember-form-dialog/crewmember-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import { ShiftFormDialogComponent } from './manage-database/shift-form-dialog/sh
     CrewswapTableComponent,
 
     VesselFormDialogComponent,
-    ShiftFormDialogComponent
+    ShiftFormDialogComponent,
+    CrewmemberFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -176,7 +178,8 @@ import { ShiftFormDialogComponent } from './manage-database/shift-form-dialog/sh
     VesselassignmentFormDialogComponent,
 
     VesselFormDialogComponent,
-    ShiftFormDialogComponent
+    ShiftFormDialogComponent,
+    CrewmemberFormDialogComponent
   ],
   bootstrap: [AppComponent]
 })
