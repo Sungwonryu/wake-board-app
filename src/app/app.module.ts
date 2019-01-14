@@ -1,9 +1,13 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+// preloader
+import { DataLoadService } from './preloader/data-load.service';
+import { Preloader } from './preloader/preloader';
 
 // app
 import { AppRoutingModule } from './app-routing.module';
@@ -126,6 +130,13 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     MaterialModule
   ],
   providers: [
+    DataLoadService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: Preloader,
+      deps: [ DataLoadService ],
+      multi: true
+    },
     AuthService,
     ApiStorageService,
     ParamsService,
