@@ -1,3 +1,85 @@
-<p>
-  crewmember-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Employee Name</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="employee"
+              placeholder=""
+              required
+              #employeeInput="ngModel"
+              [matAutocomplete]="employeeListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!employeeInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="jobInput.hasError('required')">Input must not be empty</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #employeeListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredEmployeeList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Job Title</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="job"
+              placeholder=""
+              #jobInput="ngModel"
+              [matAutocomplete]="jobListRef"
+              (keyup)="onFilterAutocomplete('job', $event.target.value)"
+            />
+            <mat-hint *ngIf="!jobInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #jobListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredJobList | async"
+              [value]="item.job">
+              {{ item.job }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper"></div>
+        <div class="input-wrapper"></div>
+
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Save Entry</button>
+
+    </form>
+  </div>
+</div>
