@@ -30,11 +30,10 @@ export interface BaseDataObj {
   deleteUser?: string | null;
 }
 
-const excludeProps: string[] = ['editUser', 'deleteUser'];
+const excludeProps: string[] = ['editUser', 'deleteUser', 'callTimeDT', 'firstDepartureDT'];
 const datetimeProps = ['editTime', 'deletedAt', 'updatedAt'];
 const dateProps = ['date', 'assignDate', 'expirationDate'];
-// const timeProps = ['callTime', 'firstDeparture'];
-const timeProps = [];
+const timeProps = ['callTime', 'firstDeparture'];
 
 export class BaseData {
 
@@ -52,9 +51,14 @@ export class BaseData {
             data[prop] = dt ? dt : null;
           } else if (timeProps.includes(prop)) {
             // When prop is found in timeProps
+            if (obj[prop] && typeof obj[prop] === 'string') {
+              data[prop] = obj[prop].slice(0, 5);
+            }
             let dateStr = obj['assignDate'] ? obj['assignDate'] : obj['date'];
             dt = HDate.toDate(dateStr + ' ' + obj[prop]);
-            data[prop] = dt ? dt : null;
+            data[(prop + 'DT')] = dt ? dt : null;
+          } else if (timeProps.includes(prop)) {
+
           } else {
             // When prop is not found datetimeProps, dateProps or timeProps,
             if (typeof obj[prop] === 'string' || obj[prop] === null) {
@@ -72,7 +76,7 @@ export class BaseData {
     if (data && typeof data === 'object') {
       for(let prop in data) {
         if (data.hasOwnProperty(prop) && !excludeProps.includes[prop]) {
-          if (datetimeProps.includes(prop) || dateProps.includes(prop) || timeProps.includes(prop)) {
+          if (datetimeProps.includes(prop) || dateProps.includes(prop)) {
             // When prop is found in datetimeProps, dateProps or datetimeProps
             // and prop is not found in excludeProps
             if (data[prop] && data[prop] instanceof Date) {
@@ -83,11 +87,12 @@ export class BaseData {
               if (dateProps.includes(prop)) {
                 obj[prop] = HDate.toDBDateString(data[prop]);
               }
-              if (timeProps.includes(prop)) {
-                obj[prop] = HDate.toDBTimeString(data[prop]);
-              }
             } else {
               obj[prop] = null;
+            }
+          } else if (timeProps.includes(prop)) {
+            if (data[prop] && typeof data[prop] === 'string' && data[prop].length === 5) {
+              obj[prop] = data[prop] + ':00';
             }
           } else {
             // When prop is not found data.datetimeProps, data.dateProps or data.timeProps,
