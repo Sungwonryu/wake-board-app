@@ -18,6 +18,7 @@ import { CrewswapService } from './crewswap/crewswap.service';
 
 import { DateFormDialogComponent } from './date-form-dialog/date-form-dialog.component';
 import { DuplicateFormDialogComponent } from './duplicate-form-dialog/duplicate-form-dialog.component';
+import { NoteFormDialogComponent } from './note-form-dialog/note-form-dialog.component';
 import { SlipassignmentFormDialogComponent } from './slipassignment-form-dialog/slipassignment-form-dialog.component';
 
 @Component({
@@ -382,9 +383,9 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
             formDialogComponent = SlipassignmentFormDialogComponent;
             mainService = this.slipassignmentService;
             break;
-          case 'slipassignment':
-            formDialogComponent = SlipassignmentFormDialogComponent;
-            mainService = this.slipassignmentService;
+          case 'note':
+            formDialogComponent = NoteFormDialogComponent;
+            mainService = this.noteService;
             break;
         }
 
