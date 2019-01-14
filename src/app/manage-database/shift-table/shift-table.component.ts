@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
-import { HString } from '../../shared/lib/h-string';
 
+import { HString } from '../../shared/lib/h-string';
 import { ListUpdate } from '../../api-storage/api-storage.model';
+import { TableActionData } from '../../shared/tables/table.model';
+
 import { ShiftService } from './shift.service';
+import { ShiftFormDialogComponent } from '../shift-form-dialog/shift-form-dialog.component';
 
 @Component({
   selector: 'app-shift-table',
   templateUrl: './shift-table.component.html',
   styleUrls: ['./shift-table.component.scss']
 })
-export class ShiftTableComponent implements OnInit {
+export class ShiftTableComponent implements OnInit, OnDestroy {
 
   HString = HString;
 
@@ -31,12 +35,14 @@ export class ShiftTableComponent implements OnInit {
   shiftList: any[] = [];
   $shiftListUpdateSub: Subscription;
 
+  formDialogRef: MatDialogRef<any>;
+
   constructor(
-    private shiftService: ShiftService
+    private dialog: MatDialog,
+    private mainService: ShiftService
   ) { }
 
   ngOnInit() {
-    console.log('VesselTableComponent is init - this: ', this);
     this.initListUpdate();
     this.initList();
     this.initService();
@@ -44,25 +50,64 @@ export class ShiftTableComponent implements OnInit {
 
   initListUpdate() {
     // shift
-    this.$shiftListUpdateSub = this.shiftService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.shiftService.object} - list is fetched`);
+    this.$shiftListUpdateSub = this.mainService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.mainService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
-        this.shiftList = this.shiftService.getList();
+        this.shiftList = this.mainService.getList();
       }
     });
   }
 
   initList() {
-    this.shiftList = this.shiftService.getList();
+    this.shiftList = this.mainService.getList();
   }
 
   initService() {
-    this.shiftService.api('read');
+    this.mainService.api('read');
   }
 
   ngOnDestroy() {
     if (this.$shiftListUpdateSub) {
       this.$shiftListUpdateSub.unsubscribe();
+    }
+  }
+
+  openFormDialog(tableActionData: TableActionData, formDialogComponent: any, panelClass: string) {
+    this.formDialogRef = this.dialog.open(formDialogComponent, {
+      panelClass: panelClass,
+      // Disable the feature that the user can use escape or clicking outside to close a modal.
+      disableClose: true,
+      data: {
+        tableActionData: tableActionData
+      }
+    });
+
+    // After the formDialog is closed, refresh the lists
+    if (this.formDialogRef) {
+      this.formDialogRef.afterClosed().subscribe(() => {
+        this.initService();
+      });
+    }
+  }
+
+  modifyTable(tableActionData: TableActionData) {
+    let panelClass;
+    let formDialogComponent;
+    console.log('tableActionData: ', tableActionData);
+
+    switch(tableActionData.tableAction) {
+      case 'add':
+      case 'edit':
+        panelClass = 'relationship-form-dialog-container';
+        formDialogComponent = ShiftFormDialogComponent;
+        if (tableActionData.tableAction === 'edit') {
+          this.mainService.api('override', tableActionData.entries[0]);
+        }
+        break;
+    }
+
+    if (panelClass && formDialogComponent) {
+      this.openFormDialog(tableActionData, formDialogComponent, panelClass);
     }
   }
 
