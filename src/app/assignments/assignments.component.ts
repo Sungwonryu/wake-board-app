@@ -17,6 +17,7 @@ import { NoteService } from './note/note.service';
 import { CrewswapService } from './crewswap/crewswap.service';
 
 import { DateFormDialogComponent } from './date-form-dialog/date-form-dialog.component';
+import { DuplicateFormDialogComponent } from './duplicate-form-dialog/duplicate-form-dialog.component';
 import { SlipassignmentFormDialogComponent } from './slipassignment-form-dialog/slipassignment-form-dialog.component';
 
 @Component({
@@ -62,8 +63,6 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     titlebarView: { height: '50px', bgColor: '#3CA2E2', titlebarComponents: ['duplicateAll', 'search'] },
   };
 
-  // modifyEntryColumn =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] };
-  // modifyEntryColumnPast =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['duplicate'] };
   modifyEntryColumn =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '204px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] };
   modifyEntryColumnPast =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '204px', isModifyEntry: true, modifyEntryButtons: ['duplicate'] };
 
@@ -344,9 +343,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     this.setDateParam(newDate);
   }
 
-  openFormDialog(formDialogComponent: any, panelClass: string, tableActionData: TableActionData) {
-
-    // Open SlipassignmentFormDialogComponent
+  openFormDialog(tableActionData: TableActionData, formDialogComponent: any, panelClass: string) {
     this.formDialogRef = this.dialog.open(formDialogComponent, {
       panelClass: panelClass,
       // Disable the feature that the user can use escape or clicking outside to close a modal.
@@ -365,26 +362,50 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   }
 
   modifyTable(tableActionData: TableActionData) {
+    let panelClass;
     let formDialogComponent;
-    let panelClass = 'form-dialog-container';
-    switch(tableActionData.dataType) {
-      case 'slipassignment':
-        if (tableActionData.tableAction === 'edit') {
-          this.slipassignmentService.api('override', tableActionData.entries[0]);
+    let mainService;
+    console.log('tableActionData: ', tableActionData);
+
+    switch(tableActionData.tableAction) {
+      case 'duplicate':
+      case 'duplicateAll':
+        panelClass = 'duplicate-form-dialog-container';
+        formDialogComponent = DuplicateFormDialogComponent;
+        break;
+      case 'add':
+      case 'edit':
+        panelClass = 'form-dialog-container';
+
+        switch(tableActionData.dataType) {
+          case 'slipassignment':
+            formDialogComponent = SlipassignmentFormDialogComponent;
+            mainService = this.slipassignmentService;
+            break;
+          case 'slipassignment':
+            formDialogComponent = SlipassignmentFormDialogComponent;
+            mainService = this.slipassignmentService;
+            break;
         }
-        formDialogComponent = SlipassignmentFormDialogComponent;
+
+        if (tableActionData.tableAction === 'edit') {
+          mainService.api('override', tableActionData.entries[0]);
+        }
         break;
     }
 
-    if (formDialogComponent) {
-      this.openFormDialog(formDialogComponent, panelClass, tableActionData);
+    if (panelClass && formDialogComponent) {
+      this.openFormDialog(tableActionData, formDialogComponent, panelClass);
     }
   }
 
   openDateForm() {
+    const panelClass = 'date-form-dialog-container';
+    const formDialogComponent = DateFormDialogComponent;
+
     // Open DateFormDialogComponent
-    this.dateFormDialogRef = this.dialog.open(DateFormDialogComponent, {
-      panelClass: 'date-form-dialog-container',
+    this.dateFormDialogRef = this.dialog.open(formDialogComponent, {
+      panelClass: panelClass,
       // Disable the feature that the user can use escape or clicking outside to close a modal.
       disableClose: true,
       data: {
