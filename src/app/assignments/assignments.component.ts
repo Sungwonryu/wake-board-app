@@ -20,6 +20,7 @@ import { DateFormDialogComponent } from './date-form-dialog/date-form-dialog.com
 import { DuplicateFormDialogComponent } from './duplicate-form-dialog/duplicate-form-dialog.component';
 import { NoteFormDialogComponent } from './note-form-dialog/note-form-dialog.component';
 import { SlipassignmentFormDialogComponent } from './slipassignment-form-dialog/slipassignment-form-dialog.component';
+import { CrewswapFormDialogComponent } from './crewswap-form-dialog/crewswap-form-dialog.component';
 
 @Component({
   selector: 'app-assignments',
@@ -165,7 +166,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   crewswapTableColumns = [
     { columnDef: 'callTime', header: 'Call Time', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0,5)}` },
     { columnDef: 'firstDeparture', header: 'First Departure', width: '100px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0,5)}` },
-    { columnDef: 'vasselId', header: 'Vessel', width: '280px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vasselId))}` },
+    { columnDef: 'vesselId', header: 'Vessel', width: '280px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vesselId))}` },
     { columnDef: 'shift', header: 'Shift', width: '136px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
     { columnDef: 'location', header: 'Pick Up Location', width: '100px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }
   ];
@@ -386,6 +387,10 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
           case 'note':
             formDialogComponent = NoteFormDialogComponent;
             mainService = this.noteService;
+            break;
+          case 'crewswap':
+            formDialogComponent = CrewswapFormDialogComponent;
+            mainService = this.crewswapService;
             break;
         }
 
