@@ -48,6 +48,7 @@ import { DateFormDialogComponent } from './assignments/date-form-dialog/date-for
 import { DuplicateFormDialogComponent } from './assignments/duplicate-form-dialog/duplicate-form-dialog.component';
 import { SlipassignmentFormDialogComponent } from './assignments/slipassignment-form-dialog/slipassignment-form-dialog.component';
 import { NoteFormDialogComponent } from './assignments/note-form-dialog/note-form-dialog.component';
+import { CrewswapFormDialogComponent } from './assignments/crewswap-form-dialog/crewswap-form-dialog.component';
 
 // manage-database
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
@@ -103,6 +104,7 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     DuplicateFormDialogComponent,
     SlipassignmentFormDialogComponent,
     NoteFormDialogComponent,
+    CrewswapFormDialogComponent,
     // manage-database
     ManageDatabaseComponent,
     BasicTablesComponent,
@@ -150,7 +152,8 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
     DateFormDialogComponent,
     DuplicateFormDialogComponent,
     SlipassignmentFormDialogComponent,
-    NoteFormDialogComponent
+    NoteFormDialogComponent,
+    CrewswapFormDialogComponent
   ],
   bootstrap: [AppComponent]
 })
