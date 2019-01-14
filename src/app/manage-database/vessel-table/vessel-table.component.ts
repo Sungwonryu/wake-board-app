@@ -1,9 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
-import { HString } from '../../shared/lib/h-string';
 
+import { HString } from '../../shared/lib/h-string';
 import { ListUpdate } from '../../api-storage/api-storage.model';
+import { TableActionData } from '../../shared/tables/table.model';
+
 import { VesselService } from './vessel.service';
+import { VesselFormDialogComponent } from '../vessel-form-dialog/vessel-form-dialog.component';
+import { DuplicateFormDialogComponent } from '../../assignments/duplicate-form-dialog/duplicate-form-dialog.component';
 
 @Component({
   selector: 'app-vessel-table',
@@ -31,8 +36,11 @@ export class VesselTableComponent implements OnInit, OnDestroy {
   vesselList: any[] = [];
   $vesselListUpdateSub: Subscription;
 
+  formDialogRef: MatDialogRef<any>;
+
   constructor(
-    private vesselService: VesselService
+    private dialog: MatDialog,
+    private mainService: VesselService
   ) { }
 
   ngOnInit() {
@@ -44,25 +52,69 @@ export class VesselTableComponent implements OnInit, OnDestroy {
 
   initListUpdate() {
     // vessel
-    this.$vesselListUpdateSub = this.vesselService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.vesselService.object} - list is fetched`);
+    this.$vesselListUpdateSub = this.mainService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.mainService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
-        this.vesselList = this.vesselService.getList();
+        this.vesselList = this.mainService.getList();
       }
     });
   }
 
   initList() {
-    this.vesselList = this.vesselService.getList();
+    this.vesselList = this.mainService.getList();
   }
 
   initService() {
-    this.vesselService.api('read');
+    this.mainService.api('read');
   }
 
   ngOnDestroy() {
     if (this.$vesselListUpdateSub) {
       this.$vesselListUpdateSub.unsubscribe();
+    }
+  }
+
+  openFormDialog(tableActionData: TableActionData, formDialogComponent: any, panelClass: string) {
+    this.formDialogRef = this.dialog.open(formDialogComponent, {
+      panelClass: panelClass,
+      // Disable the feature that the user can use escape or clicking outside to close a modal.
+      disableClose: true,
+      data: {
+        tableActionData: tableActionData
+      }
+    });
+
+    // After the formDialog is closed, refresh the lists
+    if (this.formDialogRef) {
+      this.formDialogRef.afterClosed().subscribe(() => {
+        this.initService();
+      });
+    }
+  }
+
+  modifyTable(tableActionData: TableActionData) {
+    let panelClass;
+    let formDialogComponent;
+    console.log('tableActionData: ', tableActionData);
+
+    switch(tableActionData.tableAction) {
+      case 'duplicate':
+      case 'duplicateAll':
+        panelClass = 'duplicate-form-dialog-container';
+        formDialogComponent = DuplicateFormDialogComponent;
+        break;
+      case 'add':
+      case 'edit':
+        panelClass = 'relationship-form-dialog-container';
+        formDialogComponent = VesselFormDialogComponent;
+        if (tableActionData.tableAction === 'edit') {
+          this.mainService.api('override', tableActionData.entries[0]);
+        }
+        break;
+    }
+
+    if (panelClass && formDialogComponent) {
+      this.openFormDialog(tableActionData, formDialogComponent, panelClass);
     }
   }
 
