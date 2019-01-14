@@ -1,3 +1,162 @@
-<p>
-  note-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper input-wrapper-note">
+          <label class="input-label">Note</label>
+          <mat-form-field>
+            <input
+              class="input input-note"
+              matInput
+              ngModel
+              #slipInput="ngModel"
+              name="note"
+              placeholder=""
+              required
+              #slipInput="ngModel"
+              />
+            <mat-hint *ngIf="!slipInput.hasError()">Enter your note here</mat-hint>
+            <mat-error *ngIf="slipInput.hasError('required')">Input must not be empty</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Expiration Date</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              type="text"
+              name="expirationDate"
+              placeholder=""
+              ngModel
+              [matDatepicker]="expirationDatePicker"
+              [min]="minExpirationDate"
+              (dateChange)="onChangeExpirationDate($event)"
+              #dateInput="ngModel" />
+            <mat-datepicker #expirationDatePicker></mat-datepicker>
+            <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
+            <mat-hint>Choose an option</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="input-wrapper"></div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Priority</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="priorityId"
+              placeholder=""
+              #priorityIdInput="ngModel"
+              [matAutocomplete]="priorityListRef"
+              (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+              appIncludeInput
+              [itemList]="priorityList"
+              [itemProp1]="'text'"
+              [itemType]="''"
+            />
+            <mat-hint *ngIf="!priorityIdInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="priorityIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #priorityListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredPriorityList | async"
+              [value]="item.text">
+              {{ item.text }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Duration</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="durationId"
+              placeholder=""
+              #durationIdInput="ngModel"
+              [matAutocomplete]="durationListRef"
+              (keyup)="onFilterAutocomplete('duration', $event.target.value)"
+              appIncludeInput
+              [itemList]="durationList"
+              [itemProp1]="'text'"
+              [itemType]="''"
+            />
+            <mat-hint *ngIf="!durationIdInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="durationIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #durationListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredDurationList | async"
+              [value]="item.text"
+              (click)="setDuration(item)">
+              {{ item.text }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Color</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="colorId"
+              placeholder=""
+              #colorIdInput="ngModel"
+              [matAutocomplete]="colorListRef"
+              (keyup)="onFilterAutocomplete('color', $event.target.value)"
+              appIncludeInput
+              [itemList]="colorList"
+              [itemProp1]="'text'"
+              [itemType]="''"
+            />
+            <mat-hint *ngIf="!colorIdInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="colorIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #colorListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredColorList | async"
+              [value]="item.text">
+              {{ item.text }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Save Entry</button>
+
+    </form>
+  </div>
+</div>
