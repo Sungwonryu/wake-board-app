@@ -1,20 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-shift-form-dialog',
-//   templateUrl: './shift-form-dialog.component.html',
-//   styleUrls: ['./shift-form-dialog.component.scss']
-// })
-// export class ShiftFormDialogComponent implements OnInit {
-//
-//   constructor() { }
-//
-//   ngOnInit() {
-//   }
-//
-// }
-
-
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
