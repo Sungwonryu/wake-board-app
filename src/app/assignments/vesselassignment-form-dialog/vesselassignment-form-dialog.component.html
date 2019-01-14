@@ -1,3 +1,367 @@
-<p>
-  vesselassignment-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="subtitle">{{ subtitle1 }}</div>
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Shift</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="shift"
+              placeholder=""
+              #shiftInput="ngModel"
+              [matAutocomplete]="shiftListRef"
+              (keyup)="onFilterAutocomplete('shift', $event.target.value)"
+            />
+            <mat-hint *ngIf="!shiftInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #shiftListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredShiftList | async"
+              [value]="item.shift">
+              {{ item.shift }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Route</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="route"
+              placeholder=""
+              #routeInput="ngModel"
+              [matAutocomplete]="routeListRef"
+              (keyup)="onFilterAutocomplete('route', $event.target.value)"
+            />
+            <mat-hint *ngIf="!routeInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #routeListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredRouteList | async"
+              [value]="item.route">
+              {{ item.route }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Call Time</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="callTime"
+              placeholder=""
+              pattern="^(([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
+              #callTimeInput="ngModel"
+              [matAutocomplete]="callTimeListRef"
+              (keyup)="onFilterAutocomplete('callTime', $event.target.value)"
+            />
+            <mat-hint *ngIf="!callTimeInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="firstDepartureInput.hasError('pattern')">Call Time must match with 24 hour fromat.</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #callTimeListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCalltimeList | async"
+              [value]="item.callTime">
+              {{ item.callTime }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">First Departure</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              type="text"
+              name="firstDeparture"
+              placeholder=""
+              ngModel
+              pattern="^(([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
+              #firstDepartureInput="ngModel" />
+            <mat-hint>First Departure must be 24 hour format from "00:00" to "23:59"</mat-hint>
+            <mat-error *ngIf="firstDepartureInput.hasError('pattern')">Departure Time must match with 24 hour fromat.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="input-wrapper"></div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Vessel</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="vesselId"
+              placeholder=""
+              #vesselIdInput="ngModel"
+              [matAutocomplete]="vesselListRef"
+              (keyup)="onFilterAutocomplete('vessel', $event.target.value)"
+              appIncludeInput
+              [itemList]="vesselList"
+              [itemProp1]="'vessel'"
+              [itemType]="''"
+            />
+            <mat-hint *ngIf="!vesselIdInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="vesselIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #vesselListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredVesselList | async"
+              [value]="item.vessel">
+              {{ item.vessel }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper"></div>
+        <div class="input-wrapper"></div>
+        <div class="input-wrapper"></div>
+      </div>
+
+      <div class="subtitle">{{ subtitle2 }}</div>
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Captain 1</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="captain1"
+              placeholder=""
+              #captain1Input="ngModel"
+              [matAutocomplete]="captain1ListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!captain1Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #captain1ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Captain 2</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="captain2"
+              placeholder=""
+              #captain2Input="ngModel"
+              [matAutocomplete]="captain2ListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!captain2Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #captain2ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Deckhand 1</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="deckhand1"
+              placeholder=""
+              #deckhand1Input="ngModel"
+              [matAutocomplete]="deckhand1ListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!deckhand1Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #deckhand1ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Deckhand 2</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="deckhand2"
+              placeholder=""
+              #deckhand2Input="ngModel"
+              [matAutocomplete]="deckhand2ListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!deckhand2Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #deckhand2ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Deckhand 3</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="deckhand3"
+              placeholder=""
+              #deckhand3Input="ngModel"
+              [matAutocomplete]="deckhand3ListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!deckhand3Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #deckhand3ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Deckhand 4</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="deckhand4"
+              placeholder=""
+              #deckhand4Input="ngModel"
+              [matAutocomplete]="deckhand4ListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!deckhand4Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #deckhand4ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">GSA 1</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="gsa1"
+              placeholder=""
+              #gsa1Input="ngModel"
+              [matAutocomplete]="gsa1ListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!gsa1Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #gsa1ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">GSA 2</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="gsa2"
+              placeholder=""
+              #gsa2Input="ngModel"
+              [matAutocomplete]="gsa2ListRef"
+              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+            />
+            <mat-hint *ngIf="!gsa2Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #gsa2ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Save Entry</button>
+
+    </form>
+  </div>
+</div>
