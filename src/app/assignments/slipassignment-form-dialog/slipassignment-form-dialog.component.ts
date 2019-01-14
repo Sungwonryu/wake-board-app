@@ -31,7 +31,7 @@ export class SlipassignmentFormDialogComponent implements OnInit {
   filteredSlipList: Observable<any[]>
 
   availabilityList: any[] = [];
-  filteredAvailablilityList: Observable<any[]>
+  filteredAvailabilityList: Observable<any[]>
 
   vesselList: any[] = [];
   filteredVesselList: Observable<any[]>;
@@ -80,7 +80,7 @@ export class SlipassignmentFormDialogComponent implements OnInit {
     this.vesselList = this.vesselService.getAutocompleteList();
     this.filteredVesselList = of(this.vesselService.getAutocompleteList());
     this.filteredSlipList = of(this.slipList);
-    this.filteredAvailablilityList = of(this.availabilityList);
+    this.filteredAvailabilityList = of(this.availabilityList);
   }
 
   initApiResponse() {
@@ -161,7 +161,7 @@ export class SlipassignmentFormDialogComponent implements OnInit {
       case 'availability':
         list = this.availabilityList;
         filteredList = this.HList.filterAutocompletList(list, 'text', filterVal);
-        this.filteredAvailablilityList = of(filteredList);
+        this.filteredAvailabilityList = of(filteredList);
         break;
     }
   }
