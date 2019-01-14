@@ -9,7 +9,6 @@ export interface VesselApiObj extends BaseApiObj {
   'vessel_name'?: string | null;
   'vessel_capacity'?: string | null;
   'vessel_type'?: string | null;
-  // 'availability'?: '0' | '1' | null;
 }
 
 /**
@@ -21,5 +20,4 @@ export interface Vessel extends BaseDataObj {
   vesselName?: string | null;
   vesselCapacity?: string | null;
   vesselType?: string | null;
-  // availability?: '0' | '1' | null;
 }
