@@ -218,7 +218,11 @@ export class BaseDataService {
     if (action === 'read' && this.requireDate(this.object)) {
       // If this.object requires date
       baseParamsObj['date'] = this.HDate.toDBDateString(this.paramsService.getDate());
-      baseParamsObj['date'] = this.HDate.toDBDateString(this.paramsService.getDate());
+    }
+
+    if (action === 'duplicate') {
+      baseParamsObj['date'] = this.HDate.toDBDateString(item['date']);
+      baseParamsObj['insert_date'] = this.HDate.toDBDateString(item['insertDate']);
     }
 
     let apiOpts: ApiOpts = {
@@ -304,6 +308,7 @@ export class BaseDataService {
    *  After receiving http responses, apiResponse will be emitted
    */
   api(action: string, item?: any) {
+    console.log('api', item);
     let apiOpts = this.getApiOpts(action, item);
     let apiResponse: ApiResponse = { apiOpts: apiOpts };
 
