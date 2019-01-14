@@ -8,7 +8,6 @@ import { TableActionData } from '../../shared/tables/table.model';
 
 import { VesselService } from './vessel.service';
 import { VesselFormDialogComponent } from '../vessel-form-dialog/vessel-form-dialog.component';
-import { DuplicateFormDialogComponent } from '../../assignments/duplicate-form-dialog/duplicate-form-dialog.component';
 
 @Component({
   selector: 'app-vessel-table',
@@ -98,11 +97,6 @@ export class VesselTableComponent implements OnInit, OnDestroy {
     console.log('tableActionData: ', tableActionData);
 
     switch(tableActionData.tableAction) {
-      case 'duplicate':
-      case 'duplicateAll':
-        panelClass = 'duplicate-form-dialog-container';
-        formDialogComponent = DuplicateFormDialogComponent;
-        break;
       case 'add':
       case 'edit':
         panelClass = 'relationship-form-dialog-container';
