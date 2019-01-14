@@ -208,3 +208,17 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
     font-size: 23px;
   }
 }
+
+.form-dialog-container {
+  .input-wrapper-note {
+    width: 614px;
+
+    .mat-form-field-infix {
+      width: 562px;
+    }
+  }
+
+  .input-note {
+    width: 562px;
+  }
+}
