@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
-import { HString } from '../../shared/lib/h-string';
 
+import { HString } from '../../shared/lib/h-string';
 import { ListUpdate } from '../../api-storage/api-storage.model';
+import { TableActionData } from '../../shared/tables/table.model';
+
 import { CrewmemberService } from './crewmember.service';
+import { CrewmemberFormDialogComponent } from '../crewmember-form-dialog/crewmember-form-dialog.component';
 
 @Component({
   selector: 'app-crewmember-table',
@@ -30,12 +34,14 @@ export class CrewmemberTableComponent implements OnInit {
   crewmemberList: any[] = [];
   $crewmemberListUpdateSub: Subscription;
 
+  formDialogRef: MatDialogRef<any>;
+
   constructor(
-    private crewmemberService: CrewmemberService
+    private dialog: MatDialog,
+    private mainService: CrewmemberService
   ) { }
 
   ngOnInit() {
-    console.log('CrewmemberTableComponent is init - this: ', this);
     this.initListUpdate();
     this.initList();
     this.initService();
@@ -43,25 +49,64 @@ export class CrewmemberTableComponent implements OnInit {
 
   initListUpdate() {
     // crewmember
-    this.$crewmemberListUpdateSub = this.crewmemberService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.crewmemberService.object} - list is fetched`);
+    this.$crewmemberListUpdateSub = this.mainService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
+      console.log(`${this.mainService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
-        this.crewmemberList = this.crewmemberService.getList();
+        this.crewmemberList = this.mainService.getList();
       }
     });
   }
 
   initList() {
-    this.crewmemberList = this.crewmemberService.getList();
+    this.crewmemberList = this.mainService.getList();
   }
 
   initService() {
-    this.crewmemberService.api('read');
+    this.mainService.api('read');
   }
 
   ngOnDestroy() {
     if (this.$crewmemberListUpdateSub) {
       this.$crewmemberListUpdateSub.unsubscribe();
+    }
+  }
+
+  openFormDialog(tableActionData: TableActionData, formDialogComponent: any, panelClass: string) {
+    this.formDialogRef = this.dialog.open(formDialogComponent, {
+      panelClass: panelClass,
+      // Disable the feature that the user can use escape or clicking outside to close a modal.
+      disableClose: true,
+      data: {
+        tableActionData: tableActionData
+      }
+    });
+
+    // After the formDialog is closed, refresh the lists
+    if (this.formDialogRef) {
+      this.formDialogRef.afterClosed().subscribe(() => {
+        this.initService();
+      });
+    }
+  }
+
+  modifyTable(tableActionData: TableActionData) {
+    let panelClass;
+    let formDialogComponent;
+    console.log('tableActionData: ', tableActionData);
+
+    switch(tableActionData.tableAction) {
+      case 'add':
+      case 'edit':
+        panelClass = 'relationship-form-dialog-container';
+        formDialogComponent = CrewmemberFormDialogComponent;
+        if (tableActionData.tableAction === 'edit') {
+          this.mainService.api('override', tableActionData.entries[0]);
+        }
+        break;
+    }
+
+    if (panelClass && formDialogComponent) {
+      this.openFormDialog(tableActionData, formDialogComponent, panelClass);
     }
   }
 
