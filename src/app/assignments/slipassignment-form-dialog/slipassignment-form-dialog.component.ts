@@ -168,11 +168,11 @@ export class SlipassignmentFormDialogComponent implements OnInit {
 
   onClearInput(inputId: string, newVal) {
     if (newVal.trim() === '') {
-      this.setFromInputValue(inputId, '');
+      this.setFormInputValue(inputId, '');
     }
   }
 
-  setFromInputValue(inputId: string, newVal: string) {
+  setFormInputValue(inputId: string, newVal: string) {
     let newValues = { ...this.form.value };
     newValues[inputId] = newVal;
     this.form.setValue(newValues);

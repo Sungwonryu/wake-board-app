@@ -80,7 +80,7 @@
             <mat-option
               *ngFor="let item of filteredVesselList | async"
               [value]="item.vessel"
-              (click)="setFromInputValue('vessel1Availability', 'Available')">
+              (click)="setFormInputValue('vessel1Availability', 'Available')">
               {{ item.vessel }}
             </mat-option>
           </mat-autocomplete>
@@ -112,7 +112,7 @@
             <mat-option
               *ngFor="let item of filteredVesselList | async"
               [value]="item.vessel"
-              (click)="setFromInputValue('vessel2Availability', 'Available')">
+              (click)="setFormInputValue('vessel2Availability', 'Available')">
               {{ item.vessel }}
             </mat-option>
           </mat-autocomplete>
@@ -144,7 +144,7 @@
             <mat-option
               *ngFor="let item of filteredVesselList | async"
               [value]="item.vessel"
-              (click)="setFromInputValue('vessel3Availability', 'Available')">
+              (click)="setFormInputValue('vessel3Availability', 'Available')">
               {{ item.vessel }}
             </mat-option>
           </mat-autocomplete>
