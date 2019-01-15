@@ -1,3 +1,85 @@
-<p>
-  crew-form-dialog works!
-</p>
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Shift</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="shift"
+              placeholder=""
+              required
+              #shiftInput="ngModel"
+              [matAutocomplete]="shiftListRef"
+              (keyup)="onFilterAutocomplete('shift', $event.target.value)"
+            />
+            <mat-hint *ngIf="!shiftInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="shiftInput.hasError('required')">Input must not be empty</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #shiftListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredShiftList | async"
+              [value]="item.shift">
+              {{ item.shift }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Pick Up Location</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="location"
+              placeholder=""
+              #locationInput="ngModel"
+              [matAutocomplete]="locationListRef"
+              (keyup)="onFilterAutocomplete('location', $event.target.value)"
+            />
+            <mat-hint *ngIf="!locationInput.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #locationListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredLocationList | async"
+              [value]="item.location">
+              {{ item.location }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper"></div>
+        <div class="input-wrapper"></div>
+
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Save Entry</button>
+
+    </form>
+  </div>
+</div>
