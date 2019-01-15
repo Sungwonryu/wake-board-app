@@ -1,3 +1,23 @@
-<p>
-  crewboard works!
-</p>
+<div class="crewboard">
+
+  <div class="wakeboard-logo" [routerLink]="['/']"></div>
+
+  <app-crewboard-clock></app-crewboard-clock>
+
+  <div class="notes-wrapper">
+    <app-crewboard-notes [data]="notesData"></app-crewboard-notes>
+  </div>
+
+  <div class="crewswaps-wrapper">
+    <app-crewboard-crewswaps [data]="crewswapsData"></app-crewboard-crewswaps>
+  </div>
+
+  <div class="slipassignments-wrapper">
+    <app-crewboard-slipassignments [data]="slipassignmentsData"></app-crewboard-slipassignments>
+  </div>
+
+  <div class="vesselassignments-wrapper">
+    <app-crewboard-vesselassignments [data]="vesselassignmentsData"></app-crewboard-vesselassignments>
+  </div>
+
+</div><!-- /.crewboard -->

@@ -1,0 +1,82 @@
+@import "global-preloads.scss";;
+
+.crewswaps {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Lato";
+}
+
+.table {
+  width: 54.4rem;
+  border: 0.1rem solid #979797;
+  border-radius: 0.8rem;
+  box-shadow: 0.2rem 0.4rem 0.3rem 0 #979797;
+  overflow: hidden;
+}
+
+.table-1 {
+  height: 14.5rem;
+}
+
+.table-2, .table-2 {
+  height: 11.6rem;
+}
+
+.table-header {
+  background: rgba(94,162,206,0.3);
+  height: 2.9rem;
+  width: 100%;
+  font-family: "Lato Heavy";
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.table-title {
+  padding-left: 1.0rem;
+}
+
+.table-row {
+  height: 2.9rem;
+  border-top: 0.1rem solid #979797;
+  background: #ebebec;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.table-cell {
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+}
+
+.shifts {
+  width: 30.5rem;
+  text-align: left;
+  padding: 0 1.0rem;
+}
+
+.time {
+  width: 6.8rem;
+}
+
+.vessel {
+  width: 17.1rem;
+  font-family: "Lato Heavy";
+}
+
+.time, .vessel {
+  border-left: 1px solid #979797;
+}
+
+span.first-departure {
+  font-family: "Lato Italic";
+}

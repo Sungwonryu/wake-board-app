@@ -1,0 +1,83 @@
+<div class="vesselassignments">
+
+  <ul>
+    <div class="routes">
+      <li *ngFor="let routeData of routeDataList">
+        <div class="route">
+          <ul>
+            <li *ngFor="let item of routeData.items"
+                class="card-wrapper">
+              <div
+                *ngIf="item != null"
+                class="card {{ routeData.routeAbbreviation }} crew-{{ getCrewNumber(item) }}">
+
+                <div class="card-header">
+                  <div class="vessel">{{ displayVesselText(item) }}</div>
+                  <div class="shift">{{ item.shift }}</div>
+                </div>
+                <div class="card-body">
+                  <p class="time">{{ item.callTime | date: 'HH:mm' }}</p>
+                  <p *ngIf="item.captain1" [ngClass]="{ 'message': displayMessageSymbol(item, 'captain1MessageId') }">
+                    <span *ngIf="displayMessageSymbol(item, 'captain1MessageId')">{{ displayMessageSymbol(item, 'captain1MessageId') }}</span>
+                    {{ displayCrewName(item, 'captain1') }}
+                    <span *ngIf="displayMessageSymbol(item, 'captain1MessageId')">{{ displayMessageSymbol(item, 'captain1MessageId') }}</span>
+                  </p>
+                  <p *ngIf="item.captain2" [ngClass]="{ 'message': displayMessageSymbol(item, 'captain2MessageId') }">
+                    <span *ngIf="displayMessageSymbol(item, 'captain2MessageId')">{{ displayMessageSymbol(item, 'captain2MessageId') }}</span>
+                    {{ displayCrewName(item, 'captain2') }}
+                    <span *ngIf="displayMessageSymbol(item, 'captain2MessageId')">{{ displayMessageSymbol(item, 'captain2MessageId') }}</span>
+                  </p>
+                  <p *ngIf="item.deckhand1" [ngClass]="{ 'message': displayMessageSymbol(item, 'deckhand1MessageId') }">
+                    <span *ngIf="displayMessageSymbol(item, 'deckhand1MessageId')">{{ displayMessageSymbol(item, 'deckhand1MessageId') }}</span>
+                    {{ displayCrewName(item, 'deckhand1') }}
+                    <span *ngIf="displayMessageSymbol(item, 'deckhand1MessageId')">{{ displayMessageSymbol(item, 'deckhand1MessageId') }}</span>
+                  </p>
+                  <p *ngIf="item.deckhand2" [ngClass]="{ 'message': displayMessageSymbol(item, 'deckhand2MessageId') }">
+                    <span *ngIf="displayMessageSymbol(item, 'deckhand2MessageId')">{{ displayMessageSymbol(item, 'deckhand2MessageId') }}</span>
+                    {{ displayCrewName(item, 'deckhand2') }}
+                    <span *ngIf="displayMessageSymbol(item, 'deckhand2MessageId')">{{ displayMessageSymbol(item, 'deckhand2MessageId') }}</span>
+                  </p>
+                  <p *ngIf="item.deckhand3" [ngClass]="{ 'message': displayMessageSymbol(item, 'deckhand3MessageId') }">
+                    <span *ngIf="displayMessageSymbol(item, 'deckhand3MessageId')">{{ displayMessageSymbol(item, 'deckhand3MessageId') }}</span>
+                    {{ displayCrewName(item, 'deckhand3') }}
+                    <span *ngIf="displayMessageSymbol(item, 'deckhand3MessageId')">{{ displayMessageSymbol(item, 'deckhand3MessageId') }}</span>
+                  </p>
+                  <p *ngIf="item.deckhand4" [ngClass]="{ 'message': displayMessageSymbol(item, 'deckhand4MessageId') }">
+                    <span *ngIf="displayMessageSymbol(item, 'deckhand4MessageId')">{{ displayMessageSymbol(item, 'deckhand4MessageId') }}</span>
+                    {{ displayCrewName(item, 'deckhand4') }}
+                    <span *ngIf="displayMessageSymbol(item, 'deckhand4MessageId')">{{ displayMessageSymbol(item, 'deckhand4MessageId') }}</span>
+                  </p>
+                  <p *ngIf="item.gsa1" [ngClass]="{ 'message': displayMessageSymbol(item, 'gsa1MessageId') }">
+                    <span *ngIf="displayMessageSymbol(item, 'gsa1MessageId')">{{ displayMessageSymbol(item, 'gsa1MessageId') }}</span>
+                    {{ displayCrewName(item, 'gsa1') }}
+                    <span *ngIf="displayMessageSymbol(item, 'gsa1MessageId')">{{ displayMessageSymbol(item, 'gsa1MessageId') }}</span>
+                  </p>
+                  <p *ngIf="item.gsa2" [ngClass]="{ 'message': displayMessageSymbol(item, 'gsa2MessageId') }">
+                    <span *ngIf="displayMessageSymbol(item, 'gsa2MessageId')">{{ displayMessageSymbol(item, 'gsa2MessageId') }}</span>
+                    {{ displayCrewName(item, 'gsa2') }}
+                    <span *ngIf="displayMessageSymbol(item, 'gsa2MessageId')">{{ displayMessageSymbol(item, 'gsa2MessageId') }}</span>
+                  </p>
+
+                  <!-- <p *ngIf="item.captain2">{{ displayCrewName(item, 'captain2') }}</p> -->
+                  <!-- <p *ngIf="item.deckhand1">{{ displayCrewName(item, 'deckhand1') }}</p> -->
+                  <!-- <p *ngIf="item.deckhand2">{{ displayCrewName(item, 'deckhand2') }}</p> -->
+                  <!-- <p *ngIf="item.deckhand3">{{ displayCrewName(item, 'deckhand3') }}</p> -->
+                  <!-- <p *ngIf="item.deckhand4">{{ displayCrewName(item, 'deckhand4') }}</p> -->
+                  <!-- <p *ngIf="item.gsa1">{{ displayCrewName(item, 'gsa1') }}</p> -->
+                  <!-- <p *ngIf="item.gsa2">{{ displayCrewName(item, 'gsa2') }}</p> -->
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </div>
+  </ul>
+
+  <div class="messages">
+    <div>? = See Port Captain</div>
+    <div>! = See Human Resources</div>
+    <div>* = Report to Pier 11</div>
+    <div>^ = Training Assignment</div>
+  </div>
+</div>

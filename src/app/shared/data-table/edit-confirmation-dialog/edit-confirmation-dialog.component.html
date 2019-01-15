@@ -1,0 +1,30 @@
+<div mat-dialog-title>
+  <mat-toolbar
+    color="warn"
+    class="dialog-title-bar">
+    <span class="dialog-title">Edit Confirmation</span>
+  </mat-toolbar>
+</div>
+<mat-dialog-content>
+  <div>
+    <p
+      *ngIf="data.message"
+      class="message-content">{{ data.message }}</p>
+    <p
+      *ngIf="!data.message"
+      class="message-content">
+      The {{ data.itemType }}, <span color="primary" class="item-description">&quot;{{ data.itemDescription }}&quot;</span> is open by another user.
+    </p>
+    <p class="message-content">at {{ data.item.editTime | date : 'MMMM d, y h:mm:ss a' }}</p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span>
+    <button mat-raised-button
+      [mat-dialog-close]="true">Yes</button>
+  </span>
+  <span>
+    <button mat-raised-button
+      [mat-dialog-close]="false">No</button>
+  </span>
+</mat-dialog-actions>

@@ -302,13 +302,42 @@ export class BaseDataService {
 
   }
 
+  apiToday(action: string, item?: any) {
+    console.log('apiToday', item);
+    let apiOpts = this.getApiOpts(action, item);
+    // Reset baseParamsObj.date as today
+    apiOpts.baseParamsObj['date'] = this.HDate.toDBDateString(new Date());
+    let apiResponse: ApiResponse = { apiOpts: apiOpts };
+
+    this.apiStorageService.processApi(apiOpts).subscribe(
+      (res) => {
+        apiResponse = this.processApiResponse({
+          httpSuccess: true,
+          response: res,
+          apiOpts: apiOpts
+        });
+
+        this.emitApiResponse(apiResponse);
+      },
+      (err) => {
+        apiResponse = this.processApiResponse({
+          httpSuccess: false,
+          response: err,
+          apiOpts: apiOpts
+        });
+
+        this.emitApiResponse(apiResponse);
+      }
+    );
+  }
+
   /**
    *  api() takes parameter action and optional parameter item
    *  and makes http calls through this.apiStorageService.
    *  After receiving http responses, apiResponse will be emitted
    */
   api(action: string, item?: any) {
-    console.log('api', item);
+    // console.log('api', item);
     let apiOpts = this.getApiOpts(action, item);
     let apiResponse: ApiResponse = { apiOpts: apiOpts };
 

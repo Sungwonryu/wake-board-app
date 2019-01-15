@@ -33,6 +33,11 @@ import { LoginComponent } from './auth/login/login.component';
 
 // crewboard
 import { CrewboardComponent } from './crewboard/crewboard.component';
+import { CrewboardClockComponent } from './crewboard/crewboard-clock/crewboard-clock.component';
+import { CrewboardNotesComponent } from './crewboard/crewboard-notes/crewboard-notes.component';
+import { CrewboardCrewswapsComponent } from './crewboard/crewboard-crewswaps/crewboard-crewswaps.component';
+import { CrewboardSlipassignmentsComponent } from './crewboard/crewboard-slipassignments/crewboard-slipassignments.component';
+import { CrewboardVesselassignmentsComponent } from './crewboard/crewboard-vesselassignments/crewboard-vesselassignments.component';
 
 // main
 import { MainComponent } from './main/main.component';
@@ -43,6 +48,7 @@ import { AssignmentsComponent } from './assignments/assignments.component';
 import { CurrentAssignmentsComponent } from './assignments/current-assignments/current-assignments.component';
 import { PastAssignmentsComponent } from './assignments/past-assignments/past-assignments.component';
 
+import { MessageService } from './assignments/message/message.service';
 import { VesselassignmentService } from './assignments/vesselassignment/vesselassignment.service';
 import { SlipassignmentService } from './assignments/slipassignment/slipassignment.service';
 import { NoteService } from './assignments/note/note.service';
@@ -103,6 +109,11 @@ import { CrewFormDialogComponent } from './manage-database/crew-form-dialog/crew
     LoginComponent,
     // crewboard
     CrewboardComponent,
+    CrewboardClockComponent,
+    CrewboardNotesComponent,
+    CrewboardCrewswapsComponent,
+    CrewboardSlipassignmentsComponent,
+    CrewboardVesselassignmentsComponent,
     // main
     MainComponent,
     HeaderComponent,
@@ -171,7 +182,8 @@ import { CrewFormDialogComponent } from './manage-database/crew-form-dialog/crew
     SlipassignmentService,
     NoteService,
     CrewswapService,
-    CrewshiftService
+    CrewshiftService,
+    MessageService
   ],
   entryComponents: [
     DateFormDialogComponent,

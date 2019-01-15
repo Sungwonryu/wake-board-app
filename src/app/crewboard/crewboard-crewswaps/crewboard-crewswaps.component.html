@@ -1,0 +1,81 @@
+<div class="crewswaps">
+  <div class="table table-1">
+    <div class="table-header">
+      <span class="table-title">Crew Swap - Pick up at Homeport or Pier 11</span>
+    </div>
+    <div
+      *ngFor="let item of tableDataList[0]"
+      class="table-row">
+      <div *ngIf="!item.crewswaps.length" class="table-cell shifts"></div>
+      <div *ngIf="item.crewswaps.length" class="table-cell shifts">
+        <span *ngIf="item.crewswaps[0]">
+          {{ conditionalInterpolation(0, 0, ', ', false) }}{{ item.crewswaps[0].shift }}{{ conditionalInterpolation(item.crewswaps[0].firstDepartureDT, null, ' (', false) }}<span class="first-departure">{{ item.crewswaps[0].firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.crewswaps[0].firstDepartureDT, null, ')', false) }}
+        </span>
+        <span *ngIf="item.crewswaps[1]">
+          {{ conditionalInterpolation(1, 0, ', ', false) }}{{ item.crewswaps[1].shift }}{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ' (', false) }}<span class="first-departure">{{ item.crewswaps[1].firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ')', false) }}
+        </span>
+        <span *ngIf="item.crewswaps[2]">
+          {{ conditionalInterpolation(2, 0, ', ', false) }}{{ item.crewswaps[2].shift }}{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ' (', false) }}<span class="first-departure">{{ item.crewswaps[1].firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ')', false) }}
+        </span>
+      </div>
+       <div class="table-cell time">{{ item.callTimeDT | date: 'HH:mm' }}</div>
+      <div *ngIf="!item.crewswaps.length" class="table-cell vessel"></div>
+      <!-- <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ item.crewswaps[0].vesselName || item.crewswaps[0].vesselNo }}</div> -->
+      <!-- <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ item.crewswaps[0].vesselId }}</div> -->
+      <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ vesselService.getVesselName(item.crewswaps[0].vesselId) }}</div>
+    </div>
+  </div><!-- /.table -->
+
+  <div class="table table-2">
+    <div class="table-header">
+      <span class="table-title">Crew Swap - Pick up at Pier 11 Only</span>
+    </div>
+    <div
+      *ngFor="let item of tableDataList[1]"
+      class="table-row">
+      <div *ngIf="!item.crewswaps.length" class="table-cell shifts"></div>
+      <div *ngIf="item.crewswaps.length" class="table-cell shifts">
+        <span *ngIf="item.crewswaps[0]">
+          {{ conditionalInterpolation(0, 0, ', ', false) }}{{ item.crewswaps[0].shift }}
+        </span>
+        <span *ngIf="item.crewswaps[1]">
+          {{ conditionalInterpolation(1, 0, ', ', false) }}{{ item.crewswaps[1].shift }}
+        </span>
+        <span *ngIf="item.crewswaps[2]">
+          {{ conditionalInterpolation(2, 0, ', ', false) }}{{ item.crewswaps[2].shift }}
+        </span>
+      </div>
+     <div class="table-cell time">{{ conditionalInterpolation(item.firstDepartureDT, undefined, '(', false) }}<span class="first-departure">{{ item.firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.firstDepartureDT, undefined, ')', false) }}</div>
+      <div *ngIf="!item.crewswaps.length" class="table-cell vessel"></div>
+      <!-- <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ item.crewswaps[0].vesselName || item.crewswaps[0].vesselNo }}</div> -->
+      <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ vesselService.getVesselName(item.crewswaps[0].vesselId) }}</div>
+    </div>
+  </div><!-- /.table -->
+
+  <div class="table table-3">
+    <div class="table-header">
+      <span class="table-title">Crew Swap - Pick up at Homeport Only</span>
+    </div>
+    <div
+      *ngFor="let item of tableDataList[2]"
+      class="table-row">
+      <div *ngIf="!item.crewswaps.length" class="table-cell shifts"></div>
+      <div *ngIf="item.crewswaps.length" class="table-cell shifts">
+        <span *ngIf="item.crewswaps[0]">
+          {{ conditionalInterpolation(0, 0, ', ', false) }}{{ item.crewswaps[0].shift }}{{ conditionalInterpolation(item.crewswaps[0].firstDepartureDT, null, ' (', false) }}<span class="first-departure">{{ item.crewswaps[0].firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.crewswaps[0].firstDepartureDT, null, ')', false) }}
+        </span>
+        <span *ngIf="item.crewswaps[1]">
+          {{ conditionalInterpolation(1, 0, ', ', false) }}{{ item.crewswaps[1].shift }}{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ' (', false) }}<span class="first-departure">{{ item.crewswaps[1].firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ')', false) }}
+        </span>
+        <span *ngIf="item.crewswaps[2]">
+          {{ conditionalInterpolation(2, 0, ', ', false) }}{{ item.crewswaps[2].shift }}{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ' (', false) }}<span class="first-departure">{{ item.crewswaps[1].firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ')', false) }}
+        </span>
+      </div>
+      <div class="table-cell time"><span>{{ item.callTimeDT | date: 'HH:mm' }}</span></div>
+      <div *ngIf="!item.crewswaps.length" class="table-cell vessel"></div>
+      <!-- <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ item.crewswaps[0].vesselName || item.crewswaps[0].vesselNo }}</div> -->
+      <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ vesselService.getVesselName(item.crewswaps[0].vesselId) }}</div>
+    </div>
+  </div><!-- /.table -->
+
+</div><!-- /.crewswaps -->

@@ -1,5 +1,14 @@
 // app default settings
 
 // assets paths
+$assets-path: "/assets/";
 $fonts-assets-path: "/assets/fonts/";
 $images-assets-path: "/assets/images/";
+
+
+// Crewboard
+$crewboard-outer-border-color: #979797;
+$crewboard-outer-border-radius: 1.7rem;
+$crewboard-outer-border: 0.3rem solid $crewboard-outer-border-color;
+$crewboard-outer-box-shadow: 0 0.2rem 0.4rem 0 rgba(0,0,0,0.5);
+$crewboard-outer-bg-color: #D9E7F0;

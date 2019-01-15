@@ -1,0 +1,54 @@
+<div class="slipassignments">
+  <div
+    *ngIf="visibleTableId === 0"
+    class="table">
+    <div class="table-header">
+      <span class="table-title">Slip Assignments (1-5)</span>
+      <div class="circles-wrapper">
+        <span class="black-circle"></span>
+        <span class="white-circle"></span>
+      </div>
+    </div>
+    <div
+      *ngFor="let slip of slipList | slice: 0 : 5"
+      class="table-row" >
+      <span class="table-cell slip">{{ slip }}</span>
+      <span
+        class="table-cell vessel"
+        [ngClass]="{ 'unavailable': getPropFromData(slip, 'vessel1Availability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vessel1Id')) || '-' }}</span>
+      <span
+        class="table-cell vessel"
+        [ngClass]="{ 'unavailable': getPropFromData(slip, 'vessel2Availability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vessel2Id')) || '-' }}</span>
+      <span
+        class="table-cell vessel"
+        [ngClass]="{ 'unavailable': getPropFromData(slip, 'vessel3Availability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vessel3Id')) || '-' }}</span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="visibleTableId === 1"
+    class="table">
+    <div class="table-header">
+      <span class="table-title">Slip Assignments (6-10)</span>
+      <div class="circles-wrapper">
+        <span class="white-circle"></span>
+        <span class="black-circle"></span>
+      </div>
+    </div>
+    <div
+      *ngFor="let slip of slipList | slice: 5 : 10"
+      class="table-row" >
+      <span class="table-cell slip">{{ slip }}</span>
+      <span
+        class="table-cell vessel"
+        [ngClass]="{ 'unavailable': getPropFromData(slip, 'vessel1Availability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vessel1Id')) || '-' }}</span>
+      <span
+        class="table-cell vessel"
+        [ngClass]="{ 'unavailable': getPropFromData(slip, 'vessel2Availability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vessel2Id')) || '-' }}</span>
+      <span
+        class="table-cell vessel"
+        [ngClass]="{ 'unavailable': getPropFromData(slip, 'vessel3Availability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vessel3Id')) || '-' }}</span>
+    </div>
+  </div>
+
+</div>

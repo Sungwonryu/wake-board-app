@@ -1,0 +1,26 @@
+<div class="notes">
+  <div class="critical-notes-wrapper">
+    <p *ngIf="!criticalNotes.length"
+      class="critical-note default">There are no high priority alerts at this time</p>
+    <div *ngIf="criticalNotes.length"
+      class="critical-note"
+      [ngStyle]="{ 'background-color': (getColor(criticalNotes[0].colorId) || '#FF5757') }">
+      <p class="critical-note-content">{{ criticalNotes[0].note }}</p>
+    </div>
+  </div>
+  <div class="non-critical-notes-wrapper">
+    <div
+      class="marquee"
+      [ngClass]="{ 'scroll-left': applyAnimationClass }">
+      <p
+        class="scroll-notes"
+        [ngStyle]="{ 'animation-duration': (animationDuration / 1000) + 's' }">
+        <span
+          class="scroll-note"
+          *ngFor="let note of noncriticalNotes"
+          [ngStyle]="{ 'background-color': (getColor(note.colorId) || '#ffefc4') }">{{ note.note }}</span>
+      </p>
+
+    </div>
+  </div>
+</div>

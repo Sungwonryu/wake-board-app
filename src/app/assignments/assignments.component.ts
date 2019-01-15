@@ -75,14 +75,22 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     { columnDef: 'callTime', header: 'Call Time', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0, 5)}` },
     { columnDef: 'firstDeparture', header: 'First Departure', width: '90px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0, 5)}` },
     { columnDef: 'vesselId', header: 'Vessel', width: '210px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vesselId))}` },
-    { columnDef: 'captain1', header: 'Captain 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain1)}` },
-    { columnDef: 'captain2', header: 'Captain 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain2)}` },
-    { columnDef: 'deckhand1', header: 'Deckhand 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand1)}` },
-    { columnDef: 'deckhand2', header: 'Deckhand 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand2)}` },
-    { columnDef: 'deckhand3', header: 'Deckhand 3', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand3)}` },
-    { columnDef: 'deckhand4', header: 'Deckhand 4', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand4)}` },
-    { columnDef: 'gsa1', header: 'GSA 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.gsa1)}` },
-    { columnDef: 'gsa2', header: 'GSA 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.gsa2)}` }
+    // { columnDef: 'captain1', header: 'Captain 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain1)}` },
+    // { columnDef: 'captain2', header: 'Captain 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.captain2)}` },
+    // { columnDef: 'deckhand1', header: 'Deckhand 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand1)}` },
+    // { columnDef: 'deckhand2', header: 'Deckhand 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand2)}` },
+    // { columnDef: 'deckhand3', header: 'Deckhand 3', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand3)}` },
+    // { columnDef: 'deckhand4', header: 'Deckhand 4', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.deckhand4)}` },
+    // { columnDef: 'gsa1', header: 'GSA 1', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.gsa1)}` },
+    // { columnDef: 'gsa2', header: 'GSA 2', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.gsa2)}` }
+    { columnDef: 'captain1', header: 'Captain 1', width: '126px', cellFn: (row: any) => `${this.displayCrewName(row, 'captain1')}` },
+    { columnDef: 'captain2', header: 'Captain 2', width: '126px', cellFn: (row: any) => `${this.displayCrewName(row, 'captain2')}` },
+    { columnDef: 'deckhand1', header: 'Deckhand 1', width: '126px', cellFn: (row: any) => `${this.displayCrewName(row, 'deckhand1')}` },
+    { columnDef: 'deckhand2', header: 'Deckhand 2', width: '126px', cellFn: (row: any) => `${this.displayCrewName(row, 'deckhand2')}` },
+    { columnDef: 'deckhand3', header: 'Deckhand 3', width: '126px', cellFn: (row: any) => `${this.displayCrewName(row, 'deckhand3')}` },
+    { columnDef: 'deckhand4', header: 'Deckhand 4', width: '126px', cellFn: (row: any) => `${this.displayCrewName(row, 'deckhand4')}` },
+    { columnDef: 'gsa1', header: 'GSA 1', width: '126px', cellFn: (row: any) => `${this.displayCrewName(row, 'gsa1')}` },
+    { columnDef: 'gsa2', header: 'GSA 2', width: '126px', cellFn: (row: any) => `${this.displayCrewName(row, 'gsa2')}` },
   ];
 
   vesselassignmentTableData = {
@@ -432,6 +440,23 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  displayCrewName(item: any, prop: string) {
+    let displayName = '';
+    if (item && item[prop]) {
+      const fullName = item[prop].split(',');
+      const lastName = fullName[0].trim();
+      const firstMiddleName = fullName[1].trim();
+      let firstName = firstMiddleName;
+      const index = firstMiddleName.lastIndexOf(' ');
+      if (index !== -1) {
+        firstName = firstMiddleName.substring(0, index);
+      }
+      // displayName = firstName + ' ' + lastName[0].toUpperCase() + lastName.slice(1, 3);
+      displayName = firstName + ' ' + lastName[0].toUpperCase() + '.';
+    }
+    return displayName;
   }
 
 }

@@ -1,0 +1,75 @@
+<form #f="ngForm">
+  <mat-card class="search-options-card">
+    <mat-card-header
+      fxLayout
+      fxLayoutAlign="space-between center">
+      <mat-card-title>Search Options</mat-card-title>
+      <button
+        mat-raised-button
+        type="button"
+        color="primary"
+        class="search-button"
+        (click)="onSearch()">Search</button>
+    </mat-card-header>
+
+    <mat-card-content
+      fxFlex="100%"
+      fxLayout="row wrap"
+      fxLayoutAlign="space-evenly">
+
+      <mat-form-field
+        *ngIf="isVisible('date')"
+        fxFlex.xs="100%"
+        fxFlex.sm="50%"
+        fxFlex.lg-sm="33%"
+        fxLayout
+        fxLayoutAlign="center center"
+        class="field-wrapper">
+        <input
+          fxFlex.lt-md="18.0rem"
+          fxFlex.gt-sm="18.0rem"
+          matInput
+          name="date"
+          class="date-input"
+          [matDatepicker]="datePicker"
+          [(ngModel)]="options.date"
+          placeholder="Date"
+          required />
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+      </mat-form-field>
+      <div
+        *ngIf="isVisible('viewDetails')"
+        fxFlex.xs="100%"
+        fxFlex.sm="50%"
+        fxFlex.lg-sm="33%"
+        fxLayout
+        fxLayoutAlign="center center"
+        class="field-wrapper">
+        <mat-checkbox
+          fxFlex.lt-md="18.0rem"
+          fxFlex.gt-sm="18.0rem"
+          class="search-option"
+          name="viewDetails"
+          [ngModel]="options.viewDetails"
+          color="primary">View Details</mat-checkbox>
+      </div>
+      <div
+        *ngIf="isVisible('includeDeletedItems')"
+        fxFlex.xs="100%"
+        fxFlex.sm="50%"
+        fxFlex.lg-sm="33%"
+        fxLayout
+        fxLayoutAlign="center center"
+        class="field-wrapper">
+        <mat-checkbox
+          fxFlex.lt-md="18.0rem"
+          fxFlex.gt-sm="18.0rem"
+          class="search-option"
+          name="includeDeletedItems"
+          [ngModel]="options.includeDeletedItems"
+          color="primary">Include Deleted Items</mat-checkbox>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

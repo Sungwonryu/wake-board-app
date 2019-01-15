@@ -1,0 +1,203 @@
+@import "global-preloads.scss";;
+
+.vesselassignments {
+  height: 100%;
+  width: 100%;
+  padding: 4.0rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'Lato';
+}
+
+.messages {
+  height: 2.7rem;
+  width: 103.4rem;
+  position: absolute;
+  left: 5.7rem;
+  top: 93.1rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.routes {
+  height: 88.8rem;
+  width: 108.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.route {
+  height: 88.8rem;
+  width: 14.0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-wrapper {
+  height: 20.0rem;
+  width: 14.0rem;
+  display: block;
+  margin-bottom: 2.2rem;
+}
+
+.card {
+  height: 20.0rem;
+  width: 14.0rem;
+  border: 0.1rem solid #979797;
+  box-shadow: 0.2rem 0.4rem 0.2rem 0 #979797;
+
+  .card-header {
+    height: 5.5rem;
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+
+    // p {
+    //   margin: 0.5rem 0;
+    //   text-align: center;
+    // }
+    div {
+      width: 100%;
+      min-height: 1.6rem;
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+
+    .vessel {
+      font-family: "Lato Bold";
+    }
+
+    .shift {
+      font-family: "Lato Medium";
+    }
+  }
+
+  .card-body {
+    height: 14.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 0.1rem solid #ABABAB;
+    line-height: 1.9rem;
+
+    p.time {
+      font-family: "Lato Bold";
+    }
+    p.message {
+      font-family: "Lato Black";
+    }
+  }
+
+  &.crew-1,
+  &.crew-2,
+  &.crew-3,
+  &.crew-4 {
+    .card-body {
+      p {
+        font-size: 1.6rem;
+        margin-top: 0.6rem;
+        text-align: center;
+      }
+    }
+  }
+
+  &.crew-5 {
+    .card-body {
+      p {
+        font-size: 1.6rem;
+        margin-top: 0.3rem;
+        text-align: center;
+
+        &.time {
+          margin-top: 0.6rem;
+        }
+      }
+    }
+  }
+
+  &.crew-6 {
+    .card-body {
+      p {
+        font-size: 1.4rem;
+        margin-top: 0.1rem;
+        text-align: center;
+
+        &.time {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  &.ER {
+    background: #CCE4E9;
+
+    .card-header {
+      background: url($assets-path + "crewboard/images/vessel-card-headers/ER.png") no-repeat center center;
+      background-size: cover;
+    }
+  }
+
+  &.RW {
+    background: #ead3eb;
+
+    .card-header {
+      background: url($assets-path + "crewboard/images/vessel-card-headers/RW.png") no-repeat center center;
+      background-size: cover;
+    }
+  }
+
+  &.AS {
+    background: #fbe3cf;
+
+    .card-header {
+      background: url($assets-path + "crewboard/images/vessel-card-headers/AS.png") no-repeat center center;
+      background-size: cover;
+    }
+  }
+
+  &.SB {
+    background: #F9E3E9;
+
+    .card-header {
+      background: url($assets-path + "crewboard/images/vessel-card-headers/SB.png") no-repeat center center;
+      background-size: cover;
+    }
+  }
+
+  &.LE {
+    background: #FFF2B8;
+
+    .card-header {
+      background: url($assets-path + "crewboard/images/vessel-card-headers/LE.png") no-repeat center center;
+      background-size: cover;
+    }
+  }
+
+  &.SV {
+    background: #D1C7DF;
+
+    .card-header {
+      background: url($assets-path + "crewboard/images/vessel-card-headers/SV.png") no-repeat center center;
+      background-size: cover;
+    }
+  }
+
+  &.BU {
+    background: #fafafa;
+
+    .card-header {
+      background: url($assets-path + "crewboard/images/vessel-card-headers/BU.png") no-repeat center center;
+      background-size: cover;
+    }
+  }
+}

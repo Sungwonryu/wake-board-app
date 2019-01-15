@@ -1,0 +1,88 @@
+@import "global-preloads.scss";;
+
+.slipassignments {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato Bold";
+}
+
+.table {
+  width: 54.4rem;
+  border: 0.1rem solid #979797;
+  border-radius: 0.8rem;
+  // box-shadow: 0 0.2rem 0.4rem;
+  box-shadow: 0.2rem 0.4rem 0.3rem 0 #979797;
+  overflow: hidden;
+}
+
+.table-header {
+  background: rgba(176,94,206,0.3);
+  height: 2.9rem;
+  width: 100%;
+  font-family: "Lato Heavy";
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-title {
+  padding-left: 1.0rem;
+}
+
+.circles-wrapper {
+  height: 100%;
+  width: 4.0rem;
+  padding-right: 1.8rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.black-circle, .white-circle {
+  height: 1.0rem;
+  width: 1.0rem;
+  border: 0.1rem solid #000;
+  border-radius: 50%;
+  margin: 0.1rem;
+}
+
+.black-circle {
+  background-color: #000;
+}
+
+.white-circle {
+  background-color: #D8D8D8;
+}
+
+.table-row {
+  height: 2.9rem;
+  border-top: 0.1rem solid #979797;
+  background: #ebebec;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.table-cell {
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+}
+
+.slip {
+  width: 2.6rem;
+}
+
+.vessel {
+  width: 17.2rem;
+  border-left: 0.1rem solid #979797;
+
+  &.unavailable {
+    color: #FD8688;
+  }
+}

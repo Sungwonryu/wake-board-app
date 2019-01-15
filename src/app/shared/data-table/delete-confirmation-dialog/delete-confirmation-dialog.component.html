@@ -1,0 +1,33 @@
+<div mat-dialog-title>
+  <mat-toolbar
+    color="warn"
+    class="dialog-title-bar">
+    <span class="dialog-title">Delete Confirmation</span>
+  </mat-toolbar>
+</div>
+<mat-dialog-content>
+  <div>
+    <p
+      *ngIf="data.message"
+      class="message-content">{{ data.message }}</p>
+    <p
+      *ngIf="!data.message"
+      class="message-content">
+      The {{ data.itemType }}, <span color="primary" class="item-description">&quot;{{ data.itemDescription }}&quot;</span> will be deleted.
+    </p>
+    <br>
+    <p class="message-content">Do you want to continue?</p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span>
+    <button
+      mat-raised-button
+      [mat-dialog-close]="true">Yes</button>
+  </span>
+  <span>
+    <button
+      mat-raised-button
+      [mat-dialog-close]="false">No</button>
+  </span>
+</mat-dialog-actions>

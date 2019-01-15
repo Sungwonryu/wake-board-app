@@ -1,0 +1,72 @@
+// @import "global-preloads.scss";;
+@import "global-preloads.scss";
+
+.crewboard {
+  height: 108.0rem;
+  width: 192.0rem;
+  position: relative;
+  background: url($assets-path + "crewboard/images/crewboard_background.png") no-repeat center center;
+  font-family: "Helvetica Neue Light";
+}
+
+.wakeboard-logo {
+  height: 6.8rem;
+  width: 16.3rem;
+  position: absolute;
+  left: 2.0rem;
+  top: 2.0rem;
+  background: url($assets-path + "crewboard/images/wakeboard_logo.png") no-repeat center center;
+  background-size: contain;
+}
+
+.notes-wrapper {
+  height: 15.5rem;
+  width: 56.4rem;
+  position: absolute;
+  left: 8.8rem;
+  top: 18.7rem;
+  background: $crewboard-outer-bg-color;
+  border: $crewboard-outer-border;
+  border-radius: $crewboard-outer-border-radius;
+  box-shadow: $crewboard-outer-box-shadow;
+  overflow: hidden;
+}
+
+.crewswaps-wrapper {
+  height: 43.8rem;
+  width: 56.4rem;
+  position: absolute;
+  left: 8.8rem;
+  top: 36.2rem;
+  background: $crewboard-outer-bg-color;
+  border: $crewboard-outer-border;
+  border-radius: $crewboard-outer-border-radius;
+  box-shadow: $crewboard-outer-box-shadow;
+}
+
+.slipassignments-wrapper {
+  height: 20.6rem;
+  width: 56.4rem;
+  position: absolute;
+  left: 8.8rem;
+  top: 82.0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $crewboard-outer-bg-color;
+  border: $crewboard-outer-border;
+  border-radius: $crewboard-outer-border-radius;
+  box-shadow: $crewboard-outer-box-shadow;
+}
+
+.vesselassignments-wrapper {
+  height: 97.7rem;
+  width: 115.0rem;
+  position: absolute;
+  left: 71.0rem;
+  top: 4.9rem;
+  background: $crewboard-outer-bg-color;
+  border: $crewboard-outer-border;
+  border-radius: $crewboard-outer-border-radius;
+  box-shadow: $crewboard-outer-box-shadow;
+}

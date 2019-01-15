@@ -1,0 +1,14 @@
+@import "global-preloads.scss";;
+
+mat-toolbar {
+  background-color: #ffffff;
+}
+
+mat-toolbar-row {
+  justify-content: center;
+}
+
+.data-table-message {
+  font-size: 16px;
+  font-size: 1.6rem;
+}
