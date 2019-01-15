@@ -77,6 +77,7 @@ import { JobService } from './manage-database/job/job.service';
 import { VesselService } from './manage-database/vessel-table/vessel.service';
 import { ShiftService } from './manage-database/shift-table/shift.service';
 import { CrewmemberService } from './manage-database/crewmember-table/crewmember.service';
+import { CrewshiftService } from './manage-database/crewswap-table/crewshift.service';
 
 import { VesselTableComponent } from './manage-database/vessel-table/vessel-table.component';
 import { ShiftTableComponent } from './manage-database/shift-table/shift-table.component';
@@ -169,7 +170,8 @@ import { CrewFormDialogComponent } from './manage-database/crew-form-dialog/crew
     VesselassignmentService,
     SlipassignmentService,
     NoteService,
-    CrewswapService
+    CrewswapService,
+    CrewshiftService
   ],
   entryComponents: [
     DateFormDialogComponent,

@@ -11,11 +11,12 @@ import { ShiftnameService } from './manage-database/shiftname/shiftname.service'
 import { RouteService } from './manage-database/route/route.service';
 import { LocationService } from './manage-database/location/location.service';
 import { EmployeeService } from './manage-database/employee/employee.service';
-
 import { JobService } from './manage-database/job/job.service';
+
 import { VesselService } from './manage-database/vessel-table/vessel.service';
 import { ShiftService } from './manage-database/shift-table/shift.service';
 import { CrewmemberService } from './manage-database/crewmember-table/crewmember.service';
+import { CrewshiftService } from './manage-database/crewswap-table/crewshift.service';
 
 import { NoteService } from './assignments/note/note.service';
 import { CrewswapService } from './assignments/crewswap/crewswap.service';
@@ -44,6 +45,7 @@ export class AppComponent {
     private vesselService: VesselService,
     private shiftService: ShiftService,
     private crewmemberService: CrewmemberService,
+    private crewshiftService: CrewshiftService,
 
     private noteService: NoteService,
     private slipassignmentService: SlipassignmentService,
@@ -65,6 +67,7 @@ export class AppComponent {
     this.vesselService.api('read');
     this.shiftService.api('read');
     this.crewmemberService.api('read');
+    this.crewshiftService.api('read');
 
     this.noteService.api('read');
     this.slipassignmentService.api('read');

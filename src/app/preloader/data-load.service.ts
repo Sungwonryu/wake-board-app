@@ -18,7 +18,8 @@ const dataLoadList: DataLoad[] = [
   { isReady: false, object: 'routes' },
   { isReady: false, object: 'vessels' },
   { isReady: false, object: 'shifts' },
-  { isReady: false, object: 'crew_members' }
+  { isReady: false, object: 'crew_members' },
+  { isReady: false, object: 'crew_shifts' }
 ];
 
 const url = environment.urls.api;
