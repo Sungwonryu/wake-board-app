@@ -36,7 +36,7 @@ export class DuplicateFormDialogComponent implements OnInit {
   titleDuplicateAll = 'Duplicate All Entries';
   instructionDuplicate = 'Duplicating this entry will automatically add the selected section\'s information to the specified date assignments.';
   instructionDuplicateAll = 'Duplicating these entries will automatically add the selected section\'s information to the specified date assignments.';
-  subtile1 = '';
+  subtitle1 = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
