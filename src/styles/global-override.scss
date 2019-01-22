@@ -2,6 +2,30 @@
 
 $close-button-img-url: $images-assets-path + "icons/close-button.png";
 
+// Remove the border around the clicked elements
+*:focus {
+  outline: none !important;
+  border: 0 !important;
+}
+
+.snackbar-panel-success {
+  background: #7ED321;
+  color: black;
+
+  .mat-simple-snackbar {
+    justify-content: center;
+  }
+}
+
+.snackbar-panel-fail {
+  @extend .snackbar-panel-success;
+  background: linear-gradient(#C11E1E, #FF4646);
+}
+
+.cdk-overlay-pane {
+  max-width: 100% !important;
+}
+
 .form-dialog-container {
   .mat-dialog-container {
     height: 700px;
@@ -128,6 +152,13 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
     font-family: "Lato";
     font-size: 20px;
     font-weight: bold;
+  }
+
+  .input-label-wrapper {
+    height: 28px;
+    width: 256px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .input {
