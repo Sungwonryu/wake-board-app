@@ -115,17 +115,24 @@ $clock-font-family: "Helvetica Neue Condensed";
     height: 66px;
     width: 168px;
     margin-left: 20px;
-    border: 2px solid #ffffff;
+    border: 2px solid transparent;
     border-radius: 10px;
     white-space: pre-wrap;
     font-family: "Lato";
     font-size: 21px;
     line-height: 25px;
     color: #ffffff;
-    background: linear-gradient(rgba(159,157,157,1), rgba(111,110,110,1));
+    // background: linear-gradient(rgba(159,157,157,1), rgba(111,110,110,1));
+    background: #435062;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
 
     &.active {
-      background: linear-gradient(rgba(60,162,226,1), rgba(34,106,157,1));
+      // background: linear-gradient(rgba(60,162,226,1), rgba(34,106,157,1));
+      background: #0099E4;
+    }
+
+    &:hover {
+      border: 2px solid #ffffff;
     }
   }
 }

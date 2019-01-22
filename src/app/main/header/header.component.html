@@ -3,7 +3,10 @@
   fxLayout="row nowrap"
   fxLayoutAlign="space-between center">
 
-  <div class="wakeboard-logo"></div>
+  <div
+    class="wakeboard-logo"
+    [routerLink]="['/']"
+    queryParamsHandling="preserve"></div>
 
   <div
     *ngIf="!hasDatePicker"
