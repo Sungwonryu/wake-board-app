@@ -150,7 +150,7 @@ export class BaseDataService {
   getList(listName: string = 'filteredList') {
     const list = this[listName];
     if (list && typeof list === 'object' && list.constructor === Array) {
-      return [...this.list];
+      return [...list];
     }
   }
 
