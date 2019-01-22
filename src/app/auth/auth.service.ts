@@ -117,13 +117,16 @@ export class AuthService {
       this.user.expiration = (new Date()).getTime() + this.expirationDelay;
       this.loginSuccessfully();
       // Show the login success message snackbar
-      this.uiService.showSnackbar({
-        message: `${this.user.name}, login successfully!`
-      })
+
+      this.uiService.showAuthSnackbar({
+        message: `${this.user.name}, login successfully!`,
+        success: true
+      });
     } else {
       // Show the login failure message snackbar
-      this.uiService.showSnackbar({
-        message: 'Sorry, login failed!'
+      this.uiService.showAuthSnackbar({
+        message: 'Sorry, login failed!',
+        success: false
       });
     }
   }
