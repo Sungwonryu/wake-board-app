@@ -139,4 +139,23 @@ export class HString {
       return defaultStr;
     }
   }
+
+  static shortenFullName(fullName: any) {
+    let shortenedName = '';
+    if (fullName && typeof fullName === 'string') {
+      const names = HString.toDefaultString(fullName).split(',');
+      const lastName = HString.toDefaultString(name[0]).trim();
+      const firstMiddleName = HString.toDefaultString(names[1]).trim();
+      let firstName = firstMiddleName;
+      const index = firstMiddleName.lastIndexOf(' ');
+      if (index !== -1) {
+        firstName = firstMiddleName.substring(0, index);
+      }
+      shortenedName = firstName;
+      if (lastName[0]) {
+        shortenedName = firstName + ' ' + lastName[0].toUpperCase() + '.';
+      }
+    }
+    return shortenedName;
+  }
 }
