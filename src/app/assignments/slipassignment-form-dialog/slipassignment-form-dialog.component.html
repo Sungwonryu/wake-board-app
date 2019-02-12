@@ -71,7 +71,7 @@
               appIncludeInput
               [itemList]="vesselList"
               [itemProp1]="'vessel'"
-              [itemType]="''"
+              [itemType]="'vesselAutocompolete'"
             />
             <mat-hint *ngIf="!vessel1IdInput.hasError()">Choose an option</mat-hint>
             <mat-error *ngIf="vessel1IdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
@@ -103,7 +103,7 @@
               appIncludeInput
               [itemList]="vesselList"
               [itemProp1]="'vessel'"
-              [itemType]="''"
+              [itemType]="'vesselAutocompolete'"
             />
             <mat-hint *ngIf="!vessel2IdInput.hasError()">Choose an option</mat-hint>
             <mat-error *ngIf="vessel2IdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
@@ -135,7 +135,7 @@
               appIncludeInput
               [itemList]="vesselList"
               [itemProp1]="'vessel'"
-              [itemType]="''"
+              [itemType]="'vesselAutocompolete'"
             />
             <mat-hint *ngIf="!vessel3IdInput.hasError()">Choose an option</mat-hint>
             <mat-error *ngIf="vessel3IdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
