@@ -69,7 +69,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Lato Bold";
+    font-family: "Lato";
+    // font-weight: bold;
     font-size: 21px;
     color: #ffffff;
     margin-bottom: 24px;
@@ -86,5 +87,15 @@
     position: absolute;
     top: 38px;
     left: 334px;
+  }
+}
+
+.master-database {
+  .master-body {
+    .table-link {
+      &.active {
+        border: 2px solid #ffffff !important;
+      }
+    }
   }
 }
