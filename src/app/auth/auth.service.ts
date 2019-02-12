@@ -17,10 +17,11 @@ export class AuthService {
 
   url = environment.urls.userData;
   previousUrl: string = '/';
-  expirationDelay = 3600000; // 1 hour
+  expirationDelay = 18000000; // 5 hour
+  // expirationDelay = 3600000; // 1 hour
 
 
-  user: User;
+  user: User = null;
   userList: User[] = [];
   $authChange = new Subject<boolean>();
   $userListUpdate = new Subject<ListUpdate>();
@@ -87,6 +88,10 @@ export class AuthService {
 
   isAuth(): boolean {
     let auth = false;
+    const getUserFromLocalStorage = JSON.parse(localStorage.getItem('user'));
+    if (this.user == null && getUserFromLocalStorage != null) {
+      this.user = getUserFromLocalStorage;
+    }
     if (this.user && typeof this.user === 'object' &&
         Number.isInteger(this.user.expiration) &&
         this.user.expiration > (new Date()).getTime()) {
@@ -108,9 +113,10 @@ export class AuthService {
     this.$authChange.next(true);
   }
 
-  login(authData: AuthData) {
+  login(authData: AuthData): boolean {
     let matchedUser = this.userList.find((user: User) => {
-      return user.email === authData.email && user.password === authData.password;
+      // return user.email === authData.email && user.password === authData.password;
+      return user.name === authData.name && user.password === authData.password;
     });
     if (matchedUser) {
       this.user = matchedUser;
@@ -122,12 +128,14 @@ export class AuthService {
         message: `${this.user.name}, login successfully!`,
         success: true
       });
+      return true;
     } else {
       // Show the login failure message snackbar
       this.uiService.showAuthSnackbar({
         message: 'Sorry, login failed!',
         success: false
       });
+      return false;
     }
   }
 
@@ -150,6 +158,6 @@ export class AuthService {
       message: `${username}, log out successfully!`
     });
     this.previousUrl = '/';
-    this.router.navigate(['/main/login']);
+    this.router.navigate(['/login']);
   }
 }
