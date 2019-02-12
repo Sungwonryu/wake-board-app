@@ -1,0 +1,51 @@
+.delete-confirm-dialog {
+  height: 104px;
+  width: 230px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.message {
+  height: 54px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #041E42;
+  color: #FFFFFF;
+  text-align: center;
+  font-family: "Lato";
+  font-size: 14px;
+  line-height: 18px;
+  // font-weight: bold;
+}
+
+.button-group {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  height: 26px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000000;
+  border-radius: 15px;
+  font-family: "Lato Medium";
+  font-size: 12px;
+  margin: 0 7px;
+}
+
+.button-proceed {
+  background: #7ED321;
+}
+
+.button-cancel {
+  background: linear-gradient(#EEEEEE, #D8D8D8);
+}
