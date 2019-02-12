@@ -3,10 +3,14 @@
   fxLayout="row nowrap"
   fxLayoutAlign="space-between center">
 
-  <div
+  <a
     class="wakeboard-logo"
     [routerLink]="['/']"
-    queryParamsHandling="preserve"></div>
+    queryParamsHandling="preserve"></a>
+  <!-- <a
+    class="hialabs-logo"
+    [routerLink]="['/']"
+    queryParamsHandling="preserve"></a> -->
 
   <div
     *ngIf="!hasDatePicker"
@@ -41,8 +45,8 @@
     <div
       class="view-calendar"
       (click)="openDateForm()">
-      <span class="view-calendar-caption">View Calendar</span>
-      <span class="calendar-icon"></span>
+      <!-- <span class="view-calendar-caption">View Calendar</span>
+      <span class="calendar-icon"></span> -->
     </div>
   </div>
 
