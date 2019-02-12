@@ -2,23 +2,23 @@
 @import "global-preloads.scss";
 
 .clock {
-  height: 11.7rem;
-  width: 56.4rem;
+  height: 117px;
+  width: 564px;
   position: absolute;
-  left: 8.8rem;
-  top: 4.8rem;
+  left: 88px;
+  top: 48px;
   color: #fff;
   text-align: center;
   font-family: "Helvetica Neue Condensed Bold";
 
   .time {
-    font-size: 6.6rem;
-    line-height: 8.0rem;
+    font-size: 66px;
+    line-height: 80px;
   }
 
   .date {
-    font-size: 3.3rem;
-    line-height: 4.0rem;
+    font-size: 33px;
+    line-height: 40px;
     text-transform: uppercase;
   }
 }
