@@ -1,1 +1,67 @@
 @import "global-preloads.scss";
+
+
+.crew-message-button-wrapper {
+  position: relative;
+  height: 2.2rem;
+  // width: 100%;
+  width: 120px;
+  // margin: 2.0rem 0 0;
+  margin: 0;
+  // top: -4.0rem;
+  float: right;
+  z-index: 100;
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.message-button {
+  margin: 0 0.2rem;
+  height: 2.2rem;
+  width: 2.2rem;
+  background-color: #D8D8D8;
+  font-family: "Lato Medium";
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: #979797;
+  border: 0.2rem solid #979797;
+  border-radius: 0.6rem;
+  float: left;
+
+  &.active {
+    background: linear-gradient(#3CA2E2, #225A9D);
+    color: #222222;
+    border: 0.2rem solid #222222;
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(0,0,0,0.5);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.subtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-list {
+  display: flex;
+
+  .message-button {
+    margin-left: 20px;
+  }
+
+  .message-text {
+    font-family: "Lato Medium";
+    font-size: 17px;
+    line-height: 23px;
+    color: #222222;
+  }
+}

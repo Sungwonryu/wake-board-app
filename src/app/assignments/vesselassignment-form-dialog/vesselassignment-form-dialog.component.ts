@@ -15,6 +15,7 @@ import { LocationService } from '../../manage-database/location/location.service
 import { VesselService } from '../../manage-database/vessel-table/vessel.service';
 import { ShiftService } from '../../manage-database/shift-table/shift.service';
 import { CrewmemberService } from '../../manage-database/crewmember-table/crewmember.service';
+import { MessageService } from '../message/message.service';
 import { VesselassignmentService } from '../vesselassignment/vesselassignment.service';
 
 @Component({
@@ -23,6 +24,7 @@ import { VesselassignmentService } from '../vesselassignment/vesselassignment.se
   styleUrls: ['./vesselassignment-form-dialog.component.scss']
 })
 export class VesselassignmentFormDialogComponent implements OnInit {
+
   HString = HString;
   HDate = HDate;
   HList = HList;
@@ -34,6 +36,8 @@ export class VesselassignmentFormDialogComponent implements OnInit {
   expirationDate: Date = null;
   minExpirationDate: Date = null;
   tableAction: string = '';
+
+  messageList: any[] = [];
 
   shiftList: any[] = [];
   filteredShiftList: Observable<any[]>
@@ -53,8 +57,26 @@ export class VesselassignmentFormDialogComponent implements OnInit {
   crewmemberList: any[] = [];
   filteredCrewmemberList: Observable<any[]>;
 
+  captainList: any[] = [];
+  filteredCaptainList: Observable<any[]>;
+
+  deckhandList: any[] = [];
+  filteredDeckhandList: Observable<any[]>;
+
+  gsaList: any[] = [];
+  filteredGsaList: Observable<any[]>;
+
   $listUpdateSub: Subscription;
   $apiResponseSub: Subscription;
+
+  captain1: string = '';
+  captain2: string = '';
+  deckhand1: string = '';
+  deckhand2: string = '';
+  deckhand3: string = '';
+  deckhand4: string = '';
+  gsa1: string = '';
+  gsa2: string = '';
 
   @ViewChild('f') form: NgForm;
 
@@ -77,13 +99,13 @@ export class VesselassignmentFormDialogComponent implements OnInit {
     private shiftService: ShiftService,
     private vesselService: VesselService,
     private crewmemberService: CrewmemberService,
+    private messageService: MessageService,
     private mainService: VesselassignmentService,
     private dialogRef: MatDialogRef<VesselassignmentFormDialogComponent>
   ) { }
 
   ngOnInit() {
     this.locationService.api('read');
-    console.log('crewswap init');
     this.initData();
     this.initAutocompleteLists();
     this.initApiResponse();
@@ -91,14 +113,18 @@ export class VesselassignmentFormDialogComponent implements OnInit {
   }
 
   initData() {
-
+    console.log('initData() in vesselassigmentForm');
     this.date = this.paramsService.getDate();
+    this.messageList = this.messageService.list;
     this.vesselList = this.vesselService.getAutocompleteList();
     this.routeList = this.routeService.getList();
     this.shiftList = this.shiftService.getList();
     this.calltimeList = this.calltimeService.getList();
     this.locationList = this.locationService.getList();
     this.crewmemberList = this.crewmemberService.getList();
+    this.captainList = this.filterList(this.crewmemberList, 'job', 'Captain');
+    this.deckhandList = this.filterList(this.crewmemberList, 'job', 'Deckhand');
+    this.gsaList = this.filterList(this.crewmemberList, 'job', 'GSA');
     this.list = this.mainService.getList();
     if (this.data.tableActionData.tableAction === 'edit') {
       this.item = this.data.tableActionData.entries[0];
@@ -112,6 +138,9 @@ export class VesselassignmentFormDialogComponent implements OnInit {
     this.filteredCalltimeList = of(this.calltimeService.getList());
     this.filteredLocationList = of(this.locationService.getList());
     this.filteredCrewmemberList = of(this.crewmemberService.getList());
+    this.filteredCaptainList = of(this.filterList(this.crewmemberService.getList(), 'job', 'Captain'));
+    this.filteredDeckhandList = of(this.filterList(this.crewmemberService.getList(), 'job', 'Deckhand'));
+    this.filteredGsaList = of(this.filterList(this.crewmemberService.getList(), 'job', 'GSA'));
   }
 
   initApiResponse() {
@@ -127,6 +156,18 @@ export class VesselassignmentFormDialogComponent implements OnInit {
         }
       }
     });
+  }
+
+  filterList(list: any[], filterProp: string, filterVal: string) {
+    let filteredList = [];
+    if (list && typeof list === 'object' && list.constructor === Array && list.length !== 0) {
+      filteredList = list.filter((obj: any) => {
+        if (obj && typeof obj === 'object' && obj[filterProp] === filterVal) {
+          return true;
+        }
+      });
+    }
+    return filteredList;
   }
 
   initForm() {
@@ -158,6 +199,14 @@ export class VesselassignmentFormDialogComponent implements OnInit {
     let deckhand4 = '';
     let gsa1 = '';
     let gsa2 = '';
+    let captain1MessageId = '';
+    let captain2MessageId = '';
+    let deckhand1MessageId = '';
+    let deckhand2MessageId = '';
+    let deckhand3MessageId = '';
+    let deckhand4MessageId = '';
+    let gsa1MessageId = '';
+    let gsa2MessageId = '';
 
     if (item && typeof item === 'object') {
       shift = item.shift || '';
@@ -173,6 +222,14 @@ export class VesselassignmentFormDialogComponent implements OnInit {
       deckhand4 = item.deckhand4 || '';
       gsa1 = item.gsa1 || '';
       gsa2 = item.gsa2 || '';
+      captain1MessageId = item.captain1MessageId || '';
+      captain2MessageId = item.captain2MessageId || '';
+      deckhand1MessageId = item.deckhand1MessageId || '';
+      deckhand2MessageId = item.deckhand2MessageId || '';
+      deckhand3MessageId = item.deckhand3MessageId || '';
+      deckhand4MessageId = item.deckhand4MessageId || '';
+      gsa1MessageId = item.gsa1MessageId || '';
+      gsa2MessageId = item.gsa2MessageId || '';
     }
 
     this.form.setValue({
@@ -188,11 +245,19 @@ export class VesselassignmentFormDialogComponent implements OnInit {
       deckhand3: deckhand3,
       deckhand4: deckhand4,
       gsa1: gsa1,
-      gsa2: gsa2
+      gsa2: gsa2,
+      captain1MessageId: captain1MessageId,
+      captain2MessageId: captain2MessageId,
+      deckhand1MessageId: deckhand1MessageId,
+      deckhand2MessageId: deckhand2MessageId,
+      deckhand3MessageId: deckhand3MessageId,
+      deckhand4MessageId: deckhand4MessageId,
+      gsa1MessageId: gsa1MessageId,
+      gsa2MessageId: gsa2MessageId
     });
   }
 
-  onFilterAutocomplete(type: string, filterVal: string) {
+  onFilterAutocomplete(type: string, filterVal: string, nonDuplicateProps: string[] = []) {
     filterVal = filterVal.trim().toLowerCase();
     let list = [];
     let filteredList = [];
@@ -227,6 +292,22 @@ export class VesselassignmentFormDialogComponent implements OnInit {
         filteredList = this.HList.filterAutocompletList(list, 'employee', filterVal);
         this.filteredCrewmemberList = of(filteredList);
         break;
+      case 'captain':
+        list = this.captainList;
+        filteredList = this.HList.filterAutocompletList(list, 'employee', filterVal);
+        this.filteredCaptainList = of(filteredList);
+        break;
+      case 'deckhand':
+        list = this.deckhandList;
+        filteredList = this.HList.filterAutocompletList(list, 'employee', filterVal);
+        this.filteredDeckhandList = of(filteredList);
+        break;
+      case 'gsa':
+        list = this.gsaList;
+        filteredList = this.HList.filterAutocompletList(list, 'employee', filterVal);
+        this.filteredGsaList = of(filteredList);
+        break;
+
     }
   }
 
@@ -286,6 +367,44 @@ export class VesselassignmentFormDialogComponent implements OnInit {
       case 'edit':
         this.mainService.api('update', newApiObj);
     }
+  }
+
+  isActiveMessage(formId: string, messageId: string) {
+    let isActive = false;
+    const values = this.form.value;
+    const crewId = formId.slice(0, (formId.length - 9));
+    if (values[crewId] && values[formId] && values[formId] === messageId ) {
+      isActive = true;
+    }
+    return isActive;
+  }
+
+  setActiveMessage(formId: string, messageId: string) {
+    let values = { ...this.form.value };
+    const crewId = formId.slice(0, (formId.length - 9));
+    if (values[crewId]) {
+      const prevVal = values[formId];
+      if (prevVal === messageId) {
+        values[formId] = '';
+      } else {
+        values[formId] = messageId;
+      }
+      this.form.setValue(values);
+    }
+  }
+
+  setShift(item: any) {
+    let values = { ...this.form.value };
+    if (item && typeof item === 'object' && item.callTime) {
+      values['callTime'] = this.HString.toDefaultString(item.callTime);
+    }
+    if (item && typeof item === 'object' && item.firstDeparture) {
+      values['firstDeparture'] = this.HString.toDefaultString(item.firstDeparture);
+    }
+    if (item && typeof item === 'object' && item.route) {
+      values['route'] = this.HString.toDefaultString(item.route);
+    }
+    this.form.setValue(values);
   }
 
 }

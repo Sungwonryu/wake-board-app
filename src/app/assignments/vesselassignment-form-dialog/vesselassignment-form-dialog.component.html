@@ -31,13 +31,21 @@
               #shiftInput="ngModel"
               [matAutocomplete]="shiftListRef"
               (keyup)="onFilterAutocomplete('shift', $event.target.value)"
+              required
+              appIncludeInput
+              [itemList]=shiftList
+              [itemProp1]="'shift'"
+              [itemType]="'shift'"
             />
             <mat-hint *ngIf="!shiftInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="shiftInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!shiftInput.hasError('required') && shiftInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #shiftListRef="matAutocomplete">
             <mat-option
               *ngFor="let item of filteredShiftList | async"
-              [value]="item.shift">
+              [value]="item.shift"
+              (click)="setShift(item)">
               {{ item.shift }}
             </mat-option>
           </mat-autocomplete>
@@ -56,8 +64,15 @@
               #routeInput="ngModel"
               [matAutocomplete]="routeListRef"
               (keyup)="onFilterAutocomplete('route', $event.target.value)"
+              required
+              appIncludeInput
+              [itemList]=routeList
+              [itemProp1]="'route'"
+              [itemType]="'route'"
             />
             <mat-hint *ngIf="!routeInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="routeInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!routeInput.hasError('required') && routeInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #routeListRef="matAutocomplete">
             <mat-option
@@ -82,9 +97,11 @@
               #callTimeInput="ngModel"
               [matAutocomplete]="callTimeListRef"
               (keyup)="onFilterAutocomplete('callTime', $event.target.value)"
+              required
             />
             <mat-hint *ngIf="!callTimeInput.hasError()">Choose an option</mat-hint>
-            <mat-error *ngIf="firstDepartureInput.hasError('pattern')">Call Time must match with 24 hour fromat.</mat-error>
+            <mat-error *ngIf="callTimeInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="callTimeInput.hasError('pattern')">Input must match with 24 hour fromat.</mat-error>
           </mat-form-field>
           <mat-autocomplete #callTimeListRef="matAutocomplete">
             <mat-option
@@ -129,12 +146,14 @@
               #vesselIdInput="ngModel"
               [matAutocomplete]="vesselListRef"
               (keyup)="onFilterAutocomplete('vessel', $event.target.value)"
+              required
               appIncludeInput
               [itemList]="vesselList"
               [itemProp1]="'vessel'"
               [itemType]="''"
             />
             <mat-hint *ngIf="!vesselIdInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="vesselIdInput.hasError('required')">Input must not be empty</mat-error>
             <mat-error *ngIf="vesselIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #vesselListRef="matAutocomplete">
@@ -151,12 +170,45 @@
         <div class="input-wrapper"></div>
       </div>
 
-      <div class="subtitle">{{ subtitle2 }}</div>
+      <div class="subtitle">
+        <span>{{ subtitle2 }}</span>
+        <ul class="message-list">
+          <li *ngFor="let messageItem of messageList">
+            <span class="message-button">{{ messageItem.abbreviation }}</span>
+            <span class="message-text">-&nbsp;{{ messageItem.message }}</span>
+          </li>
+        </ul>
+      </div>
 
       <div class="input-group">
         <div class="input-wrapper">
-          <label class="input-label">Captain 1</label>
-          <mat-form-field>
+          <div class="input-label-wrapper">
+            <label class="input-label">Captain 1</label>
+
+            <mat-form-field class="hidden">
+              <input
+                matInput
+                type="text"
+                name="captain1MessageId"
+                placeholder=""
+                ngModel
+                class="messageIdInput"
+                #captain11MessageIdInput="ngModel" />
+            </mat-form-field>
+
+            <div class="crew-message-button-wrapper">
+              <ul>
+                <li *ngFor="let messageItem of messageList">
+                  <span
+                    class="message-button"
+                    [ngClass]="{'active': isActiveMessage('captain1MessageId', messageItem.id)}"
+                    (click)="setActiveMessage('captain1MessageId', messageItem.id)">{{ messageItem.abbreviation }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <mat-form-field>
             <input
               class="input"
               matInput
@@ -176,12 +228,58 @@
               [value]="item.employee">
               {{ item.employee }}
             </mat-option>
+          </mat-autocomplete> -->
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              [ngModel]="captain1"
+              type="text"
+              name="captain1"
+              placeholder=""
+              #captain1Input="ngModel"
+              [matAutocomplete]="captain1ListRef"
+              (keyup)="onFilterAutocomplete('captain', $event.target.value)"
+            />
+            <mat-hint *ngIf="!captain1Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #captain1ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCaptainList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
           </mat-autocomplete>
         </div>
 
         <div class="input-wrapper">
-          <label class="input-label">Captain 2</label>
-          <mat-form-field>
+          <div class="input-label-wrapper">
+            <label class="input-label">Captain 2</label>
+
+            <mat-form-field class="hidden">
+              <input
+                matInput
+                type="text"
+                name="captain2MessageId"
+                placeholder=""
+                ngModel
+                class="messageIdInput"
+                #captain2MessageIdInput="ngModel" />
+            </mat-form-field>
+
+            <div class="crew-message-button-wrapper">
+              <ul>
+                <li *ngFor="let messageItem of messageList">
+                  <span
+                    class="message-button"
+                    [ngClass]="{'active': isActiveMessage('captain2MessageId', messageItem.id)}"
+                    (click)="setActiveMessage('captain2MessageId', messageItem.id)">{{ messageItem.abbreviation }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <mat-form-field>
             <input
               class="input"
               matInput
@@ -201,12 +299,58 @@
               [value]="item.employee">
               {{ item.employee }}
             </mat-option>
+          </mat-autocomplete> -->
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="captain2"
+              placeholder=""
+              #captain2Input="ngModel"
+              [matAutocomplete]="captain2ListRef"
+              (keyup)="onFilterAutocomplete('captain', $event.target.value, ['captain1'])"
+            />
+            <mat-hint *ngIf="!captain2Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #captain2ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredCaptainList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
           </mat-autocomplete>
         </div>
 
         <div class="input-wrapper">
-          <label class="input-label">Deckhand 1</label>
-          <mat-form-field>
+          <div class="input-label-wrapper">
+            <label class="input-label">Deckhand 1</label>
+
+            <mat-form-field class="hidden">
+              <input
+                matInput
+                type="text"
+                name="deckhand1MessageId"
+                placeholder=""
+                ngModel
+                class="messageIdInput"
+                #deckhand1MessageIdInput="ngModel" />
+            </mat-form-field>
+
+            <div class="crew-message-button-wrapper">
+              <ul>
+                <li *ngFor="let messageItem of messageList">
+                  <span
+                    class="message-button"
+                    [ngClass]="{'active': isActiveMessage('deckhand1MessageId', messageItem.id)}"
+                    (click)="setActiveMessage('deckhand1MessageId', messageItem.id)">{{ messageItem.abbreviation }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <mat-form-field>
             <input
               class="input"
               matInput
@@ -226,12 +370,58 @@
               [value]="item.employee">
               {{ item.employee }}
             </mat-option>
+          </mat-autocomplete> -->
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="deckhand1"
+              placeholder=""
+              #deckhand1Input="ngModel"
+              [matAutocomplete]="deckhand1ListRef"
+              (keyup)="onFilterAutocomplete('deckhand', $event.target.value)"
+            />
+            <mat-hint *ngIf="!deckhand1Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #deckhand1ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredDeckhandList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
           </mat-autocomplete>
         </div>
 
         <div class="input-wrapper">
-          <label class="input-label">Deckhand 2</label>
-          <mat-form-field>
+          <div class="input-label-wrapper">
+            <label class="input-label">Deckhand 2</label>
+
+            <mat-form-field class="hidden">
+              <input
+                matInput
+                type="text"
+                name="deckhand2MessageId"
+                placeholder=""
+                ngModel
+                class="messageIdInput"
+                #deckhand2MessageIdInput="ngModel" />
+            </mat-form-field>
+
+            <div class="crew-message-button-wrapper">
+              <ul>
+                <li *ngFor="let messageItem of messageList">
+                  <span
+                    class="message-button"
+                    [ngClass]="{'active': isActiveMessage('deckhand2MessageId', messageItem.id)}"
+                    (click)="setActiveMessage('deckhand2MessageId', messageItem.id)">{{ messageItem.abbreviation }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <mat-form-field>
             <input
               class="input"
               matInput
@@ -251,14 +441,60 @@
               [value]="item.employee">
               {{ item.employee }}
             </mat-option>
+          </mat-autocomplete> -->
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="deckhand2"
+              placeholder=""
+              #deckhand2Input="ngModel"
+              [matAutocomplete]="deckhand2ListRef"
+              (keyup)="onFilterAutocomplete('deckhand', $event.target.value)"
+            />
+            <mat-hint *ngIf="!deckhand2Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #deckhand2ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredDeckhandList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
           </mat-autocomplete>
         </div>
       </div>
 
       <div class="input-group">
         <div class="input-wrapper">
-          <label class="input-label">Deckhand 3</label>
-          <mat-form-field>
+          <div class="input-label-wrapper">
+            <label class="input-label">Deckhand 3</label>
+
+            <mat-form-field class="hidden">
+              <input
+                matInput
+                type="text"
+                name="deckhand3MessageId"
+                placeholder=""
+                ngModel
+                class="messageIdInput"
+                #deckhand3MessageIdInput="ngModel" />
+            </mat-form-field>
+
+            <div class="crew-message-button-wrapper">
+              <ul>
+                <li *ngFor="let messageItem of messageList">
+                  <span
+                    class="message-button"
+                    [ngClass]="{'active': isActiveMessage('deckhand3MessageId', messageItem.id)}"
+                    (click)="setActiveMessage('deckhand3MessageId', messageItem.id)">{{ messageItem.abbreviation }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <mat-form-field>
             <input
               class="input"
               matInput
@@ -278,12 +514,58 @@
               [value]="item.employee">
               {{ item.employee }}
             </mat-option>
+          </mat-autocomplete> -->
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="deckhand3"
+              placeholder=""
+              #deckhand3Input="ngModel"
+              [matAutocomplete]="deckhand3ListRef"
+              (keyup)="onFilterAutocomplete('deckhand', $event.target.value)"
+            />
+            <mat-hint *ngIf="!deckhand3Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #deckhand3ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredDeckhandList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
           </mat-autocomplete>
         </div>
 
         <div class="input-wrapper">
-          <label class="input-label">Deckhand 4</label>
-          <mat-form-field>
+          <div class="input-label-wrapper">
+            <label class="input-label">Deckhand 4</label>
+
+            <mat-form-field class="hidden">
+              <input
+                matInput
+                type="text"
+                name="deckhand4MessageId"
+                placeholder=""
+                ngModel
+                class="messageIdInput"
+                #deckhand4MessageIdInput="ngModel" />
+            </mat-form-field>
+
+            <div class="crew-message-button-wrapper">
+              <ul>
+                <li *ngFor="let messageItem of messageList">
+                  <span
+                    class="message-button"
+                    [ngClass]="{'active': isActiveMessage('deckhand4MessageId', messageItem.id)}"
+                    (click)="setActiveMessage('deckhand4MessageId', messageItem.id)">{{ messageItem.abbreviation }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <mat-form-field>
             <input
               class="input"
               matInput
@@ -303,12 +585,58 @@
               [value]="item.employee">
               {{ item.employee }}
             </mat-option>
+          </mat-autocomplete> -->
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="deckhand4"
+              placeholder=""
+              #deckhand4Input="ngModel"
+              [matAutocomplete]="deckhand4ListRef"
+              (keyup)="onFilterAutocomplete('deckhand', $event.target.value)"
+            />
+            <mat-hint *ngIf="!deckhand4Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #deckhand4ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredDeckhandList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
           </mat-autocomplete>
         </div>
 
         <div class="input-wrapper">
-          <label class="input-label">GSA 1</label>
-          <mat-form-field>
+          <div class="input-label-wrapper">
+            <label class="input-label">GSA 1</label>
+
+            <mat-form-field class="hidden">
+              <input
+                matInput
+                type="text"
+                name="gsa1MessageId"
+                placeholder=""
+                ngModel
+                class="messageIdInput"
+                #gsa1MessageIdInput="ngModel" />
+            </mat-form-field>
+
+            <div class="crew-message-button-wrapper">
+              <ul>
+                <li *ngFor="let messageItem of messageList">
+                  <span
+                    class="message-button"
+                    [ngClass]="{'active': isActiveMessage('gsa1MessageId', messageItem.id)}"
+                    (click)="setActiveMessage('gsa1MessageId', messageItem.id)">{{ messageItem.abbreviation }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <mat-form-field>
             <input
               class="input"
               matInput
@@ -328,12 +656,58 @@
               [value]="item.employee">
               {{ item.employee }}
             </mat-option>
+          </mat-autocomplete> -->
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="gsa1"
+              placeholder=""
+              #gsa1Input="ngModel"
+              [matAutocomplete]="gsa1ListRef"
+              (keyup)="onFilterAutocomplete('gsa', $event.target.value)"
+            />
+            <mat-hint *ngIf="!gsa1Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #gsa1ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredGsaList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
           </mat-autocomplete>
         </div>
 
         <div class="input-wrapper">
-          <label class="input-label">GSA 2</label>
-          <mat-form-field>
+          <div class="input-label-wrapper">
+            <label class="input-label">GSA 2</label>
+
+            <mat-form-field class="hidden">
+              <input
+                matInput
+                type="text"
+                name="gsa2MessageId"
+                placeholder=""
+                ngModel
+                class="messageIdInput"
+                #gsa2MessageIdInput="ngModel" />
+            </mat-form-field>
+
+            <div class="crew-message-button-wrapper">
+              <ul>
+                <li *ngFor="let messageItem of messageList">
+                  <span
+                    class="message-button"
+                    [ngClass]="{'active': isActiveMessage('gsa2MessageId', messageItem.id)}"
+                    (click)="setActiveMessage('gsa2MessageId', messageItem.id)">{{ messageItem.abbreviation }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <mat-form-field>
             <input
               class="input"
               matInput
@@ -350,6 +724,27 @@
           <mat-autocomplete #gsa2ListRef="matAutocomplete">
             <mat-option
               *ngFor="let item of filteredCrewmemberList | async"
+              [value]="item.employee">
+              {{ item.employee }}
+            </mat-option>
+          </mat-autocomplete> -->
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="gsa2"
+              placeholder=""
+              #gsa2Input="ngModel"
+              [matAutocomplete]="gsa2ListRef"
+              (keyup)="onFilterAutocomplete('gsa', $event.target.value)"
+            />
+            <mat-hint *ngIf="!gsa2Input.hasError()">Choose an option</mat-hint>
+          </mat-form-field>
+          <mat-autocomplete #gsa2ListRef="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredGsaList | async"
               [value]="item.employee">
               {{ item.employee }}
             </mat-option>
