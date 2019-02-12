@@ -24,7 +24,8 @@ export class CrewswapTableComponent implements OnInit {
     tableColumns: [
       { columnDef: 'shift', header: 'Shift', width: '330px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
       { columnDef: 'location', header: 'Pick Up Location', width: '330px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` },
-      { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] }
+      // { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete', 'delete-cancel', 'delete-confirm'] }
+      { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete-open'] }
     ],
     tableTitle: 'CREW SWAP RELATIONSHIPS',
     dataType: 'crewshifts'
@@ -101,6 +102,10 @@ export class CrewswapTableComponent implements OnInit {
         if (tableActionData.tableAction === 'edit') {
           this.mainService.api('override', tableActionData.entries[0]);
         }
+        break;
+      case 'delete':
+        console.log('delete', tableActionData);
+        this.mainService.api('delete', tableActionData.entries[0]);
         break;
     }
 
