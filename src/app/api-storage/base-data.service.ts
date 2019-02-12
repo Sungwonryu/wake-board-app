@@ -39,7 +39,7 @@ export class BaseDataService {
   item: any = null;
   list: any[] = [];
   filteredList: any[] = [];
-  sortOptions: SortOption[] = [{ property: 'id', isDescending: false }];
+  sortOrder: SortOption[] = [{ property: 'id', isDescending: false }];
 
   $listUpdate = new Subject<ListUpdate>();
   $apiResponse = new Subject<ApiResponse>();
@@ -133,8 +133,8 @@ export class BaseDataService {
     // Convert defaultList to newList by updating defaultList
     let newList = this.getNewList(defaultList, listData);
 
-    // Sort newList accroding to this.sortOptions
-    newList = this.HList.sort(newList, this.sortOptions);
+    // Sort newList accroding to this.sortOrder
+    newList = this.HList.sort(newList, this.sortOrder);
 
     if (!HList.isSame(this.list, newList)) {
       // When this.lis and newList are not same
@@ -154,7 +154,7 @@ export class BaseDataService {
     }
   }
 
-  getSortedList(listName: string = 'filteredList', sortOpts: SortOption[] = this.sortOptions ) {
+  getSortedList(listName: string = 'filteredList', sortOpts: SortOption[] = this.sortOrder ) {
     const list = this[listName];
     if (list && typeof list === 'object' && list.constructor === Array &&
       sortOpts && typeof sortOpts === 'object' && sortOpts.constructor === Array && sortOpts.length) {
