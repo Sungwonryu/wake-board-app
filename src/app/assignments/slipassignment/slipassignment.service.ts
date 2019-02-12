@@ -5,6 +5,7 @@ import { ApiStorageService } from '../../api-storage/api-storage.service';
 import { AuthService } from '../../auth/auth.service';
 import { ParamsService } from '../../shared/services/params.service';
 import { UIService } from '../../shared/services/ui.service';
+import { VesselService } from '../../manage-database/vessel-table/vessel.service';
 
 @Injectable()
 export class SlipassignmentService extends BaseDataService {
@@ -25,6 +26,7 @@ export class SlipassignmentService extends BaseDataService {
     protected authService: AuthService,
     protected paramsService: ParamsService,
     protected uiService: UIService,
+    protected vesselService: VesselService
   ) {
 
     super(
@@ -40,9 +42,26 @@ export class SlipassignmentService extends BaseDataService {
    *  getNewList() is configured differently in each service
    */
   getNewList(defaultList: any[], listData: any[]) {
-    console.log(`${this.object} - listData: `, listData);
-    console.log(`${this.object} - newList: `, defaultList);
     const newList = defaultList;
+    let item;
+    for (let i = 0; i < newList.length; i++) {
+      item = newList[i];
+      let vessel1 = '';
+      let vessel2 = '';
+      let vessel3 = '';
+      if (item && typeof item === 'object' && typeof item.vessel1Id === 'string') {
+        vessel1 = this.vesselService.getVesselName(item.vessel1Id);
+      }
+      item.vessel1 = vessel1;
+      if (item && typeof item === 'object' && typeof item.vessel2Id === 'string') {
+        vessel2 = this.vesselService.getVesselName(item.vessel2Id);
+      }
+      item.vessel2 = vessel2;
+      if (item && typeof item === 'object' && typeof item.vessel3Id === 'string') {
+        vessel3 = this.vesselService.getVesselName(item.vessel3Id);
+      }
+      item.vessel3 = vessel3;
+    }
     return newList;
   }
 

@@ -51,9 +51,36 @@ export class NoteService extends BaseDataService {
    *  getNewList() is configured differently in each service
    */
   getNewList(defaultList: any[], listData: any[]) {
-    console.log(`${this.object} - listData: `, listData);
-    console.log(`${this.object} - newList: `, defaultList);
     const newList = defaultList;
+    let item;
+    for (let i = 0; i < newList.length; i++) {
+      item = newList[i];
+      let priority = '';
+      let duration = '';
+      let color = '';
+
+      if (item && typeof item === 'object' && typeof item.priorityId === 'string') {
+        const matchedObj = this.priorityList.find((obj: any) => obj.id === item.priorityId);
+        if (matchedObj) {
+          priority = matchedObj.text;
+        }
+      }
+      item.priority = priority;
+      if (item && typeof item === 'object' && typeof item.durationId === 'string') {
+        const matchedObj = this.durationList.find((obj: any) => obj.id === item.durationId);
+        if (matchedObj) {
+          duration = matchedObj.text;
+        }
+      }
+      item.duration = duration;
+      if (item && typeof item === 'object' && typeof item.colorId === 'string') {
+        const matchedObj = this.colorList.find((obj: any) => obj.id === item.colorId);
+        if (matchedObj) {
+          color = matchedObj.text;
+        }
+      }
+      item.color = color;
+    }
     return newList;
   }
 

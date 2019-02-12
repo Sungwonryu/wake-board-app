@@ -5,6 +5,8 @@ import { ApiStorageService } from '../../api-storage/api-storage.service';
 import { AuthService } from '../../auth/auth.service';
 import { ParamsService } from '../../shared/services/params.service';
 import { UIService } from '../../shared/services/ui.service';
+import { VesselService } from '../../manage-database/vessel-table/vessel.service';
+
 
 @Injectable()
 export class CrewswapService extends BaseDataService {
@@ -18,6 +20,7 @@ export class CrewswapService extends BaseDataService {
     protected authService: AuthService,
     protected paramsService: ParamsService,
     protected uiService: UIService,
+    protected vesselService: VesselService
   ) {
 
     super(
@@ -33,9 +36,16 @@ export class CrewswapService extends BaseDataService {
    *  getNewList() is configured differently in each service
    */
   getNewList(defaultList: any[], listData: any[]) {
-    console.log(`${this.object} - listData: `, listData);
-    console.log(`${this.object} - newList: `, defaultList);
     const newList = defaultList;
+    let item;
+    for (let i = 0; i < newList.length; i++) {
+      item = newList[i];
+      let vessel = '';
+      if (item && typeof item === 'object' && typeof item.vesselId === 'string') {
+        vessel = this.vesselService.getVesselName(item.vesselId);
+      }
+      item.vessel = vessel;
+    }
     return newList;
   }
 
