@@ -16,6 +16,7 @@
       [tableColumns]="vesselassignmentTableData.tableColumns"
       [dataType]="vesselassignmentTableData.dataType"
       [data]="vesselassignmentList"
+      [mode]="modeVesselassignment"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 
@@ -29,6 +30,7 @@
       [tableColumns]="vesselassignmentTableDataPast.tableColumns"
       [dataType]="vesselassignmentTableDataPast.dataType"
       [data]="vesselassignmentList"
+      [mode]="modeVesselassignment"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 
@@ -42,6 +44,7 @@
       [tableColumns]="slipassignmentTableData.tableColumns"
       [dataType]="slipassignmentTableData.dataType"
       [data]="slipassignmentList"
+      [mode]="modeSlipassignment"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 
@@ -55,6 +58,7 @@
       [tableColumns]="slipassignmentTableDataPast.tableColumns"
       [dataType]="slipassignmentTableDataPast.dataType"
       [data]="slipassignmentList"
+      [mode]="modeSlipassignment"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 
@@ -68,6 +72,7 @@
       [tableColumns]="noteTableData.tableColumns"
       [dataType]="noteTableData.dataType"
       [data]="noteList"
+      [mode]="modeNote"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 
@@ -81,6 +86,7 @@
       [tableColumns]="noteTableDataPast.tableColumns"
       [dataType]="noteTableDataPast.dataType"
       [data]="noteList"
+      [mode]="modeNote"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 
@@ -94,6 +100,7 @@
       [tableColumns]="crewswapTableData.tableColumns"
       [dataType]="crewswapTableData.dataType"
       [data]="crewswapList"
+      [mode]="modeCrewswap"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 
@@ -107,6 +114,7 @@
       [tableColumns]="crewswapTableDataPast.tableColumns"
       [dataType]="crewswapTableDataPast.dataType"
       [data]="crewswapList"
+      [mode]="modeCrewswap"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 </div>
