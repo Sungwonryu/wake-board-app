@@ -239,4 +239,14 @@ export class CrewswapFormDialogComponent implements OnInit {
     }
   }
 
+  setShift(item: any) {
+    let values = { ...this.form.value };
+    if (item && typeof item === 'object' && item.callTime) {
+      values['callTime'] = this.HString.toDefaultString(item.callTime);
+    }
+    if (item && typeof item === 'object' && item.firstDeparture) {
+      values['firstDeparture'] = this.HString.toDefaultString(item.firstDeparture);
+    }
+    this.form.setValue(values);
+  }
 }
