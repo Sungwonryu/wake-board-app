@@ -1,0 +1,66 @@
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction-wrapper">
+      <div class="instruction">
+         <span>{{ instruction }}</span>
+      </div>
+    </div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+        <div class="input-wrapper">
+          <label class="input-label">Add New Entry</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="newVal"
+              placeholder=""
+              #newValInput="ngModel"
+              required
+              [pattern]="pattern"
+            />
+            <mat-hint *ngIf="!newValInput.hasError()">Enter text here.</mat-hint>
+            <mat-error *ngIf="newValInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!newValInput.hasError('required') && newValInput.hasError('pattern')">Input must match with 24 hour fromat.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="add-button-wrapper">
+          <button
+            class="add-to-table-button"
+            [disabled]="!f.valid"
+            (click)="addToTable()">Add To Table</button>
+        </div>
+
+    </form>
+
+    <div class="table-wrapper">
+      <div class="table-container">
+        <app-table-wrapper
+          [titlebarView]="tableSettings.titlebarView"
+          [tableTitle]="tableSettings.tableTitle"
+          [tableView]="tableSettings.tableView"
+          [tableColumns]="tableSettings.tableColumns"
+          [dataType]="tableSettings.dataType"
+          [editProp]="tableSettings.editProp"
+          [data]="list"
+          [mode]="mode"
+          [mainService]="mainService"
+          (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+      </div>
+    </div>
+
+  </div>
+</div>

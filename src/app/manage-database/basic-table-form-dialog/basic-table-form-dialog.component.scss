@@ -1,0 +1,27 @@
+.table-wrapper {
+  width: 550px;
+}
+
+.form {
+  width: 550px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.input-wrapper,
+.input {
+  width: 340px;
+}
+
+.add-to-table-button {
+  height: 36px;
+  width: 134px;
+  margin-left: 14px;
+  background: linear-gradient(#EEEEEE, #D8D8D8);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  border: 1px solid #393939;
+  border-radius: 21px;
+  font-family: "Lato Medium";
+  font-size: 17px;
+}
