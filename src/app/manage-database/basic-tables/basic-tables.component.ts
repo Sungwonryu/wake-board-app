@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { HString } from '../../shared/lib/h-string';
 
@@ -14,6 +15,8 @@ import { CalltimeService } from '../calltime/calltime.service';
 import { EmployeeService } from '../employee/employee.service';
 import { JobService } from '../job/job.service';
 
+import { BasicTableFormDialogComponent } from '../basic-table-form-dialog/basic-table-form-dialog.component';
+
 @Component({
   selector: 'app-basic-tables',
   templateUrl: './basic-tables.component.html',
@@ -23,69 +26,77 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
 
   HString = HString;
 
+  formDialogRef: MatDialogRef<any>;
+
   headerMessage = 'The Master Database houses the information used to create Crewboard assignments. To modify or add data, select “Edit Table” underneath the corresponding item.';
 
   commonTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '404px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
   };
 
+  columnDefault = {
+    fontColorFn: (row: any) => `${this.HString.toDefaultString(row.fontColor)}`,
+    fontWeightFn: (row: any) => `${this.HString.toDefaultString(row.fontWeight)}`
+  };
+
   vesselnameTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'vesselName', header: 'Vessel Name', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselName)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'vesselName', header: 'Vessel Name', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselName)}` }],
     tableTitle: 'Vessel Name',
     dataType: 'vessel_names'
   };
   vesselnumberTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'vesselNumber', header: 'Vessel ID', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'vesselNumber', header: 'Vessel ID', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselNumber)}` }],
     tableTitle: 'Vessel ID',
     dataType: 'vessel_numbers'
   };
   vesseltypeTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-    tableColumns: [{ columnDef: 'vesselType', header: 'Vessel Type', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselType)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'vesselType', header: 'Vessel Type', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselType)}` }],
     tableTitle: 'Vessel Type',
     dataType: 'vessel_types'
   };
   vesselcapacityTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '116px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-    tableColumns: [{ columnDef: 'vesselCapacity', header: 'Vessel Capacity', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselCapacity)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'vesselCapacity', header: 'Vessel Capacity', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselCapacity)}` }],
     tableTitle: 'Vessel Capacity',
     dataType: 'vessel_capacities'
   };
   shiftnameTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'shift', header: 'Shift', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'shift', header: 'Shift', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` }],
     tableTitle: 'Shift',
     dataType: 'shifts'
   };
   routeTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'route', header: 'Route', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.route)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'route', header: 'Route', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.route)}` }],
     tableTitle: 'Route',
     dataType: 'routes'
   };
   calltimeTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'callTime', header: 'Call Time', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0, 5)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'callTime', header: 'Call Time', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0, 5)}` }],
     tableTitle: 'Call Time',
     dataType: 'call_times'
   };
   locationTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-    tableColumns: [{ columnDef: 'location', header: 'Location', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'location', header: 'Location', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }],
     tableTitle: 'Pick Up Location',
     dataType: 'locations'
   }
   jobTableSettings = {
     tableView: { headerHeight: '58px', bodyHeight: '152px', headerBgColor: '#041E42', headerColor: '#ffffff', headerFontSize: '16px'},
-    tableColumns: [{ columnDef: 'job', header: 'Job Title', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.job)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'job', header: 'Job Title', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.job)}` }],
     tableTitle: 'Job Title',
     dataType: 'jobs'
   };
   employeeTableSettings = {
     ...this.commonTableSettings,
-    tableColumns: [{ columnDef: 'employee', header: 'Employee', width: '130px', cellFn: (row: any) => `${this.HString.toDefaultString(row.employee)}` }],
+    // tableColumns: [{ ...this.columnDefault, columnDef: 'employee', header: 'Employee', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.shortenFullName(row.employee)}` }],
+    tableColumns: [{ ...this.columnDefault, columnDef: 'employee', header: 'Employee', width: '130px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.employee)}` }],
     tableTitle: 'Employee',
     dataType: 'employees'
   };
@@ -123,6 +134,7 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
   $employeeListUpdateSub: Subscription;
 
   constructor(
+    private dialog: MatDialog,
     private vesselnameService: VesselnameService,
     private vesselnumberService: VesselnumberService,
     private vesseltypeService: VesseltypeService,
@@ -268,6 +280,32 @@ export class BasicTablesComponent implements OnInit, OnDestroy {
     if (this.$jobListUpdateSub) {
       this.$jobListUpdateSub.unsubscribe();
     }
+  }
+
+  editTable(dataType: string) {
+    console.log('editTable(), dataType: ', dataType);
+    const panelClass = 'basic-table-form-dialog-container';
+    const formDialogComponent = BasicTableFormDialogComponent;
+
+
+    this.formDialogRef = this.dialog.open(formDialogComponent, {
+      panelClass: panelClass,
+      disableClose: true,
+      data: {
+        dataType: dataType
+      }
+    });
+
+    // After the formDialog is closed, refresh the lists
+    if (this.formDialogRef) {
+      this.formDialogRef.afterClosed().subscribe(() => {
+        this.initService();
+      });
+    }
+  }
+
+  applyFilter(filterValue: string) {
+    this.filterValue = filterValue;
   }
 
 }

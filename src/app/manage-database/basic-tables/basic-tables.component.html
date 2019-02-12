@@ -1,7 +1,16 @@
 <div class="master-database">
   <div class="master-header">
-    <span class="master-title">MASTER DATABASE</span>
-    <span class="search-input"></span>
+    <div class="master-title">MASTER DATABASE</div>
+    <div class="right-pane">
+      <div class="search-input-wrapper">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Search"
+          (keyup)="applyFilter($event.target.value)">
+        <mat-icon class="search-icon">search</mat-icon>
+      </div>
+    </div>
   </div>
 
   <div class="master-header-message">
@@ -18,7 +27,9 @@
           [data]="vesselnameList"
           [dataType]="vesselnameTableSettings.dataType"
           [filterValue]="filterValue"></app-table>
-        <button class="edit-button">Edit Table</button>
+        <button
+          class="edit-button"
+          (click)="editTable('vesselname')">Edit Table</button>
       </div>
       <div class="table-wrapper">
         <app-table
@@ -28,7 +39,9 @@
           [data]="vesselnumberList"
           [dataType]="vesselnumberTableSettings.dataType"
           [filterValue]="filterValue"></app-table>
-        <button class="edit-button">Edit Table</button>
+        <button
+          class="edit-button"
+          (click)="editTable('vesselnumber')">Edit Table</button>
       </div>
       <div class="table-wrapper-group">
         <div class="table-wrapper table-wrapper-vesseltype">
@@ -39,7 +52,9 @@
             [data]="vesseltypeList"
             [dataType]="vesseltypeTableSettings.dataType"
             [filterValue]="filterValue"></app-table>
-          <button class="edit-button">Edit Table</button>
+          <button
+            class="edit-button"
+            (click)="editTable('vesseltype')">Edit Table</button>
         </div>
         <div class="table-wrapper table-wrapper-vesselcapacity">
           <app-table
@@ -49,7 +64,9 @@
             [data]="vesselcapacityList"
             [dataType]="vesselcapacityTableSettings.dataType"
             [filterValue]="filterValue"></app-table>
-          <button class="edit-button">Edit Table</button>
+          <button
+            class="edit-button"
+            (click)="editTable('vesselcapacity')">Edit Table</button>
         </div>
       </div>
 
@@ -64,7 +81,9 @@
           [data]="shiftnameList"
           [dataType]="shiftnameTableSettings.dataType"
           [filterValue]="filterValue"></app-table>
-        <button class="edit-button">Edit Table</button>
+        <button
+          class="edit-button"
+          (click)="editTable('shiftname')">Edit Table</button>
       </div>
       <div class="table-wrapper">
         <app-table
@@ -74,7 +93,9 @@
           [data]="routeList"
           [dataType]="routeTableSettings.dataType"
           [filterValue]="filterValue"></app-table>
-        <button class="edit-button">Edit Table</button>
+        <button
+          class="edit-button"
+          (click)="editTable('route')">Edit Table</button>
       </div>
       <div class="table-wrapper">
         <app-table
@@ -84,7 +105,9 @@
           [data]="calltimeList"
           [dataType]="calltimeTableSettings.dataType"
           [filterValue]="filterValue"></app-table>
-        <button class="edit-button">Edit Table</button>
+        <button
+          class="edit-button"
+          (click)="editTable('calltime')">Edit Table</button>
       </div>
       <div class="table-wrapper table-wrapper-location">
         <app-table
@@ -94,7 +117,9 @@
           [data]="locationList"
           [dataType]="locationTableSettings.dataType"
           [filterValue]="filterValue"></app-table>
-        <button class="edit-button">Edit Table</button>
+        <button
+          class="edit-button"
+          (click)="editTable('location')">Edit Table</button>
       </div>
     </div>
     <div class="table-group table-group-crew">
@@ -106,7 +131,9 @@
           [data]="employeeList"
           [dataType]="employeeTableSettings.dataType"
           [filterValue]="filterValue"></app-table>
-        <button class="edit-button">Edit Table</button>
+        <button
+          class="edit-button"
+          (click)="editTable('employee')">Edit Table</button>
       </div>
       <div class="table-wrapper-group">
         <div class="table-wrapper table-wrapper-job">
@@ -117,7 +144,9 @@
             [data]="jobList"
             [dataType]="jobTableSettings.dataType"
             [filterValue]="filterValue"></app-table>
-          <button class="edit-button">Edit Table</button>
+          <button
+            class="edit-button"
+            (click)="editTable('job')">Edit Table</button>
         </div>
       </div>
     </div>

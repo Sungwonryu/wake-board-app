@@ -1,4 +1,6 @@
 $table-width: 130px;
+$search-input-border-color: #282727;
+$search-input-color: #282727;
 
 .master-database {
   height: 656px;
@@ -123,5 +125,30 @@ $table-width: 130px;
 
   .table-vesselcapacity {
     height: 174px;
+  }
+
+  .search-input-wrapper {
+    position: relative;
+    background: linear-gradient(rgba(203,199,207,1), rgba(241,241,241,1));
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.5);
+    padding: 5px 28px 5px 14px;
+    border-radius: 11px;
+    margin: 0 16px;
+  }
+
+  .search-input {
+    width: 130px;
+    font-size: 14px;
+    font-family: "Lato Medium";
+    background: transparent;
+    border: none;
+    color: $search-input-border-color;
+    border-bottom: 1px solid $search-input-border-color;
+  }
+
+  .search-icon {
+    position: absolute;
+    font-size: 20px;
+    color: $search-input-color;
   }
 }
