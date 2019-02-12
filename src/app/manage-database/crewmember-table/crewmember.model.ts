@@ -7,6 +7,7 @@ import { BaseApiObj, BaseDataObj } from '../../api-storage/base-data';
 export interface CrewmemberApiObj extends BaseApiObj {
   'employee'?: string | null;
   'job'?: string | null;
+  'employee_number'?: string | null;
 }
 
 /**
@@ -16,4 +17,5 @@ export interface CrewmemberApiObj extends BaseApiObj {
 export interface Crewmember extends BaseDataObj {
   employee?: string | null;
   job?: string | null;
+  employeeNumber?: string | null;
 }

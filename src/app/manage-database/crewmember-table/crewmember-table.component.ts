@@ -24,7 +24,8 @@ export class CrewmemberTableComponent implements OnInit {
     tableColumns: [
       { columnDef: 'employee', header: 'Employee Name', width: '330px', cellFn: (row: any) => `${this.HString.toDefaultString(row.employee)}` },
       { columnDef: 'job', header: 'Job Title', width: '330px', cellFn: (row: any) => `${this.HString.toDefaultString(row.job)}` },
-      { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] }
+      // { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete', 'delete-cancel', 'delete-confirm'] }
+      { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete-open'] }
     ],
     tableTitle: 'CREW MEMBER RELATIONSHIPS',
     dataType: 'employees'
@@ -102,6 +103,10 @@ export class CrewmemberTableComponent implements OnInit {
         if (tableActionData.tableAction === 'edit') {
           this.mainService.api('override', tableActionData.entries[0]);
         }
+        break;
+      case 'delete':
+        console.log('delete', tableActionData);
+        this.mainService.api('delete', tableActionData.entries[0]);
         break;
     }
 
