@@ -12,6 +12,8 @@ export class TableWrapperComponent implements OnInit {
 
   HList = HList;
 
+  @Input() mainService: any = null;
+
   // table titlebar view settings
   @Input() titlebarView: TitlebarView = {};
   @Input() tableTitle: string = '';
@@ -25,6 +27,9 @@ export class TableWrapperComponent implements OnInit {
   @Input() data: any[] = [];
   // @Input() filterValue: string = '';
 
+  @Input() mode: 'edit' | 'delete' = null;
+  @Input() editProp: string = '';
+  @Input() editPattern: string = '';
   filterValue: string = '';
 
   @Output() onModifyTable = new EventEmitter<TableActionData>();

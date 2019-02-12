@@ -48,6 +48,11 @@ $search-input-color: #282727;
     border-radius: 13px;
     background: linear-gradient(rgba(203,199,207,1), rgba(244,244,244,1));
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+
+    &:disabled {
+      // background: linear-gradient(rgba(203,199,207,0.5), rgba(244,244,244,0.5));
+      display: none;
+    }
   }
 
   .search-input-wrapper {
