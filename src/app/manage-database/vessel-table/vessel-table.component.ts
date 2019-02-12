@@ -26,7 +26,8 @@ export class VesselTableComponent implements OnInit, OnDestroy {
       { columnDef: 'vesselName', header: 'Vessel Name', width: '180px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselName)}` },
       { columnDef: 'vesselCapacity', header: 'Vessel Capacity', width: '160px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselCapacity)}` },
       { columnDef: 'vesselType', header: 'Vessel Type', width: '160px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vesselType)}` },
-      { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] }
+      // { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete', 'delete-cancel', 'delete-confirm'] }
+      { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete-open'] }
     ],
     tableTitle: 'VESSEL RELATIONSHIPS',
     dataType: 'vessels'
@@ -36,6 +37,7 @@ export class VesselTableComponent implements OnInit, OnDestroy {
   $vesselListUpdateSub: Subscription;
 
   formDialogRef: MatDialogRef<any>;
+  tableMode: 'edit' | 'delete' = null;
 
   constructor(
     private dialog: MatDialog,
@@ -104,6 +106,10 @@ export class VesselTableComponent implements OnInit, OnDestroy {
         if (tableActionData.tableAction === 'edit') {
           this.mainService.api('override', tableActionData.entries[0]);
         }
+        break;
+      case 'delete':
+        console.log('delete', tableActionData);
+        this.mainService.api('delete', tableActionData.entries[0]);
         break;
     }
 
