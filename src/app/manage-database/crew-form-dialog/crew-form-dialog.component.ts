@@ -44,9 +44,9 @@ export class CrewFormDialogComponent implements OnInit {
   unlockTimeoutId: any;
   unlockInterval = 200; // Delay for this.noteService.api('unlock', this.item) after closing ShiftFormDialogComponent
 
-  title = 'Shift Relationships';
-  instruction = 'Create or edit an Shift Relationship using the fields below.';
-  subtitle1 = 'Shift Relationship';
+  title = 'Crew Swap Relationships';
+  instruction = 'Create or edit a Crew Swap Relationship using the fields below.';
+  subtitle1 = 'Crew Swap Relationship';
   subtitle2 = '';
 
   constructor(

@@ -28,13 +28,18 @@
               type="text"
               name="shift"
               placeholder=""
-              required
               #shiftInput="ngModel"
               [matAutocomplete]="shiftListRef"
               (keyup)="onFilterAutocomplete('shift', $event.target.value)"
+              required
+              appIncludeInput
+              [itemList]="shiftList"
+              [itemProp1]="'shift'"
+              [itemType]="'shift'"
             />
             <mat-hint *ngIf="!shiftInput.hasError()">Choose an option</mat-hint>
             <mat-error *ngIf="shiftInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!shiftInput.hasError('required') && shiftInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #shiftListRef="matAutocomplete">
             <mat-option
@@ -58,8 +63,15 @@
               #locationInput="ngModel"
               [matAutocomplete]="locationListRef"
               (keyup)="onFilterAutocomplete('location', $event.target.value)"
+              required
+              appIncludeInput
+              [itemList]="locationList"
+              [itemProp1]="'location'"
+              [itemType]="'location'"
             />
             <mat-hint *ngIf="!locationInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="locationInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!locationInput.hasError('required') && locationInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #locationListRef="matAutocomplete">
             <mat-option
