@@ -144,7 +144,7 @@ export class HString {
     let shortenedName = '';
     if (fullName && typeof fullName === 'string') {
       const names = HString.toDefaultString(fullName).split(',');
-      const lastName = HString.toDefaultString(name[0]).trim();
+      const lastName = HString.toDefaultString(names[0]).trim();
       const firstMiddleName = HString.toDefaultString(names[1]).trim();
       let firstName = firstMiddleName;
       const index = firstMiddleName.lastIndexOf(' ');
@@ -157,5 +157,16 @@ export class HString {
       }
     }
     return shortenedName;
+  }
+
+  static regexTest(regExp: string, str: string) {
+    let isMatched = false;
+    const re = new RegExp(regExp);
+    if (str && typeof str === 'string') {
+      if (re.test(str)) {
+        isMatched = true;
+      }
+    }
+    return isMatched;
   }
 }
