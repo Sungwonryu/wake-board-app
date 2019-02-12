@@ -10,6 +10,9 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  password: string = '';
+  failed: boolean = false;
+
   subtitle = 'Log in with your Windows Active Directory Account using the fields below.';
 
   constructor(
@@ -20,10 +23,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.authService.login({
-      email: form.value.email,
+    console.log('form', form);
+    this.failed = !(this.authService.login({
+      name: form.value.name,
       password: form.value.password
-    });
+    }));
   }
 
 }

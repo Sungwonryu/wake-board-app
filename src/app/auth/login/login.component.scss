@@ -3,6 +3,7 @@
 $login-bg-img-url: $images-assets-path + "backgrounds/login-bg.png";
 $nycferry-logo-img-url: $images-assets-path + "logos/nycferry-logo.png";
 $wakeboard-logo-img-url: $images-assets-path + "logos/wakeboard-logo.png";
+$hialabs-logo-img-url: $images-assets-path + "logos/hialabs-logo.png";
 $login-card-bg-color: #C8D6E1;
 
 :host {
@@ -27,6 +28,16 @@ $login-card-bg-color: #C8D6E1;
   background-size: contain;
 }
 
+.hialabs-logo {
+  height: 122px;
+  width: 192px;
+  position: absolute;
+  left: 40px;
+  top: 20px;
+  background: url($hialabs-logo-img-url) no-repeat center center;
+  background-size: contain;
+}
+
 .wakeboard-logo {
   height: 122px;
   width: 332px;
@@ -48,17 +59,95 @@ $login-card-bg-color: #C8D6E1;
   margin-left: -246px;
   margin-top: -142px;
   background-color: $login-card-bg-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   border: 1px solid #1E1E1E;
-  border-radius: 13px;
+  border-radius: 30px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
 
-  .card-subtitle {
+.fail-message {
+  position: absolute;
+  top: 121px;
+  left: 65px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #f44336;
+}
+
+.card-subtitle {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  white-space: pre-wrap;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 18px 30px;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+}
+
+.login-form {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  mat-form-field {
+    height: 84px;
+    width: 360px;
+  }
+
+  .mat-form-field-infix {
+    border-width: 0;
+    padding: 0;
+    width: 360px;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .input-label {
+    font-family: "Lato Medium";
+    font-size: 12px;
+    color: #222222;
+  }
+
+  .login-input {
+    height: 48px;
     width: 100%;
-    position: absolute;
-    top: 18px;
-    white-space: pre-wrap;
-    font-size: 14px;
-    font-style: italic;
-    text-align: center;
+    margin-top: 2px;
+    padding: 0 10px;
+    border: 1px solid #979797;
+    border-radius: 8px;
+    background: #EDEDED;
+  }
+
+  .login-button {
+    height: 45px;
+    width: 130px;
+    background: #7ED321;
+    border: 1px solid #9E9E9E;
+    border-radius: 22px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.5);
+    margin-top: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Lato Heavy";
+    font-size:16px;
+    color: #222222;
+
+    &[disabled] {
+      background: rgba(155,211,33,0.5);
+      color: rgba(0,0,0,0.5);
+    }
   }
 }

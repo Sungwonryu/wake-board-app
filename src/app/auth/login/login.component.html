@@ -1,9 +1,89 @@
 <div class="login">
-  <div class="nycferry-logo"></div>
+  <a
+    class="nycferry-logo"
+    [routerLink]="['/crewboard']"
+    queryParamsHandling="preserve"></a>
+  <!-- <a
+    class="hialabs-logo"
+    [routerLink]="['/crewboard']"
+    queryParamsHandling="preserve"></a> -->
+
   <div class="wakeboard-logo"></div>
+  
   <div class="login-card">
     <div class="card-subtitle">
       <p>{{ subtitle }}</p>
     </div>
+
+    <form
+      class="login-form"
+      #f="ngForm"
+      (ngSubmit)="onSubmit(f)">
+      <mat-form-field>
+        <label class="input-label">User Name</label>
+        <!-- <input
+          matInput
+          class="login-input"
+          type="text"
+          name="name"
+          placeholder=""
+          ngModel
+          required
+          #emailInput="ngModel" />
+        <mat-error *ngIf="emailInput.hasError('required')">Input must not be empty.</mat-error> -->
+        <input
+          matInput
+          class="login-input"
+          type="text"
+          name="name"
+          placeholder=""
+          ngModel
+          required
+          #nameInput="ngModel" />
+        <!-- <mat-error *ngIf="emailInput.hasError('required')">Input must not be empty.</mat-error> -->
+        <!-- <mat-error *ngIf="!emailInput.hasError('required')">User is invalid.</mat-error> -->
+        <!-- <mat-icon
+          class="done-icon"
+          matSuffix
+          *ngIf="emailInput.valid">done</mat-icon> -->
+      </mat-form-field>
+      <div *ngIf="failed" class="fail-message">User name and/or password is incorrect.</div>
+      <mat-form-field>
+        <label class="input-label">Password</label>
+        <!-- <input
+          matInput
+          class="login-input"
+          name="password"
+          type="password"
+          placeholder=""
+          [(ngModel)]="password"
+          minlength="8"
+          required
+          #passwordInput="ngModel" /> -->
+        <input
+          matInput
+          class="login-input"
+          name="password"
+          type="password"
+          placeholder=""
+          [(ngModel)]="password"
+          required
+          #passwordInput="ngModel" />
+        <!-- <mat-hint align="end">{{ passwordInput.value?.length }} / 8</mat-hint> -->
+        <!-- <mat-error>Password must be at least 8 characters long.</mat-error> -->
+        <!-- <mat-error *ngIf="passwordInput.invalid">Password must be at least 8 characters long.</mat-error> -->
+        <!-- <mat-icon
+          class="done-icon"
+          matSuffix
+          *ngIf="passwordInput.valid">done</mat-icon> -->
+      </mat-form-field>
+
+      <button
+        class="login-button"
+        type="submit"
+        [disabled]="f.invalid">Log In</button>
+
+    </form>
+
   </div>
 </div>
