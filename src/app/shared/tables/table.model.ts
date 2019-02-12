@@ -1,4 +1,4 @@
-export type TableActionType = 'add' | 'edit' | 'delete' | 'duplicate' | 'duplicateAll';
+export type TableActionType = 'add' | 'edit' | 'update' | 'override' | 'delete' | 'duplicate' | 'duplicateAll';
 export type ModifyEntryButtonType = 'edit' | 'delete' | 'duplicate';
 export type TitlebarComponentType = 'add' | 'duplicateAll' | 'search';
 
@@ -12,7 +12,10 @@ export interface TableColumn {
   columnDef?: string,
   header?: string,
   cellFn?: Function,
+  messagePropFn?: Function,
   width?: string,
+  textAlign?: string,
+  colorCode?: string,
   isModifyEntry?: boolean,
   modifyEntryButtons?: ModifyEntryButtonType[]
 }
