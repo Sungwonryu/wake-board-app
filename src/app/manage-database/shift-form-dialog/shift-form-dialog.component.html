@@ -31,8 +31,15 @@
               #shiftInput="ngModel"
               [matAutocomplete]="shiftRef"
               (keyup)="onFilterAutocomplete('shift', $event.target.value)"
+              required
+              appIncludeInput
+              [itemList]="shiftnameList"
+              [itemProp1]="'shift'"
+              [itemType]="'shift'"
             />
             <mat-hint *ngIf="!shiftInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="shiftInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!shiftInput.hasError('required') && shiftInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #shiftRef="matAutocomplete">
             <mat-option
@@ -52,15 +59,20 @@
               ngModel
               type="text"
               name="route"
-              required
               placeholder=""
               #routeInput="ngModel"
               [matAutocomplete]="routeRef"
               (keyup)="onFilterAutocomplete('route', $event.target.value)"
+              required
+              appIncludeInput
+              [itemList]="routeList"
+              [itemProp1]="'route'"
+              [itemType]="'route'"
             />
             <mat-hint *ngIf="!routeInput.hasError()">Choose an option</mat-hint>
             <mat-error *ngIf="routeInput.hasError('required')">Input must not be empty</mat-error>
-          </mat-form-field>
+            <mat-error *ngIf="!routeInput.hasError('required') && routeInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+        </mat-form-field>
           <mat-autocomplete #routeRef="matAutocomplete">
             <mat-option
               *ngFor="let item of filteredRouteList | async"
@@ -80,10 +92,10 @@
               type="text"
               name="callTime"
               placeholder=""
-              pattern="^(([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
               #callTimeInput="ngModel"
               [matAutocomplete]="callTimeListRef"
               (keyup)="onFilterAutocomplete('callTime', $event.target.value)"
+              pattern="^(([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
             />
             <mat-hint *ngIf="!callTimeInput.hasError()">Choose an option</mat-hint>
             <mat-error *ngIf="firstDepartureInput.hasError('pattern')">Call Time must match with 24 hour fromat.</mat-error>
