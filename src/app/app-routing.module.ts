@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './auth/auth.guard';
+
 import { LoginComponent } from './auth/login/login.component';
 import { CrewboardComponent } from './crewboard/crewboard.component';
 import { MainComponent } from './main/main.component';
@@ -17,8 +19,8 @@ import { CrewswapTableComponent } from './manage-database/crewswap-table/crewswa
 
 const routes: Routes = [
   { path: '', component: MainComponent, children: [
-    { path: '', component: AssignmentsComponent, pathMatch: 'full' },
-    { path: 'manage-database', component: ManageDatabaseComponent, children: [
+    { path: '', component: AssignmentsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: 'manage-database', component: ManageDatabaseComponent, canActivate: [AuthGuard], children: [
       { path: '', component: BasicTablesComponent, pathMatch: 'full',  },
       { path: 'relationship-tables', component: RelationshipTablesComponent, children: [
         { path: '', component: VesselTableComponent, pathMatch: 'full' },
