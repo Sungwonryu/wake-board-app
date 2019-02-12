@@ -28,14 +28,19 @@
               type="text"
               name="employee"
               placeholder=""
-              required
               #employeeInput="ngModel"
               [matAutocomplete]="employeeListRef"
               (keyup)="onFilterAutocomplete('employee', $event.target.value)"
+              required
+              appIncludeInput
+              [itemList]="employeeList"
+              [itemProp1]="'employee'"
+              [itemType]="'employee'"
             />
             <mat-hint *ngIf="!employeeInput.hasError()">Choose an option</mat-hint>
-            <mat-error *ngIf="jobInput.hasError('required')">Input must not be empty</mat-error>
-          </mat-form-field>
+            <mat-error *ngIf="employeeInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!employeeInput.hasError('required') && employeeInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+            </mat-form-field>
           <mat-autocomplete #employeeListRef="matAutocomplete">
             <mat-option
               *ngFor="let item of filteredEmployeeList | async"
@@ -58,8 +63,13 @@
               #jobInput="ngModel"
               [matAutocomplete]="jobListRef"
               (keyup)="onFilterAutocomplete('job', $event.target.value)"
+              appIncludeInput
+              [itemList]="jobList"
+              [itemProp1]="'job'"
+              [itemType]="'job'"
             />
             <mat-hint *ngIf="!jobInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="jobInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #jobListRef="matAutocomplete">
             <mat-option
