@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from '@angular/material';
+
+const globalRippleConfig: RippleGlobalOptions = { disabled: true };
 
 // preloader
 import { DataLoadService } from './preloader/data-load.service';
@@ -20,6 +23,7 @@ import { IncludeInputValidatorDirective } from './shared/directives/include-inpu
 import { OrdinalSuffixPipe } from './shared/pipes/ordinal-suffix.pipe';
 import { TableComponent } from './shared/tables/table/table.component';
 import { TableWrapperComponent } from './shared/tables/table-wrapper/table-wrapper.component';
+import { DeleteConfirmDialogComponent } from './shared/tables/delete-confirm-dialog/delete-confirm-dialog.component';
 import { ClockComponent } from './shared/clock/clock.component';
 import { ParamsService } from './shared/services/params.service';
 import { UIService } from './shared/services/ui.service';
@@ -29,6 +33,7 @@ import { ApiStorageService } from './api-storage/api-storage.service';
 
 // auth
 import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 
 // crewboard
@@ -95,6 +100,8 @@ import { ShiftFormDialogComponent } from './manage-database/shift-form-dialog/sh
 import { CrewmemberFormDialogComponent } from './manage-database/crewmember-form-dialog/crewmember-form-dialog.component';
 import { CrewFormDialogComponent } from './manage-database/crew-form-dialog/crew-form-dialog.component';
 
+import { BasicTableFormDialogComponent } from './manage-database/basic-table-form-dialog/basic-table-form-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,6 +111,7 @@ import { CrewFormDialogComponent } from './manage-database/crew-form-dialog/crew
     OrdinalSuffixPipe,
     TableComponent,
     TableWrapperComponent,
+    DeleteConfirmDialogComponent,
     ClockComponent,
     // auth
     LoginComponent,
@@ -141,7 +149,9 @@ import { CrewFormDialogComponent } from './manage-database/crew-form-dialog/crew
     VesselFormDialogComponent,
     ShiftFormDialogComponent,
     CrewmemberFormDialogComponent,
-    CrewFormDialogComponent
+    CrewFormDialogComponent,
+
+    BasicTableFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -158,10 +168,15 @@ import { CrewFormDialogComponent } from './manage-database/crew-form-dialog/crew
     {
       provide: APP_INITIALIZER,
       useFactory: Preloader,
-      deps: [ DataLoadService ],
+      deps: [DataLoadService],
       multi: true
     },
+    {
+      provide: MAT_RIPPLE_GLOBAL_OPTIONS,
+      useValue: globalRippleConfig
+    },
     AuthService,
+    AuthGuard,
     ApiStorageService,
     ParamsService,
     UIService,
@@ -192,11 +207,14 @@ import { CrewFormDialogComponent } from './manage-database/crew-form-dialog/crew
     NoteFormDialogComponent,
     CrewswapFormDialogComponent,
     VesselassignmentFormDialogComponent,
+    DeleteConfirmDialogComponent,
 
     VesselFormDialogComponent,
     ShiftFormDialogComponent,
     CrewmemberFormDialogComponent,
-    CrewFormDialogComponent
+    CrewFormDialogComponent,
+
+    BasicTableFormDialogComponent
   ],
   bootstrap: [AppComponent]
 })
