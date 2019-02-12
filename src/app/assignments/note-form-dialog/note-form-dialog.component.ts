@@ -176,6 +176,7 @@ export class NoteFormDialogComponent implements OnInit {
   }
 
   onSave() {
+    console.log('note-form-dialog.comoponent');
     // Create an instance, newItem from this.form.value
     // The properties that are undefined, null or '' are not set to newItem
     // So, those properties won't be in queryParams

@@ -8,10 +8,8 @@
 
   <div class="body">
     <div class="instruction">
-       <span>{{ instruction }}</span>
+      <span>{{ instruction }}</span>
     </div>
-
-    <div class="subtitle">{{ subtitle1 }}</div>
 
     <form
       class="form"
@@ -28,8 +26,8 @@
               #slipInput="ngModel"
               name="note"
               placeholder=""
-              required
               #slipInput="ngModel"
+              required
               />
             <mat-hint *ngIf="!slipInput.hasError()">Enter your note here</mat-hint>
             <mat-error *ngIf="slipInput.hasError('required')">Input must not be empty</mat-error>
@@ -37,8 +35,8 @@
         </div>
 
         <div class="input-wrapper">
-          <label class="input-label">Expiration Date</label>
-          <mat-form-field>
+          <label class="input-label hidden">Expiration Date</label>
+          <mat-form-field class="hidden">
             <input
               class="input"
               matInput
@@ -73,13 +71,15 @@
               #priorityIdInput="ngModel"
               [matAutocomplete]="priorityListRef"
               (keyup)="onFilterAutocomplete('priority', $event.target.value)"
+              required
               appIncludeInput
               [itemList]="priorityList"
               [itemProp1]="'text'"
               [itemType]="''"
             />
             <mat-hint *ngIf="!priorityIdInput.hasError()">Choose an option</mat-hint>
-            <mat-error *ngIf="priorityIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+            <mat-error *ngIf="priorityIdInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!priorityIdInput.hasError('required') && priorityIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #priorityListRef="matAutocomplete">
             <mat-option
@@ -106,10 +106,12 @@
               appIncludeInput
               [itemList]="durationList"
               [itemProp1]="'text'"
-              [itemType]="''"
+              [itemType]="'duration'"
+              required
             />
             <mat-hint *ngIf="!durationIdInput.hasError()">Choose an option</mat-hint>
-            <mat-error *ngIf="durationIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+            <mat-error *ngIf="durationIdInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!durationIdInput.hasError('required') && durationIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #durationListRef="matAutocomplete">
             <mat-option
@@ -137,10 +139,12 @@
               appIncludeInput
               [itemList]="colorList"
               [itemProp1]="'text'"
-              [itemType]="''"
+              [itemType]="'color'"
+              required
             />
             <mat-hint *ngIf="!colorIdInput.hasError()">Choose an option</mat-hint>
-            <mat-error *ngIf="colorIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+            <mat-error *ngIf="colorIdInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="!colorIdInput.hasError('required') && colorIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
           </mat-form-field>
           <mat-autocomplete #colorListRef="matAutocomplete">
             <mat-option
