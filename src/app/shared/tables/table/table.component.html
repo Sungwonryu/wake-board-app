@@ -13,9 +13,15 @@
       *ngFor="let column of tableColumns"
       [matColumnDef]="column.columnDef">
 
-      <mat-header-cell
+      <!-- <mat-header-cell
         *matHeaderCellDef
         mat-sort-header
+        [fxFlex]="column.width"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngStyle]="{'color': tableView.headerColor || defaults.headerColor, 'font-family': tableView.headerFontFamily || defaults.headerFontFamily, 'font-size': tableView.headerFontSize || defaults.headerFontSize}">{{ column.header }}</mat-header-cell> -->
+      <mat-header-cell
+        *matHeaderCellDef
         [fxFlex]="column.width"
         fxLayout="row"
         fxLayoutAlign="center center"
@@ -32,6 +38,10 @@
         <div
           *ngIf="column.isModifyEntry"
           class="modify-entry">
+          <button
+            *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
+            mat-stroked-button
+            (click)="modifyEntry('edit', row)">Edit</button>
           <button
             *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
             mat-stroked-button
@@ -86,23 +96,80 @@
         *matCellDef="let row"
         [fxFlex]="column.width"
         fxLayout="row"
-        fxLayoutAlign="center center">
+        fxLayoutAlign="center center"
+        [ngStyle]="{'text-align': column.textAlign || 'left' }">
         <div
-          *ngIf="!column.isModifyEntry"
-          class="non-modify-entry">{{ column.cellFn(row) }}</div>
+          *ngIf="!column.isModifyEntry && (mode !== 'edit' || row.id !== item.id)"
+          class="non-modify-entry">
+          <span *ngIf="column.crewMessageIdFn(row, column.messagePropFn) === '1'" class="crew-message-button active">PC</span>
+          <span *ngIf="column.crewMessageIdFn(row, column.messagePropFn) === '2'" class="crew-message-button active">HR</span>
+          <span *ngIf="column.crewMessageIdFn(row, column.messagePropFn) === '3'" class="crew-message-button active">11</span>
+          <span *ngIf="column.crewMessageIdFn(row, column.messagePropFn) === '4'" class="crew-message-button active">T</span>
+          <span [ngStyle]="{ 'color': getFontColor(column.fontColorFn(row)), 'font-weight': getFontWeight(column.fontWeightFn(row)) }">{{ column.cellFn(row) }}</span>
+        </div>
+        <div
+          *ngIf="!column.isModifyEntry && (mode === 'edit' && row.id === item.id)"
+          class="edit-form">
+          <input
+            type="text"
+            class="edit-input"
+            [(ngModel)]="editInputValue"
+            #editInput>
+        </div>
         <div
           *ngIf="column.isModifyEntry"
           class="modify-entry">
-          <button
-            *ngIf="HList.includes(column.modifyEntryButtons, 'edit')"
-            mat-stroked-button
-            class="button-edit"
-            (click)="modifyEntry('edit', row)">Edit</button>
-          <button
-            *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
-            mat-stroked-button
-            class="button-delete"
-            (click)="modifyEntry('delete', row)">Delete</button>
+
+          <div *ngIf="(mode !== 'delete' && mode !== 'edit') || item.id !== row.id">
+            <button
+              *ngIf="HList.includes(column.modifyEntryButtons, 'edit')"
+              mat-stroked-button
+              class="button-edit"
+              (click)="modifyEntry('edit', row)">Edit</button>
+            <button
+              *ngIf="HList.includes(column.modifyEntryButtons, 'edit-open')"
+              mat-stroked-button
+              class="button-edit"
+              (click)="enableEditForm(row)">Edit</button>
+            <button
+              *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
+              mat-stroked-button
+              class="button-delete"
+              (click)="delete(row)">Delete</button>
+            <button
+              *ngIf="HList.includes(column.modifyEntryButtons, 'delete-open')"
+              mat-stroked-button
+              class="button-delete"
+              (click)="enableDeleteForm(row, $event)">Delete</button>
+          </div>
+
+          <div *ngIf="mode === 'edit' && item.id === row.id">
+            <button
+              *ngIf="HList.includes(column.modifyEntryButtons, 'save')"
+              mat-stroked-button
+              class="button-save"
+              [disabled]="!(isValidInput())"
+              (click)="save(row)">Save</button>
+            <button
+              *ngIf="HList.includes(column.modifyEntryButtons, 'edit-cancel')"
+              mat-stroked-button
+              class="button-cancel"
+              (click)="cancelEdit(row)">Cancel</button>
+          </div>
+
+          <div *ngIf="mode === 'delete' && item.id === row.id">
+            <button
+              *ngIf="HList.includes(column.modifyEntryButtons, 'delete-cancel')"
+              mat-stroked-button
+              class="button-cancel"
+              (click)="cancelDelete(row)">Cancel</button>
+            <button
+              *ngIf="HList.includes(column.modifyEntryButtons, 'delete-confirm')"
+              mat-stroked-button
+              class="button-delete-confirmation"
+              (click)="modifyEntry('delete', row)">Are you sure?</button>
+          </div>
+
           <button
             *ngIf="HList.includes(column.modifyEntryButtons, 'duplicate')"
             mat-stroked-button
