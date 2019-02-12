@@ -5,7 +5,12 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
 // Remove the border around the clicked elements
 *:focus {
   outline: none !important;
-  border: 0 !important;
+  // border: 0 !important;
+}
+
+// Hide .mat-calendar-period-button
+.mat-calendar-controls .mat-calendar-period-button {
+  display: none;
 }
 
 .snackbar-panel-success {
@@ -266,6 +271,29 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
   }
 }
 
+.basic-table-form-dialog-container {
+  @extend .form-dialog-container;
+
+  .mat-dialog-container {
+    height: 800px;
+    width: 670px;
+  }
+
+  .instruction-wrapper {
+    width: 100%;
+    padding: 28px;
+  }
+
+  .instruction {
+    height: 40px;
+    padding: 0;
+    border-bottom: 2px solid #000000;
+  }
+
+  .mat-form-field-infix {
+    width: 340px;
+  }
+}
 
 .form-dialog-container {
   .input-wrapper-note {
@@ -278,5 +306,36 @@ $close-button-img-url: $images-assets-path + "icons/close-button.png";
 
   .input-note {
     width: 562px;
+  }
+}
+
+.login-form {
+  .mat-form-field-infix {
+    border-width: 0;
+    padding: 0;
+    width: 360px;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-subscript-wrapper {
+    margin-top: 1px;
+  }
+}
+
+.form-dialog {
+  .save-button[disabled] {
+    background: rgba(126,211,33,0.5);
+  }
+}
+
+.delete-confirm-dialog-container {
+  @extend .form-dialog-container;
+
+  .mat-dialog-container {
+    height: 104px;
+    width: 230px;
   }
 }
