@@ -26,7 +26,8 @@ export class ShiftTableComponent implements OnInit, OnDestroy {
       { columnDef: 'route', header: 'Route', width: '180px', cellFn: (row: any) => `${this.HString.toDefaultString(row.route)}` },
       { columnDef: 'callTime', header: 'Call Time', width: '160px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0, 5)}` },
       { columnDef: 'firstDeparture', header: 'First Departure', width: '160px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0, 5)}` },
-      { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete'] }
+      // { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete', 'delete-cancel', 'delete-confirm'] }
+      { columnDef: 'modifyEntry', header: 'Modify Entry', width: '244px', isModifyEntry: true, modifyEntryButtons: ['edit', 'delete-open'] }
     ],
     tableTitle: 'SHIFT RELATIONSHIPS',
     dataType: 'shifts'
@@ -103,6 +104,10 @@ export class ShiftTableComponent implements OnInit, OnDestroy {
         if (tableActionData.tableAction === 'edit') {
           this.mainService.api('override', tableActionData.entries[0]);
         }
+        break;
+      case 'delete':
+        console.log('delete', tableActionData);
+        this.mainService.api('delete', tableActionData.entries[0]);
         break;
     }
 
