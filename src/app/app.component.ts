@@ -74,10 +74,10 @@ export class AppComponent {
     this.crewswapService.api('read');
     this.vesselassignmentService.api('read');
 
-    this.authService.login({
-      email: 'admin1@test.com',
-      password: '12345678'
-    });
+    // this.authService.login({
+    //   name: 'admin1',
+    //   password: '12345678'
+    // });
   }
 
 }
