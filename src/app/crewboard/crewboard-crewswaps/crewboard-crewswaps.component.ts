@@ -60,7 +60,8 @@ export class CrewboardCrewswapsComponent implements OnDestroy, OnInit {
     // this._setTableData(this.tableDataList[1], this.data, 'locationId', '2', 'firstDeparture', 'callTime', currentTime);
     // this._setTableData(this.tableDataList[2], this.data, 'locationId', '3', 'callTime', 'firstDeparture', currentTime);
     this._setTableData(this.tableDataList[0], this.data, 'location', 'GMD and Pier 11', 'callTimeDT', 'firstDepartureDT', currentTime);
-    this._setTableData(this.tableDataList[1], this.data, 'location', 'Pier11 Only', 'firstDepartureDT', 'callTimeDT', currentTime);
+    // this._setTableData(this.tableDataList[1], this.data  , 'location', 'Pier11 Only', 'firstDepartureDT', 'callTimeDT', currentTime);
+    this._setTableData(this.tableDataList[1], this.data  , 'location', 'Pier11 Only', 'firstDepartureDT', 'firstDepartureDT', currentTime);
     this._setTableData(this.tableDataList[2], this.data, 'location', 'GMD Only', 'callTimeDT', 'firstDepartureDT', currentTime);
   }
 
