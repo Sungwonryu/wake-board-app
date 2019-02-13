@@ -16,7 +16,7 @@
                   <div class="shift">{{ item.shift }}</div>
                 </div>
                 <div class="card-body">
-                  <p class="time">{{ item.callTime | date: 'HH:mm' }}</p>
+                  <p class="time">{{ item.callTimeDT | date: 'HH:mm' }}</p>
                   <p *ngIf="item.captain1" [ngClass]="{ 'message': displayMessageSymbol(item, 'captain1MessageId') }">
                     <span *ngIf="displayMessageSymbol(item, 'captain1MessageId')">{{ displayMessageSymbol(item, 'captain1MessageId') }}</span>
                     {{ displayCrewName(item, 'captain1') }}
