@@ -2,29 +2,40 @@
 @import "global-preloads.scss";
 
 .crewboard {
-  height: 108.0rem;
-  width: 192.0rem;
+  height: 1080px;
+  width: 1920px;
   position: relative;
   background: url($assets-path + "crewboard/images/crewboard_background.png") no-repeat center center;
+  background-size: cover;
   font-family: "Helvetica Neue Light";
 }
 
 .wakeboard-logo {
-  height: 6.8rem;
-  width: 16.3rem;
+  height: 68px;
+  width: 163px;
   position: absolute;
-  left: 2.0rem;
-  top: 2.0rem;
+  left: 20px;
+  top: 20px;
   background: url($assets-path + "crewboard/images/wakeboard_logo.png") no-repeat center center;
   background-size: contain;
 }
 
-.notes-wrapper {
-  height: 15.5rem;
-  width: 56.4rem;
+.hialabs-logo {
+  height: 88px;
+  width: 163px;
   position: absolute;
-  left: 8.8rem;
-  top: 18.7rem;
+  left: 20px;
+  top: 6px;
+  background: url($assets-path + "images/logos/hialabs-logo.png") no-repeat center center;
+  background-size: contain;
+}
+
+.notes-wrapper {
+  height: 155px;
+  width: 564px;
+  position: absolute;
+  left: 88px;
+  top: 187px;
   background: $crewboard-outer-bg-color;
   border: $crewboard-outer-border;
   border-radius: $crewboard-outer-border-radius;
@@ -33,11 +44,11 @@
 }
 
 .crewswaps-wrapper {
-  height: 43.8rem;
-  width: 56.4rem;
+  height: 438px;
+  width: 564px;
   position: absolute;
-  left: 8.8rem;
-  top: 36.2rem;
+  left: 88px;
+  top: 362px;
   background: $crewboard-outer-bg-color;
   border: $crewboard-outer-border;
   border-radius: $crewboard-outer-border-radius;
@@ -45,11 +56,11 @@
 }
 
 .slipassignments-wrapper {
-  height: 20.6rem;
-  width: 56.4rem;
+  height: 206px;
+  width: 564px;
   position: absolute;
-  left: 8.8rem;
-  top: 82.0rem;
+  left: 88px;
+  top: 820px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,11 +71,11 @@
 }
 
 .vesselassignments-wrapper {
-  height: 97.7rem;
-  width: 115.0rem;
+  height: 977px;
+  width: 1150px;
   position: absolute;
-  left: 71.0rem;
-  top: 4.9rem;
+  left: 710px;
+  top: 49px;
   background: $crewboard-outer-bg-color;
   border: $crewboard-outer-border;
   border-radius: $crewboard-outer-border-radius;
