@@ -6,15 +6,15 @@
 }
 
 .critical-notes-wrapper {
-  height: 8.4rem;
+  height: 84px;
   width: 100%;
-  border-bottom: 0.1rem solid #979797;
+  border-bottom: 1px solid #979797;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: "Lato Heavy";
-  font-size: 2.0rem;
+  font-size: 20px;
 }
 
 .critical-note {
@@ -26,7 +26,7 @@
   flex-wrap: wrap;
 
   // margin: 0 1.2rem;
-  padding: 0 1.2rem;
+  padding: 0 12px;
   text-align: center;
   text-transform: uppercase;
   background: #FF5757;
@@ -39,9 +39,9 @@
 }
 
 .non-critical-notes-wrapper {
-  height: 7.1rem;
+  height: 71px;
   width: 100%;
-  border-top: 0.1rem solid #979797;
+  border-top: 1px solid #979797;
 }
 
 .marquee {
@@ -56,33 +56,33 @@
     width: auto;
     min-width: 100%;
     position: absolute;
-    padding-left: 56.8rem;
+    padding-left: 568px;
     white-space: nowrap;
     margin: 0;
 
     font-family: "Lato";
-    font-size: 2.0rem;
+    font-size: 20px;
     font-weight: 400;
-    line-height: 5.6rem;
+    line-height: 56px;
     float: left;
   }
 
   span {
-    height: 5.8rem;
+    height: 58px;
     display: inline-block;
-    padding: 0 2.0rem;
-    margin: 0.2rem 1.4rem 0.4rem;
+    padding: 0 20px;
+    margin: 2px 14px 04px;
     background-color: #FCEEEE;
-    border: 0.1rem solid #524D4D;
-    border-radius: 1.7rem;
-    box-shadow: 0.1rem 0.1rem 0.2rem 0 #979797;
+    border: 1px solid #524D4D;
+    border-radius: 17px;
+    box-shadow: 1px 1px 2px 0 #979797;
   }
 
   span:first-child {
-    margin: 0.3rem 1.4rem 0.3rem 0;
+    margin: 3px 14px 3px 0;
   }
   span:last-child {
-    margin: 0.3rem 0 0.3rem 1.4rem;
+    margin: 3px 0 3px 14px;
   }
 }
 
@@ -124,5 +124,5 @@
   height: 6px;
   height: 6px;
   padding: 1px 2px 0;
-  padding: 1px 0.2rem 0;
+  padding: 1px 2px 0;
 }
