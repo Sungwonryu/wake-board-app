@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
 
   subtitle = 'Log in with your Windows Active Directory Account using the fields below.';
 
+  timeoutId: any = null;
+  timeoutInterval = 400;
+
   constructor(
     private authService: AuthService
   ) { }
@@ -23,11 +26,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log('form', form);
-    this.failed = !(this.authService.login({
-      name: form.value.name,
-      password: form.value.password
-    }));
+    this.timeoutId = setTimeout(() => {
+      this.failed = !(this.authService.login({
+        name: form.value.name,
+        password: form.value.password
+      }));
+    }, this.timeoutInterval);
   }
-
+  
 }
