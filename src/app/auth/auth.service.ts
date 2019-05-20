@@ -18,8 +18,6 @@ export class AuthService {
   url = environment.urls.userData;
   previousUrl: string = '/';
   expirationDelay = 18000000; // 5 hour
-  // expirationDelay = 3600000; // 1 hour
-
 
   user: User = null;
   userList: User[] = [];
@@ -114,10 +112,13 @@ export class AuthService {
   }
 
   login(authData: AuthData): boolean {
+    console.log('#### login(), authDate: ', authData);
+    console.log('#### login(), this.userList: ', this.userList);
     let matchedUser = this.userList.find((user: User) => {
       // return user.email === authData.email && user.password === authData.password;
       return user.name === authData.name && user.password === authData.password;
     });
+
     if (matchedUser) {
       this.user = matchedUser;
       this.user.expiration = (new Date()).getTime() + this.expirationDelay;
