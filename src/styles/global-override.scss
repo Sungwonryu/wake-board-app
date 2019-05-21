@@ -1,4 +1,29 @@
- @import "global-preloads.scss";
+@import "global-preloads.scss";
+
+/**
+ * Fix fonts that render as bold in Firefox
+ *
+ * Put this near the top of your style.css
+ * Before any overriding styles
+ */
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight: 400;
+}
+
+/**
+ * Firefox specific rule
+ */
+
+@-moz-document url-prefix() {
+  body {
+    // font-weight: lighter !important;
+    font-weight: lighter;
+  }
+}
 
 $close-button-img-url: $images-assets-path + "icons/close-button.png";
 
