@@ -64,7 +64,7 @@
             <input
               class="input"
               matInput
-              ngModel
+              [(ngModel)]="priorityId"
               type="text"
               name="priorityId"
               placeholder=""
@@ -76,10 +76,16 @@
               [itemList]="priorityList"
               [itemProp1]="'text'"
               [itemType]="''"
+              appDuplicateInput
+              [duplicateList]="list"
+              [duplicateProp]="'priority'"
+              [duplicateVal]="'Critical'"
+              [duplicateLimit]="1"
             />
             <mat-hint *ngIf="!priorityIdInput.hasError()">Choose an option</mat-hint>
             <mat-error *ngIf="priorityIdInput.hasError('required')">Input must not be empty</mat-error>
             <mat-error *ngIf="!priorityIdInput.hasError('required') && priorityIdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+            <mat-error *ngIf="!priorityIdInput.hasError('required') && priorityIdInput.hasError('duplicateInput')">Critical note has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #priorityListRef="matAutocomplete">
             <mat-option
