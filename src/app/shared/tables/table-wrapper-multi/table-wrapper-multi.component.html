@@ -1,3 +1,100 @@
-<p>
-  table-wrapper-multi works!
-</p>
+<section
+  class="table-wrapper"
+  fxLayout="column"
+  fxLayoutAlign="flex-start center">
+
+  <div
+    class="table-title-bar"
+    [fxFlex]="titlebarView.height"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    [ngStyle]="{ 'background-color': titlebarView?.bgColor }">
+
+    <div class="left-pane">
+      <span class="table-title">{{ tableTitle }}</span>
+      <button
+        *ngIf="HList.includes(titlebarView.titlebarComponents, 'add')"
+        mat-stroked-button
+        class="table-button"
+        (click)="addEntry()">Add New +</button>
+      <button
+        *ngIf="HList.includes(titlebarView.titlebarComponents, 'duplicateAll')"
+        mat-stroked-button
+        class="table-button"
+        (click)="duplicateAllEntries()"
+        [disabled]="!data.length">Duplicate All Entries</button>
+    </div>
+
+    <div class="right-pane">
+      <div class="search-input-wrapper">
+        <input
+          *ngIf="HList.includes(titlebarView.titlebarComponents, 'search')"
+          class="search-input"
+          type="text"
+          placeholder="Search"
+          (keyup)="applyFilter($event.target.value)">
+        <mat-icon class="search-icon">search</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="table-container table-container-header"
+    [ngStyle]="{'height': tableView.headerHeight, 'color': tableView.headerColor || defaults.headerColor, 'background-color': tableView.headerBgColor || defaults.headerBgColor}">
+
+    <app-table-header-multi
+      fxFlex="50%"
+      [tableView]="tableView"
+      [tableColumns]="tableColumns"
+      [data]="data"
+      [dataType]="dataType"
+      [filterValue]="filterValue"
+      [editProp]="editProp"
+      [editPattern]="editPattern"
+      [mainService]="mainService"
+      (onModifyEntry)="modify($event)"></app-table-header-multi>
+
+    <app-table-header-multi
+      fxFlex="50%"
+      [tableView]="tableView"
+      [tableColumns]="tableColumns"
+      [data]="data"
+      [dataType]="dataType"
+      [filterValue]="filterValue"
+      [editProp]="editProp"
+      [editPattern]="editPattern"
+      [mainService]="mainService"
+      (onModifyEntry)="modify($event)"></app-table-header-multi>
+
+  </div>
+
+  <div class="scroll-container">
+    <div class="multi-table-wrapper">
+      <app-table-multi
+        fxFlex="50%"
+        [tableView]="tableView"
+        [tableColumns]="tableColumns"
+        [data]="data"
+        [dataType]="dataType"
+        [filterValue]="filterValue"
+        [editProp]="editProp"
+        [editPattern]="editPattern"
+        [mainService]="mainService"
+        (onModifyEntry)="modify($event)"
+        [hasRightBorder]="true"></app-table-multi>
+
+      <app-table-multi
+        fxFlex="50%"
+        [tableView]="tableView"
+        [tableColumns]="tableColumns"
+        [data]="data2"
+        [dataType]="dataType"
+        [filterValue]="filterValue"
+        [editProp]="editProp"
+        [editPattern]="editPattern"
+        [mainService]="mainService"
+        (onModifyEntry)="modify($event)"></app-table-multi>
+    </div>
+  </div>
+
+</section>
