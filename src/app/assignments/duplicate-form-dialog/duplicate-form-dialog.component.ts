@@ -106,7 +106,7 @@ export class DuplicateFormDialogComponent implements OnInit {
     }
     this.formInitTimeoutId = setTimeout(() => {
       this.setFormValue();
-      this.datePicker.opened = true;
+      this.datePicker.opened = false;
     }, this.formInitInterval);
   }
 
