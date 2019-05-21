@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 // shared
 import { UniqueInputValidatorDirective } from './shared/directives/unique-input.directive';
 import { IncludeInputValidatorDirective } from './shared/directives/include-input.directive';
+import { DuplicateInputValidatorDirective } from './shared/directives/duplicate-input.directive';
 import { OrdinalSuffixPipe } from './shared/pipes/ordinal-suffix.pipe';
 import { TableComponent } from './shared/tables/table/table.component';
 import { TableWrapperComponent } from './shared/tables/table-wrapper/table-wrapper.component';
@@ -108,6 +109,7 @@ import { BasicTableFormDialogComponent } from './manage-database/basic-table-for
     // share
     UniqueInputValidatorDirective,
     IncludeInputValidatorDirective,
+    DuplicateInputValidatorDirective,
     OrdinalSuffixPipe,
     TableComponent,
     TableWrapperComponent,
