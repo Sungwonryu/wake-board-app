@@ -72,7 +72,7 @@ export class IncludeInputValidatorDirective implements Validator {
       includeInputValidator(this.list, this.type, this.prop1, this.prop2)(control) :
       null;
 
-    console.log(`IncludeInputValidator - prop1: ${this.prop1}, prop2: ${this.prop2}, result: `, result);
+    // console.log(`IncludeInputValidator - prop1: ${this.prop1}, prop2: ${this.prop2}, result: `, result);
     return result;
   }
 

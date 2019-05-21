@@ -5,12 +5,13 @@ import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn } from '@angular
 // except when input is same as the property of the edited item
 export function uniqueInputValidator(list: any[], prop: string, editedItem: any): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-
     let isUnique = true;
     for (let i = 0; i < list.length; i++) {
-      if (list && Array.isArray(list)
-          && typeof list[i][prop] === 'string'
-          && typeof control.value === 'string') {
+      if (list && Array.isArray(list) &&
+          typeof list[i][prop] === 'string' &&
+          typeof control.value === 'string' &&
+          list[i][prop].length &&
+          control.value.length) {
         if (list[i][prop].toLowerCase() === control.value.toLowerCase()) {
           // When any string list[i][prop] is same as control.value
           // control.value is not unique
@@ -51,7 +52,7 @@ export class UniqueInputValidatorDirective implements Validator {
       uniqueInputValidator(this.list, this.prop, this.item)(control) :
       null;
 
-    console.log(`UniqueInputValidator - prop: ${this.prop}, result: `, result);
+    // console.log(`UniqueInputValidator - prop: ${this.prop}, result: `, result);
     return result;
   }
 
