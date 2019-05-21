@@ -23,8 +23,9 @@ import { IncludeInputValidatorDirective } from './shared/directives/include-inpu
 import { DuplicateInputValidatorDirective } from './shared/directives/duplicate-input.directive';
 import { OrdinalSuffixPipe } from './shared/pipes/ordinal-suffix.pipe';
 import { TableComponent } from './shared/tables/table/table.component';
-import { TableMultiComponent } from './shared/tables/table-multi/table-multi.component';
 import { TableWrapperComponent } from './shared/tables/table-wrapper/table-wrapper.component';
+import { TableMultiComponent } from './shared/tables/table-multi/table-multi.component';
+import { TableWrapperMultiComponent } from './shared/tables/table-wrapper-multi/table-wrapper-multi.component';
 import { DeleteConfirmDialogComponent } from './shared/tables/delete-confirm-dialog/delete-confirm-dialog.component';
 import { ClockComponent } from './shared/clock/clock.component';
 import { ParamsService } from './shared/services/params.service';
@@ -113,8 +114,9 @@ import { BasicTableFormDialogComponent } from './manage-database/basic-table-for
     DuplicateInputValidatorDirective,
     OrdinalSuffixPipe,
     TableComponent,
-    TableMultiComponent,
     TableWrapperComponent,
+    TableMultiComponent,
+    TableWrapperMultiComponent,
     DeleteConfirmDialogComponent,
     ClockComponent,
     // auth
