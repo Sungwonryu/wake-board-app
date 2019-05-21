@@ -2,8 +2,7 @@
   height: 104px;
   width: 230px;
   border: 1px solid #000000;
-  border-radius: 20px;
-  overflow: hidden;
+  border-radius: 19px;
 }
 
 .message {
@@ -18,7 +17,7 @@
   font-family: "Lato";
   font-size: 14px;
   line-height: 18px;
-  // font-weight: bold;
+  font-weight: 400;
 }
 
 .button-group {
