@@ -51,7 +51,7 @@ export class ShiftFormDialogComponent implements OnInit {
   unlockInterval = 200; // Delay for this.noteService.api('unlock', this.item) after closing ShiftFormDialogComponent
 
   title = 'Shift Relationships';
-  instruction = 'Create or edit an Shift Relationship using the fields below.';
+  instruction = 'Create or edit a Shift Relationship using the fields below.';
   subtitle1 = 'Shift Relationship';
   subtitle2 = '';
 
