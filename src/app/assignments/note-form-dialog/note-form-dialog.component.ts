@@ -52,6 +52,7 @@ export class NoteFormDialogComponent implements OnInit {
   instruction = 'Create or edit an note using the fields below. If a field doesn’t apply to your note, leave it blank.';
   subtitle1 = 'Note Info';
   subtitle2 = '';
+  priorityId: string = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
