@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+
 /**
  *  _pad() returns 2 digits number string
  *  by prepending '0' if the given number is less than 10
@@ -115,5 +117,14 @@ export class HDate {
         ':' + _pad(date.getSeconds());
       return str;
     }
+  }
+
+  static formatDate(date: any, format: string) {
+    let str = '';
+    if (date && date instanceof Date) {
+      const datePipe = new DatePipe('en-US');
+      str = datePipe.transform(date, format);
+    }
+    return str;
   }
 }
