@@ -117,13 +117,13 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   };
 
   slipassignmentTableColumns = [
-    { ...this.columnDefault, columnDef: 'slip', header: 'Slip', width: '70px', cellFn: (row: any) => `${this.HString.toDefaultString(row.slip)}` },
+    { ...this.columnDefault, columnDef: 'slip', header: 'Slip', width: '70px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.slip)}` },
     // { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel 1', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel1Id))}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` },
     // { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel2Id))}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
     // { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel3Id))}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
-    { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel 1', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel1)}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` },
-    { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel2)}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
-    { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel3)}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
+    { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel 1', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel1)}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` },
+    { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel2)}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
+    { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel3)}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
   ];
 
   slipassignmentTableData = {
@@ -149,13 +149,14 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   };
 
   noteTableColumns = [
-    { ...this.columnDefault, columnDef: 'note', header: 'Note', width: '335px', cellFn: (row: any) => `${this.HString.toDefaultString(row.note)}` },
+    { ...this.columnDefault, columnDef: 'note', header: 'Note', width: '335px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.note)}` },
     // { ...this.columnDefault, columnDef: 'priorityId', header: 'Priority', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(this.noteService.getItemProperty('priorityList', { property: 'id', value: row.priorityId }, ['text']))}` },
     // { ...this.columnDefault, columnDef: 'durationId', header: 'Duration', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(this.noteService.getItemProperty('durationList', { property: 'id', value: row.durationId }, ['text']))}` },
     // { ...this.columnDefault, columnDef: 'colorId', header: 'Color', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(this.noteService.getItemProperty('colorList', { property: 'id', value: row.colorId }, ['text']))}` }
-    { ...this.columnDefault, columnDef: 'priorityId', header: 'Priority', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.priority)}` },
-    { ...this.columnDefault, columnDef: 'durationId', header: 'Duration', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.duration)}` },
-    { ...this.columnDefault, columnDef: 'colorId', header: 'Color', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.color)}` }
+    { ...this.columnDefault, columnDef: 'priorityId', header: 'Priority', width: '80px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.priority)}` },
+    // { ...this.columnDefault, columnDef: 'durationId', header: 'Duration', width: '80px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.duration)}` },
+    { ...this.columnDefault, columnDef: 'durationId', header: 'Duration', width: '80px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(this.HDate.formatDate(this.getLastEffectiveDate(row.expirationDate), 'MMM d'), '-')}` },
+    { ...this.columnDefault, columnDef: 'colorId', header: 'Color', width: '126px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.color)}` }
   ];
 
   noteTableData = {
@@ -181,12 +182,12 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   };
 
   crewswapTableColumns = [
-    { ...this.columnDefault, columnDef: 'callTime', header: 'Call Time', width: '80px', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0,5)}` },
-    { ...this.columnDefault, columnDef: 'firstDeparture', header: 'First Departure', width: '110px', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0,5)}` },
+    { ...this.columnDefault, columnDef: 'callTime', header: 'Call Time', width: '80px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.callTime).slice(0,5)}` },
+    { ...this.columnDefault, columnDef: 'firstDeparture', header: 'First Departure', width: '110px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.firstDeparture).slice(0,5)}` },
     // { ...this.columnDefault, columnDef: 'vesselId', header: 'Vessel', width: '230px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vesselId))}` },
-    { ...this.columnDefault, columnDef: 'vesselId', header: 'Vessel', width: '230px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel)}` },
-    { ...this.columnDefault, columnDef: 'shift', header: 'Shift', width: '126px', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
-    { ...this.columnDefault, columnDef: 'location', header: 'Pick Up Location', width: '148px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }
+    { ...this.columnDefault, columnDef: 'vesselId', header: 'Vessel', width: '230px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel)}` },
+    { ...this.columnDefault, columnDef: 'shift', header: 'Shift', width: '126px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.shift)}` },
+    { ...this.columnDefault, columnDef: 'location', header: 'Pick Up Location', textAlign: 'center', width: '148px', cellFn: (row: any) => `${this.HString.toDefaultString(row.location)}` }
   ];
 
   crewswapTableData = {
@@ -515,6 +516,14 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
       displayName = firstName + ' ' + lastName[0].toUpperCase() + '.';
     }
     return displayName;
+  }
+
+  getLastEffectiveDate(expirationDate: any) {
+    let lastDate = null;
+    if (expirationDate && expirationDate instanceof Date) {
+      lastDate = new Date(expirationDate.getTime() - 86400000);
+    }
+    return lastDate;
   }
 
 }
