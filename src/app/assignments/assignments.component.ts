@@ -46,6 +46,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   $vesselassignmentApiResponseSub: Subscription;
 
   slipassignmentList: any[] = [];
+  slipassignmentList2: any[] = [];
   $slipassignmentListUpdateSub: Subscription;
   $slipassignmentApiResponseSub: Subscription;
 
@@ -116,14 +117,20 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     ]
   };
 
+  // slipassignmentTableColumns = [
+  //   { ...this.columnDefault, columnDef: 'slip', header: 'Slip', width: '70px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.slip)}` },
+  //   // { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel 1', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel1Id))}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` },
+  //   // { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel2Id))}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
+  //   // { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel3Id))}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
+  //   { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel 1', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel1)}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` },
+  //   { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel2)}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
+  //   { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel3)}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
+  // ];
   slipassignmentTableColumns = [
-    { ...this.columnDefault, columnDef: 'slip', header: 'Slip', width: '70px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.slip)}` },
-    // { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel 1', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel1Id))}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` },
-    // { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel2Id))}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
-    // { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(this.vesselService.getVesselName(row.vessel3Id))}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
-    { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel 1', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel1)}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` },
-    { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel2)}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
-    { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel3)}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
+    { ...this.columnDefault, columnDef: 'slip', header: 'Slip', width: '30px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.slip)}` },
+    { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel', textAlign: 'center', width: '179px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel1)}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` }
+    // { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel2)}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
+    // { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel3)}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
   ];
 
   slipassignmentTableData = {
@@ -321,6 +328,24 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     });
   }
 
+  setSlipassignmentList(list: any[]) {
+    // const slipList1 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
+    // const slipList2 = ['16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
+    const slipList1 = ['1', '2', '3', '4', '5'];
+    const slipList2 = ['6', '7', '8', '9', '10'];
+
+    this.slipassignmentList = list.filter((item: any) => {
+      if ( item && typeof item === 'object' && typeof item.slip === 'string') {
+        return slipList1.indexOf(item.slip) > -1;
+      }
+    });
+    this.slipassignmentList2 = list.filter((item: any) => {
+      if ( item && typeof item === 'object' && typeof item.slip === 'string') {
+        return slipList2.indexOf(item.slip) > -1;
+      }
+    });
+  }
+
   initListUpdate() {
     // vessel
     this.$vesselListUpdateSub = this.vesselService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
@@ -341,7 +366,8 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     this.$slipassignmentListUpdateSub = this.slipassignmentService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
       console.log(`${this.slipassignmentService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
-        this.slipassignmentList = this.slipassignmentService.getList();
+        // this.slipassignmentList = this.slipassignmentService.getList();
+        this.setSlipassignmentList(this.slipassignmentService.getList());
       }
     });
     // note
@@ -365,7 +391,8 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     this.vesselList = this.vesselService.getAutocompleteList();
     console.log('vesselList', this.vesselList);
     this.vesselassignmentList = this.vesselassignmentService.getList();
-    this.slipassignmentList = this.slipassignmentService.getList();
+    // this.slipassignmentList = this.slipassignmentService.getList();
+    this.setSlipassignmentList(this.slipassignmentService.getList());
     this.noteList = this.noteService.getList();
     this.crewswapList = this.crewswapService.getList();
   }

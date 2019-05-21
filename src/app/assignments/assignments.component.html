@@ -34,7 +34,7 @@
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
   </div>
 
-  <div
+  <!-- <div
     *ngIf="!isPast"
     class="table-container table-container-slipassignment">
     <app-table-wrapper
@@ -60,6 +60,35 @@
       [data]="slipassignmentList"
       [mode]="modeSlipassignment"
       (onModifyTable)="modifyTable($event)"></app-table-wrapper>
+  </div> -->
+  <div
+    *ngIf="!isPast"
+    class="table-container table-container-slipassignment">
+    <app-table-wrapper-multi
+      [titlebarView]="slipassignmentTableData.titlebarView"
+      [tableTitle]="slipassignmentTableData.tableTitle"
+      [tableView]="slipassignmentTableData.tableView"
+      [tableColumns]="slipassignmentTableData.tableColumns"
+      [dataType]="slipassignmentTableData.dataType"
+      [data]="slipassignmentList"
+      [mode]="modeSlipassignment"
+      (onModifyTable)="modifyTable($event)"
+      [data2]="slipassignmentList2"></app-table-wrapper-multi>
+  </div>
+
+  <div
+    *ngIf="isPast"
+    class="table-container table-container-slipassignment">
+    <app-table-wrapper-multi
+      [titlebarView]="slipassignmentTableDataPast.titlebarView"
+      [tableTitle]="slipassignmentTableDataPast.tableTitle"
+      [tableView]="slipassignmentTableDataPast.tableView"
+      [tableColumns]="slipassignmentTableDataPast.tableColumns"
+      [dataType]="slipassignmentTableDataPast.dataType"
+      [data]="slipassignmentList"
+      [mode]="modeSlipassignment"
+      (onModifyTable)="modifyTable($event)"
+      [data2]="slipassignmentList2"></app-table-wrapper-multi>
   </div>
 
   <div
