@@ -1,0 +1,164 @@
+$table-header-row-height: 40px;
+$table-body-row-height: 40px;
+$table-header-row-bg-color: #ECECEC;
+$table-body-row-bg-color-odd: #ECECEC;
+$table-body-row-bg-color-even: #D8D8D8;
+$table-border-color: #979797;
+$modify-entry-button-border-color: #393939;
+$table-color: #222222;
+
+:host {
+  width: 100%;
+}
+
+.table-container {
+  .table {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.table-body {
+  overflow-y: auto;
+  background: linear-gradient(
+    180deg,
+    $table-body-row-bg-color-odd,
+    $table-body-row-bg-color-odd 39px,
+    $table-border-color 39px,
+    $table-border-color 40px,
+    $table-body-row-bg-color-even 40px,
+    $table-body-row-bg-color-even 79px,
+    $table-border-color 79px,
+    $table-border-color
+  );
+  background-size: 100% 80px
+}
+
+.row-header {
+  width: 100%;
+  height: $table-header-row-height;
+  background-color: $table-header-row-bg-color;
+  border-bottom: 1px solid $table-border-color;
+}
+
+.row-body {
+  height: $table-body-row-height;
+  width: 100%;
+  border-bottom: 1px solid $table-border-color;
+
+  &:nth-child(odd) {
+    background: $table-body-row-bg-color-odd;
+  }
+
+  &:nth-child(even) {
+    background: $table-body-row-bg-color-even;
+  }
+}
+
+mat-cell,
+mat-header-cell,
+mat-header-row,
+mat-row {
+  min-height: 38px;
+  // color: $table-color;
+}
+
+mat-header-cell {
+  font-family: "Lato";
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 !important; // Override mat-header-cell:last-of-type and mat-header-cell:first-of-type
+}
+
+mat-cell {
+  font-family: 'Lato Medium';
+  font-size: 14px;
+  border-right: 1px solid $table-border-color;
+  padding: 0 !important; // Override mat-cell:last-of-type and mat-cell:first-of-type
+}
+
+mat-cell:last-child {
+  border-right: none;
+}
+
+.modify-entry {
+  button {
+    font-family: 'Lato Medium';
+    font-size: 12px;
+    line-height: 22px;
+    border: 1px solid $modify-entry-button-border-color;
+    border-radius: 15px;
+    // padding: 4px 10px;
+    background: linear-gradient(rgba(238,238,238,1), rgba(216,216,216,1));
+    margin: 0 4px;
+  }
+
+  .button-delete,
+  .button-edit,
+  .button-cancel,
+  .button-save,
+  .button-delete-confirmation {
+    height: 25px;
+    width: 79px;
+  }
+
+  .button-delete,
+  .button-delete-confirmation {
+    // background: linear-gradient(rgba(255,47,47,1), rgba(243,93,93,1));
+    background: #F98484;
+  }
+
+  .button-delete-confirmation {
+    font-size: 10px;
+    padding: 0;
+  }
+
+  .button-save {
+    background: #7ED321
+  }
+}
+
+.table-container-body .table-body {
+  // overflow: -moz-scrollbars-none;  // Firefox
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none;  // IE 10+
+  -ms-overflow-style: -ms-autohiding-scrollbar; // Edge
+  -ms-overflow-style: none; // Edge
+}
+
+.table-container-body .table-body::-webkit-scrollbar {
+  display: none;
+  width: 0 !important; // Chrome and Safari
+}
+
+.edit-input {
+  width: 336px;
+  height: 37px;
+  padding: 10px;
+  font-family: "Lato";
+  font-size: 16px;
+}
+
+.crew-message-button {
+  margin: -4px 3px 0 0;
+  height: 22px;
+  width: 22px;
+  background-color: #D8D8D8;
+  font-family: "Lato Medium";
+  font-size: 12px;
+  line-height: 18px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #979797;
+  border: 2px solid #979797;
+  border-radius: 6px;
+  float: left;
+
+  &.active {
+    // background: linear-gradient(#3CA2E2, #225A9D);
+    background: #3CA2E2;
+    color: #222222;
+    border: 2px solid #222222;
+    // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  }
+}

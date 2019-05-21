@@ -1,3 +1,64 @@
-<p>
-  table-header-multi works!
-</p>
+<!-- <section
+  class="table-container table-container-header"
+  [ngStyle]="{'height': tableView.headerHeight, 'color': tableView.headerColor || defaults.headerColor, 'background-color': tableView.headerBgColor || defaults.headerBgColor}"> -->
+
+  <mat-table
+    matSort
+    class="table table-header"
+    fxLayout="row nowrap"
+    fxLayoutAlign="flex-start"
+    [dataSource]="dataSource">
+
+    <ng-container
+      *ngFor="let column of tableColumns"
+      [matColumnDef]="column.columnDef">
+
+      <mat-header-cell
+        *matHeaderCellDef
+        [fxFlex]="column.width"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngStyle]="{'color': tableView.headerColor || defaults.headerColor, 'font-family': tableView.headerFontFamily || defaults.headerFontFamily, 'font-size': tableView.headerFontSize || defaults.headerFontSize}">{{ column.header }}</mat-header-cell>
+
+      <mat-cell
+        *matCellDef="let row"
+        [fxFlex]="column.width"
+        fxLayout="row"
+        fxLayoutAlign="center center">
+        <div
+          *ngIf="!column.isModifyEntry"
+          class="non-modify-entry">{{ column.cellFn(row) }}</div>
+        <div
+          *ngIf="column.isModifyEntry"
+          class="modify-entry">
+          <button
+            *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
+            mat-stroked-button
+            (click)="modifyEntry('edit', row)">Edit</button>
+          <button
+            *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
+            mat-stroked-button
+            (click)="modifyEntry('edit', row)">Edit</button>
+          <button
+            *ngIf="HList.includes(column.modifyEntryButtons, 'delete')"
+            mat-stroked-button
+            (click)="modifyEntry('delete', row)">Delete</button>
+          <button
+            *ngIf="HList.includes(column.modifyEntryButtons, 'duplicate')"
+            mat-stroked-button
+            (click)="modifyEntry('duplicate', row)">Duplicate</button>
+        </div>
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns"
+      fxFlex="100%"
+      fxLayout="row nowrap"
+      fxLayoutAlign="center center"
+      class="row-header"
+      [ngStyle]= "{ 'height': tableView.headerHeight || defaults.headerHeight, 'background-color': tableView.headerBgColor || defaults.headerBgColor }"></mat-header-row>
+
+  </mat-table>
+<!-- </section> -->
