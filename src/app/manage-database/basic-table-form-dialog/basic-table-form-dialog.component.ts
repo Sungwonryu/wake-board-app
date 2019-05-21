@@ -56,7 +56,8 @@ export class BasicTableFormDialogComponent implements OnInit {
     tableView: { headerHeight: '0', bodyHeight: '350px' }
   };
 
-  modifyEntryColumn =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '204px', isModifyEntry: true, modifyEntryButtons: ['edit-open', 'edit-cancel', 'save', 'delete', 'delete-cancel', 'delete-confirm'] };
+  // modifyEntryColumn =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '204px', isModifyEntry: true, modifyEntryButtons: ['edit-open', 'edit-cancel', 'save', 'delete', 'delete-cancel', 'delete-confirm'] };
+  modifyEntryColumn =   { columnDef: 'modifyEntry', header: 'Modify Entry', width: '204px', isModifyEntry: true, modifyEntryButtons: ['edit-open', 'edit-cancel', 'save', 'delete-open'] };
 
   columnDefault = {
     fontColorFn: (row: any) => `${this.HString.toDefaultString(row.fontColor)}`,
