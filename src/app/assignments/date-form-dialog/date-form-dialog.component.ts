@@ -37,7 +37,7 @@ export class DateFormDialogComponent implements OnInit {
     }
     this.formInitTimeoutId = setTimeout(() => {
       this.setFormValue(this.data);
-      this.datePicker.opened = true;
+      this.datePicker.opened = false;
     }, this.formInitInterval);
   }
 
