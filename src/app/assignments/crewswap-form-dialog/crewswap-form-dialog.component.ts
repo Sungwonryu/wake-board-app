@@ -13,6 +13,7 @@ import { VesselService } from '../../manage-database/vessel-table/vessel.service
 import { ShiftService } from '../../manage-database/shift-table/shift.service';
 import { CalltimeService } from '../../manage-database/calltime/calltime.service';
 import { LocationService } from '../../manage-database/location/location.service';
+import { CrewshiftService } from '../../manage-database/crewswap-table/crewshift.service';
 import { CrewswapService } from '../crewswap/crewswap.service';
 
 @Component({
@@ -66,6 +67,7 @@ export class CrewswapFormDialogComponent implements OnInit {
     public locationService: LocationService,
     public calltimeService: CalltimeService,
     public shiftService: ShiftService,
+    public crewshiftService: CrewshiftService,
     public vesselService: VesselService,
     public mainService: CrewswapService,
     public dialogRef: MatDialogRef<CrewswapFormDialogComponent>
@@ -241,12 +243,26 @@ export class CrewswapFormDialogComponent implements OnInit {
 
   setShift(item: any) {
     let values = { ...this.form.value };
+    const crewshiftList = this.crewshiftService.getList();
+    let matchedObj;
+    if (crewshiftList && typeof crewshiftList === 'object' && crewshiftList.constructor === Array) {
+      matchedObj = crewshiftList.find((obj: any) => {
+        if (typeof obj === 'object') {
+          return obj.shift === item.shift
+        }
+      });
+    }
+    if (matchedObj && matchedObj.location) {
+      values['location'] = matchedObj.location;
+    }
+
     if (item && typeof item === 'object' && item.callTime) {
       values['callTime'] = this.HString.toDefaultString(item.callTime);
     }
     if (item && typeof item === 'object' && item.firstDeparture) {
       values['firstDeparture'] = this.HString.toDefaultString(item.firstDeparture);
     }
+
     this.form.setValue(values);
   }
 }
