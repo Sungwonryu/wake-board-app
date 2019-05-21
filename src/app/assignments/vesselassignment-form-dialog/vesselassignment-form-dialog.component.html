@@ -208,40 +208,23 @@
             </div>
           </div>
 
-          <!-- <mat-form-field>
-            <input
-              class="input"
-              matInput
-              ngModel
-              type="text"
-              name="captain1"
-              placeholder=""
-              #captain1Input="ngModel"
-              [matAutocomplete]="captain1ListRef"
-              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
-            />
-            <mat-hint *ngIf="!captain1Input.hasError()">Choose an option</mat-hint>
-          </mat-form-field>
-          <mat-autocomplete #captain1ListRef="matAutocomplete">
-            <mat-option
-              *ngFor="let item of filteredCrewmemberList | async"
-              [value]="item.employee">
-              {{ item.employee }}
-            </mat-option>
-          </mat-autocomplete> -->
           <mat-form-field>
             <input
-              class="input"
               matInput
-              [ngModel]="captain1"
+              class="input"
               type="text"
               name="captain1"
               placeholder=""
               #captain1Input="ngModel"
               [matAutocomplete]="captain1ListRef"
+              [(ngModel)]="captain1"
+              appUniqueInput
+              [appList]="[{crew: captain2}, {crew: deckhand1}, {crew: deckhand2}, {crew: deckhand3}, {crew: deckhand4}, {crew: gsa1}, {crew: gsa2}]"
+              [appProperty]="'crew'"
               (keyup)="onFilterAutocomplete('captain', $event.target.value)"
             />
             <mat-hint *ngIf="!captain1Input.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="captain1Input.hasError('uniqueInput')">Role has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #captain1ListRef="matAutocomplete">
             <mat-option
@@ -279,40 +262,23 @@
             </div>
           </div>
 
-          <!-- <mat-form-field>
-            <input
-              class="input"
-              matInput
-              ngModel
-              type="text"
-              name="captain2"
-              placeholder=""
-              #captain2Input="ngModel"
-              [matAutocomplete]="captain2ListRef"
-              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
-            />
-            <mat-hint *ngIf="!captain2Input.hasError()">Choose an option</mat-hint>
-          </mat-form-field>
-          <mat-autocomplete #captain2ListRef="matAutocomplete">
-            <mat-option
-              *ngFor="let item of filteredCrewmemberList | async"
-              [value]="item.employee">
-              {{ item.employee }}
-            </mat-option>
-          </mat-autocomplete> -->
           <mat-form-field>
             <input
-              class="input"
               matInput
-              ngModel
+              class="input"
               type="text"
               name="captain2"
               placeholder=""
               #captain2Input="ngModel"
               [matAutocomplete]="captain2ListRef"
+              [(ngModel)]="captain2"
+              appUniqueInput
+              [appList]="[{crew: captain1}, {crew: deckhand1}, {crew: deckhand2}, {crew: deckhand3}, {crew: deckhand4}, {crew: gsa1}, {crew: gsa2}]"
+              [appProperty]="'crew'"
               (keyup)="onFilterAutocomplete('captain', $event.target.value, ['captain1'])"
             />
             <mat-hint *ngIf="!captain2Input.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="captain2Input.hasError('uniqueInput')">Role has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #captain2ListRef="matAutocomplete">
             <mat-option
@@ -350,27 +316,6 @@
             </div>
           </div>
 
-          <!-- <mat-form-field>
-            <input
-              class="input"
-              matInput
-              ngModel
-              type="text"
-              name="deckhand1"
-              placeholder=""
-              #deckhand1Input="ngModel"
-              [matAutocomplete]="deckhand1ListRef"
-              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
-            />
-            <mat-hint *ngIf="!deckhand1Input.hasError()">Choose an option</mat-hint>
-          </mat-form-field>
-          <mat-autocomplete #deckhand1ListRef="matAutocomplete">
-            <mat-option
-              *ngFor="let item of filteredCrewmemberList | async"
-              [value]="item.employee">
-              {{ item.employee }}
-            </mat-option>
-          </mat-autocomplete> -->
           <mat-form-field>
             <input
               class="input"
@@ -381,9 +326,14 @@
               placeholder=""
               #deckhand1Input="ngModel"
               [matAutocomplete]="deckhand1ListRef"
+              [(ngModel)]="deckhand1"
+              appUniqueInput
+              [appList]="[{crew: captain1}, {crew: captain2}, {crew: deckhand2}, {crew: deckhand3}, {crew: deckhand4}, {crew: gsa1}, {crew: gsa2}]"
+              [appProperty]="'crew'"
               (keyup)="onFilterAutocomplete('deckhand', $event.target.value)"
             />
             <mat-hint *ngIf="!deckhand1Input.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="deckhand1Input.hasError('uniqueInput')">Role has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #deckhand1ListRef="matAutocomplete">
             <mat-option
@@ -421,27 +371,6 @@
             </div>
           </div>
 
-          <!-- <mat-form-field>
-            <input
-              class="input"
-              matInput
-              ngModel
-              type="text"
-              name="deckhand2"
-              placeholder=""
-              #deckhand2Input="ngModel"
-              [matAutocomplete]="deckhand2ListRef"
-              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
-            />
-            <mat-hint *ngIf="!deckhand2Input.hasError()">Choose an option</mat-hint>
-          </mat-form-field>
-          <mat-autocomplete #deckhand2ListRef="matAutocomplete">
-            <mat-option
-              *ngFor="let item of filteredCrewmemberList | async"
-              [value]="item.employee">
-              {{ item.employee }}
-            </mat-option>
-          </mat-autocomplete> -->
           <mat-form-field>
             <input
               class="input"
@@ -452,9 +381,14 @@
               placeholder=""
               #deckhand2Input="ngModel"
               [matAutocomplete]="deckhand2ListRef"
+              [(ngModel)]="deckhand2"
+              appUniqueInput
+              [appList]="[{crew: captain1}, {crew: captain2}, {crew: deckhand1}, {crew: deckhand3}, {crew: deckhand4}, {crew: gsa1}, {crew: gsa2}]"
+              [appProperty]="'crew'"
               (keyup)="onFilterAutocomplete('deckhand', $event.target.value)"
             />
             <mat-hint *ngIf="!deckhand2Input.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="deckhand2Input.hasError('uniqueInput')">Role has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #deckhand2ListRef="matAutocomplete">
             <mat-option
@@ -494,27 +428,6 @@
             </div>
           </div>
 
-          <!-- <mat-form-field>
-            <input
-              class="input"
-              matInput
-              ngModel
-              type="text"
-              name="deckhand3"
-              placeholder=""
-              #deckhand3Input="ngModel"
-              [matAutocomplete]="deckhand3ListRef"
-              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
-            />
-            <mat-hint *ngIf="!deckhand3Input.hasError()">Choose an option</mat-hint>
-          </mat-form-field>
-          <mat-autocomplete #deckhand3ListRef="matAutocomplete">
-            <mat-option
-              *ngFor="let item of filteredCrewmemberList | async"
-              [value]="item.employee">
-              {{ item.employee }}
-            </mat-option>
-          </mat-autocomplete> -->
           <mat-form-field>
             <input
               class="input"
@@ -525,9 +438,14 @@
               placeholder=""
               #deckhand3Input="ngModel"
               [matAutocomplete]="deckhand3ListRef"
+              [(ngModel)]="deckhand3"
+              appUniqueInput
+              [appList]="[{crew: captain1}, {crew: captain2}, {crew: deckhand1}, {crew: deckhand2}, {crew: deckhand4}, {crew: gsa1}, {crew: gsa2}]"
+              [appProperty]="'crew'"
               (keyup)="onFilterAutocomplete('deckhand', $event.target.value)"
             />
             <mat-hint *ngIf="!deckhand3Input.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="deckhand3Input.hasError('uniqueInput')">Role has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #deckhand3ListRef="matAutocomplete">
             <mat-option
@@ -565,27 +483,6 @@
             </div>
           </div>
 
-          <!-- <mat-form-field>
-            <input
-              class="input"
-              matInput
-              ngModel
-              type="text"
-              name="deckhand4"
-              placeholder=""
-              #deckhand4Input="ngModel"
-              [matAutocomplete]="deckhand4ListRef"
-              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
-            />
-            <mat-hint *ngIf="!deckhand4Input.hasError()">Choose an option</mat-hint>
-          </mat-form-field>
-          <mat-autocomplete #deckhand4ListRef="matAutocomplete">
-            <mat-option
-              *ngFor="let item of filteredCrewmemberList | async"
-              [value]="item.employee">
-              {{ item.employee }}
-            </mat-option>
-          </mat-autocomplete> -->
           <mat-form-field>
             <input
               class="input"
@@ -596,9 +493,14 @@
               placeholder=""
               #deckhand4Input="ngModel"
               [matAutocomplete]="deckhand4ListRef"
+              [(ngModel)]="deckhand4"
+              appUniqueInput
+              [appList]="[{crew: captain1}, {crew: captain2}, {crew: deckhand1}, {crew: deckhand2}, {crew: deckhand3}, {crew: gsa1}, {crew: gsa2}]"
+              [appProperty]="'crew'"
               (keyup)="onFilterAutocomplete('deckhand', $event.target.value)"
             />
             <mat-hint *ngIf="!deckhand4Input.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="deckhand4Input.hasError('uniqueInput')">Role has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #deckhand4ListRef="matAutocomplete">
             <mat-option
@@ -636,27 +538,6 @@
             </div>
           </div>
 
-          <!-- <mat-form-field>
-            <input
-              class="input"
-              matInput
-              ngModel
-              type="text"
-              name="gsa1"
-              placeholder=""
-              #gsa1Input="ngModel"
-              [matAutocomplete]="gsa1ListRef"
-              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
-            />
-            <mat-hint *ngIf="!gsa1Input.hasError()">Choose an option</mat-hint>
-          </mat-form-field>
-          <mat-autocomplete #gsa1ListRef="matAutocomplete">
-            <mat-option
-              *ngFor="let item of filteredCrewmemberList | async"
-              [value]="item.employee">
-              {{ item.employee }}
-            </mat-option>
-          </mat-autocomplete> -->
           <mat-form-field>
             <input
               class="input"
@@ -667,9 +548,14 @@
               placeholder=""
               #gsa1Input="ngModel"
               [matAutocomplete]="gsa1ListRef"
+              [(ngModel)]="gsa1"
+              appUniqueInput
+              [appList]="[{crew: captain1}, {crew: captain2}, {crew: deckhand1}, {crew: deckhand2}, {crew: deckhand3}, {crew: deckhand4}, {crew: gsa2}]"
+              [appProperty]="'crew'"
               (keyup)="onFilterAutocomplete('gsa', $event.target.value)"
             />
             <mat-hint *ngIf="!gsa1Input.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="gsa1Input.hasError('uniqueInput')">Role has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #gsa1ListRef="matAutocomplete">
             <mat-option
@@ -707,27 +593,6 @@
             </div>
           </div>
 
-          <!-- <mat-form-field>
-            <input
-              class="input"
-              matInput
-              ngModel
-              type="text"
-              name="gsa2"
-              placeholder=""
-              #gsa2Input="ngModel"
-              [matAutocomplete]="gsa2ListRef"
-              (keyup)="onFilterAutocomplete('employee', $event.target.value)"
-            />
-            <mat-hint *ngIf="!gsa2Input.hasError()">Choose an option</mat-hint>
-          </mat-form-field>
-          <mat-autocomplete #gsa2ListRef="matAutocomplete">
-            <mat-option
-              *ngFor="let item of filteredCrewmemberList | async"
-              [value]="item.employee">
-              {{ item.employee }}
-            </mat-option>
-          </mat-autocomplete> -->
           <mat-form-field>
             <input
               class="input"
@@ -738,9 +603,14 @@
               placeholder=""
               #gsa2Input="ngModel"
               [matAutocomplete]="gsa2ListRef"
+              [(ngModel)]="gsa2"
+              appUniqueInput
+              [appList]="[{crew: captain1}, {crew: captain2}, {crew: deckhand1}, {crew: deckhand2}, {crew: deckhand3}, {crew: deckhand4}, {crew: gsa1}]"
+              [appProperty]="'crew'"
               (keyup)="onFilterAutocomplete('gsa', $event.target.value)"
             />
             <mat-hint *ngIf="!gsa2Input.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="gsa2Input.hasError('uniqueInput')">Role has been already assigned</mat-error>
           </mat-form-field>
           <mat-autocomplete #gsa2ListRef="matAutocomplete">
             <mat-option
