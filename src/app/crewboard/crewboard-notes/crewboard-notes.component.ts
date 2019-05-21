@@ -114,7 +114,7 @@ export class CrewboardNotesComponent implements OnDestroy, OnInit {
 
   getColor(colorId: string) {
     let colorCode = '';
-    const matchedItem = this.colorList.find((item: any) => { return item.colorId === colorId });
+    const matchedItem = this.colorList.find((item: any) => { return item.id === colorId });
     if (matchedItem) {
       colorCode = matchedItem.colorCode;
     }
