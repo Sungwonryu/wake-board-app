@@ -248,17 +248,62 @@ export class SlipassignmentAddFormDialogComponent implements OnInit {
     this.form.setValue(newValues);
   }
 
+  // onSave() {
+  //   console.log('onSave()');
+  //   // Create an instance, newItem from this.form.value
+  //   // The properties that are undefined, null or '' are not set to newItem
+  //   // So, those properties won't be in queryParams
+  //   const value = this.form.value;
+  //   let newItem: any = {};
+  //
+  //   newItem['date'] = this.date;
+  //   if (this.data.tableActionData.tableAction === 'edit') {
+  //     newItem['id'] = this.item['id'];
+  //   }
+  //   const vesselList = this.vesselService.getAutocompleteList();
+  //
+  //   for (let prop in value) {
+  //     if (value.hasOwnProperty(prop)) {
+  //       if (value[prop] != null && value[prop] !== '') {
+  //         value[prop] = value[prop].trim();
+  //         switch(prop) {
+  //           case 'vesselId':
+  //             newItem[prop] = this.HList.findProperty(vesselList, { property: 'vessel', value: value[prop] }, ['id']) || '';
+  //             break;
+  //           case 'vesselAvailability':
+  //             newItem[prop] = this.HList.findProperty(this.availabilityList, { property: 'text', value: value[prop] }, ['value']) || '';
+  //             break;
+  //           default:
+  //             newItem[prop] = value[prop];
+  //             break;
+  //         }
+  //       }
+  //     }
+  //   }
+  //
+  //   // const newApiObj = this.BaseData.dataObjToApiObj(newItem);
+  //   console.log('newItem', newItem);
+  //   // console.log('newApiObj', newApiObj);
+  //   this.submitItem(newItem);
+  //
+  // }
   onSave() {
     // Create an instance, newItem from this.form.value
     // The properties that are undefined, null or '' are not set to newItem
     // So, those properties won't be in queryParams
     const value = this.form.value;
-    let newItem: any = {};
+    let newItem1: any = {};
+    let newItem2: any = {};
+    let newItem3: any = {};
 
-    newItem['date'] = this.date;
-    if (this.data.tableActionData.tableAction === 'edit') {
-      newItem['id'] = this.item['id'];
-    }
+
+    newItem1['date'] = this.date;
+    newItem2['date'] = this.date;
+    newItem3['date'] = this.date;
+
+    // if (this.data.tableActionData.tableAction === 'edit') {
+    //   newItem['id'] = this.item['id'];
+    // }
     const vesselList = this.vesselService.getAutocompleteList();
 
     for (let prop in value) {
@@ -266,24 +311,53 @@ export class SlipassignmentAddFormDialogComponent implements OnInit {
         if (value[prop] != null && value[prop] !== '') {
           value[prop] = value[prop].trim();
           switch(prop) {
-            case 'vesselId':
-              newItem[prop] = this.HList.findProperty(vesselList, { property: 'vessel', value: value[prop] }, ['id']) || '';
+            // newItem1
+            case 'slip1':
+              newItem1.slip = value[prop];
               break;
-            case 'vesselAvailability':
-              newItem[prop] = this.HList.findProperty(this.availabilityList, { property: 'text', value: value[prop] }, ['value']) || '';
+            case 'vessel1Id':
+              newItem1.vesselId = this.HList.findProperty(vesselList, { property: 'vessel', value: value[prop] }, ['id']) || '';
               break;
-            default:
-              newItem[prop] = value[prop];
+            case 'vessel1Availability':
+              newItem1.vesselAvailability = this.HList.findProperty(this.availabilityList, { property: 'text', value: value[prop] }, ['value']) || '';
+              break;
+            // newItem2
+            case 'slip2':
+              newItem2.slip = value[prop];
+              break;
+            case 'vessel2Id':
+              newItem2.vesselId = this.HList.findProperty(vesselList, { property: 'vessel', value: value[prop] }, ['id']) || '';
+              break;
+            case 'vessel2Availability':
+              newItem2.vesselAvailability = this.HList.findProperty(this.availabilityList, { property: 'text', value: value[prop] }, ['value']) || '';
+              break;
+            // newItem3
+            case 'slip3':
+              newItem3.slip = value[prop];
+              break;
+            case 'vessel3Id':
+              newItem3.vesselId = this.HList.findProperty(vesselList, { property: 'vessel', value: value[prop] }, ['id']) || '';
+              break;
+            case 'vessel3Availability':
+              newItem3.vesselAvailability = this.HList.findProperty(this.availabilityList, { property: 'text', value: value[prop] }, ['value']) || '';
               break;
           }
         }
       }
     }
 
-    // const newApiObj = this.BaseData.dataObjToApiObj(newItem);
-    console.log('newItem', newItem);
-    // console.log('newApiObj', newApiObj);
-    this.submitItem(newItem);
+    if (this.isSet.slip1 && this.isSet.vessel1Id) {
+      console.log('newItem1', newItem1);
+      this.submitItem(newItem1);
+    }
+    if (this.isSet.slip2 && this.isSet.vessel2Id) {
+      console.log('newItem2', newItem2);
+      this.submitItem(newItem2);
+    }
+    if (this.isSet.slip3 && this.isSet.vessel3Id) {
+      console.log('newItem3', newItem3);
+      this.submitItem(newItem3);
+    }
 
   }
 
