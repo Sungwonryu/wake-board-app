@@ -1,4 +1,4 @@
-<div class="form-dialog">
+<!-- <div class="form-dialog">
   <div class="title-bar">
     <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
     <span
@@ -240,6 +240,136 @@
             </mat-option>
           </mat-autocomplete>
         </div>
+      </div>
+
+      <button
+        class="save-button"
+        [disabled]="!f.valid"
+        (click)="onSave()">Save Entry</button>
+
+    </form>
+  </div>
+</div> -->
+
+<div class="form-dialog">
+  <div class="title-bar">
+    <span class="title">{{ data.tableActionData.tableAction }}&nbsp;{{ title }}</span>
+    <span
+      class="close-button"
+      (click)="onCloseForm()"></span>
+  </div>
+
+  <div class="body">
+    <div class="instruction">
+       <span>{{ instruction }}</span>
+    </div>
+
+    <div class="subtitle">{{ subtitle1 }}</div>
+
+    <form
+      class="form"
+      #f="ngForm">
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label">Slip Number</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              #slipInput="ngModel"
+              name="slip"
+              placeholder=""
+              required
+              #slipInput="ngModel"
+              [matAutocomplete]="slip1List"
+              (keyup)="onFilterAutocomplete('slip', $event.target.value)"
+              appIncludeInput
+              [itemList]="slipList"
+              [itemProp1]="'slip'"
+              [itemType]="'slip'"
+              appUniqueInput="list"
+              [appProperty]="'slip'"
+              [appItem]="item"
+              />
+            <mat-hint *ngIf="!slipInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="slipInput.hasError('required')">Input must not be empty</mat-error>
+            <mat-error *ngIf="slipInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+            <mat-error *ngIf="slipInput.hasError('uniqueInput')">Input must be unique from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #slip1List="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredSlipList | async"
+              [value]="item.slip">
+              {{ item.slip }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Vessel</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              type="text"
+              name="vesselId"
+              placeholder=""
+              #vessel1IdInput="ngModel"
+              [matAutocomplete]="vessel1List"
+              (keyup)="onFilterAutocomplete('vessel', $event.target.value)"
+              (keyup)="onClearInput('vessel1Availability', $event.target.value)"
+              appIncludeInput
+              [itemList]="vesselList"
+              [itemProp1]="'vessel'"
+              [itemType]="'vesselAutocompolete'"
+            />
+            <mat-hint *ngIf="!vessel1IdInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="vessel1IdInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #vessel1List="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredVesselList | async"
+              [value]="item.vessel"
+              (click)="setFormInputValue('vessel1Availability', 'Available')">
+              {{ item.vessel }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Vessel Availability</label>
+          <mat-form-field>
+            <input
+              class="input"
+              matInput
+              ngModel
+              name="vesselAvailability"
+              placeholder=""
+              #vessel1AvailabilityInput="ngModel"
+              [matAutocomplete]="availability1List"
+              (keyup)="onFilterAutocomplete('availability', $event.target.value)"
+              appIncludeInput
+              [itemList]="availabilityList"
+              [itemProp1]="'text'"
+              [itemType]="'availability'"
+              />
+            <mat-hint *ngIf="!vessel1AvailabilityInput.hasError()">Choose an option</mat-hint>
+            <mat-error *ngIf="vessel1AvailabilityInput.hasError('includeInput')">Input must be chosen from the list</mat-error>
+          </mat-form-field>
+          <mat-autocomplete #availability1List="matAutocomplete">
+            <mat-option
+              *ngFor="let item of filteredAvailabilityList | async"
+              [value]="item.text">
+              {{ item.text }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="input-wrapper"></div>
+
       </div>
 
       <button
