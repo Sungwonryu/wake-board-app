@@ -78,8 +78,17 @@
   width: 26px;
 }
 
+.slip-assignment {
+  border-left: 1px solid #979797;
+}
+
+.slip-assignment:first-child {
+  border-left: none;
+}
+
 .vessel {
-  width: 172px;
+  // width: 172px;
+  width: 154px;
   border-left: 1px solid #979797;
 
   &.unavailable {
