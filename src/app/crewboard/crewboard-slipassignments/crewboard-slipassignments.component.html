@@ -1,4 +1,4 @@
-<div class="slipassignments">
+<!-- <div class="slipassignments">
   <div
     *ngIf="visibleTableId === 0"
     class="table">
@@ -48,6 +48,57 @@
       <span
         class="table-cell vessel"
         [ngClass]="{ 'unavailable': getPropFromData(slip, 'vessel3Availability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vessel3Id')) || '-' }}</span>
+    </div>
+  </div>
+
+</div> -->
+
+<div class="slipassignments">
+  <div
+    *ngIf="visibleTableId === 0"
+    class="table">
+    <div class="table-header">
+      <span class="table-title">Slip Assignments (1-15)</span>
+      <div class="circles-wrapper">
+        <span class="black-circle"></span>
+        <span class="white-circle"></span>
+      </div>
+    </div>
+    <div
+      *ngFor="let slipGroup of slipList | slice: 0 : 5"
+      class="table-row" >
+      <span
+        *ngFor="let slip of slipGroup"
+        class="slip-assignment">
+        <span class="table-cell slip">{{ slip }}</span>
+        <span
+          class="table-cell vessel"
+          [ngClass]="{ 'unavailable': getPropFromData(slip, 'vesselAvailability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vesselId')) || '-' }}</span>
+        </span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="visibleTableId === 1"
+    class="table">
+    <div class="table-header">
+      <span class="table-title">Slip Assignments (16-30)</span>
+      <div class="circles-wrapper">
+        <span class="white-circle"></span>
+        <span class="black-circle"></span>
+      </div>
+    </div>
+    <div
+      *ngFor="let slipGroup of slipList | slice: 5 : 10"
+      class="table-row" >
+      <span
+        *ngFor="let slip of slipGroup"
+        class="slip-assignment">
+        <span class="table-cell slip">{{ slip }}</span>
+        <span
+          class="table-cell vessel"
+          [ngClass]="{ 'unavailable': getPropFromData(slip, 'vesselAvailability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vesselId')) || '-' }}</span>
+      </span>
     </div>
   </div>
 
