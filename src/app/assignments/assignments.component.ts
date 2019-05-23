@@ -21,6 +21,7 @@ import { DuplicateFormDialogComponent } from './duplicate-form-dialog/duplicate-
 import { NoteFormDialogComponent } from './note-form-dialog/note-form-dialog.component';
 import { CrewswapFormDialogComponent } from './crewswap-form-dialog/crewswap-form-dialog.component';
 import { SlipassignmentFormDialogComponent } from './slipassignment-form-dialog/slipassignment-form-dialog.component';
+import { SlipassignmentAddFormDialogComponent } from './slipassignment-add-form-dialog/slipassignment-add-form-dialog.component';
 import { VesselassignmentFormDialogComponent } from './vesselassignment-form-dialog/vesselassignment-form-dialog.component';
 
 @Component({
@@ -128,7 +129,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   // ];
   slipassignmentTableColumns = [
     { ...this.columnDefault, columnDef: 'slip', header: 'Slip', width: '30px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.slip)}` },
-    { ...this.columnDefault, columnDef: 'vessel1Id', header: 'Vessel', textAlign: 'center', width: '179px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel1)}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` }
+    { ...this.columnDefault, columnDef: 'vesselId', header: 'Vessel', textAlign: 'center', width: '179px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel)}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` }
     // { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel2)}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
     // { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel3)}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
   ];
@@ -237,7 +238,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    console.log('date is init');
+    // console.log('date is init');
     this.initDateChange();
     this.initParamsHandle();
     this.initDate();
@@ -329,10 +330,8 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   }
 
   setSlipassignmentList(list: any[]) {
-    // const slipList1 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
-    // const slipList2 = ['16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
-    const slipList1 = ['1', '2', '3', '4', '5'];
-    const slipList2 = ['6', '7', '8', '9', '10'];
+    const slipList1 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
+    const slipList2 = ['16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
 
     this.slipassignmentList = list.filter((item: any) => {
       if ( item && typeof item === 'object' && typeof item.slip === 'string') {
@@ -349,7 +348,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   initListUpdate() {
     // vessel
     this.$vesselListUpdateSub = this.vesselService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.vesselService.object} - list is fetched`);
+      // console.log(`${this.vesselService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
         // this.vesselList = this.vesselService.getList();
         this.vesselList = this.vesselService.getAutocompleteList();
@@ -357,14 +356,14 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     });
     // vesselassignment
     this.$vesselassignmentListUpdateSub = this.vesselassignmentService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.vesselassignmentService.object} - list is fetched`);
+      // console.log(`${this.vesselassignmentService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
         this.vesselassignmentList = this.vesselassignmentService.getList();
       }
     });
     // slipassignment
     this.$slipassignmentListUpdateSub = this.slipassignmentService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.slipassignmentService.object} - list is fetched`);
+      // console.log(`${this.slipassignmentService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
         // this.slipassignmentList = this.slipassignmentService.getList();
         this.setSlipassignmentList(this.slipassignmentService.getList());
@@ -372,14 +371,14 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     });
     // note
     this.$noteListUpdateSub = this.noteService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.noteService.object} - list is fetched`);
+      // console.log(`${this.noteService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
         this.noteList = this.noteService.getList();
       }
     });
     // crewswap
     this.$crewswapListUpdateSub = this.crewswapService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
-      console.log(`${this.crewswapService.object} - list is fetched`);
+      // console.log(`${this.crewswapService.object} - list is fetched`);
       if (listUpdate && listUpdate.isUpdated === true) {
         this.crewswapList = this.crewswapService.getList();
       }
@@ -389,7 +388,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   initList() {
     // this.vesselList = this.vesselService.getList();
     this.vesselList = this.vesselService.getAutocompleteList();
-    console.log('vesselList', this.vesselList);
+    // console.log('vesselList', this.vesselList);
     this.vesselassignmentList = this.vesselassignmentService.getList();
     // this.slipassignmentList = this.slipassignmentService.getList();
     this.setSlipassignmentList(this.slipassignmentService.getList());
@@ -427,7 +426,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   }
 
   changeDate(newDate: Date) {
-    console.log('changeDate(), newDate : ', newDate);
+    // console.log('changeDate(), newDate : ', newDate);
     this.setDateParam(newDate);
   }
 
@@ -454,7 +453,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
     let formDialogComponent;
     let mainService;
     let openForm: boolean = false;
-    console.log('tableActionData: ', tableActionData);
+    // console.log('tableActionData: ', tableActionData);
 
     switch(tableActionData.dataType) {
       case 'vesselassignment':
@@ -462,7 +461,12 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
         mainService = this.vesselassignmentService;
         break;
       case 'slipassignment':
-        formDialogComponent = SlipassignmentFormDialogComponent;
+        // console.log('tableActionData = ', tableActionData);
+        if (tableActionData.tableAction === 'add') {
+          formDialogComponent = SlipassignmentAddFormDialogComponent;
+        } else {
+          formDialogComponent = SlipassignmentFormDialogComponent;
+        }
         mainService = this.slipassignmentService;
         break;
       case 'note':
@@ -494,7 +498,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
         openForm = true;
         break;
       case 'delete':
-        console.log('delete', tableActionData);
+        // console.log('delete', tableActionData);
         mainService.api('delete', tableActionData.entries[0]);
         break;
     }
