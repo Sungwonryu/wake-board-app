@@ -66,7 +66,7 @@ import { CrewswapService } from './assignments/crewswap/crewswap.service';
 import { DateFormDialogComponent } from './assignments/date-form-dialog/date-form-dialog.component';
 import { DuplicateFormDialogComponent } from './assignments/duplicate-form-dialog/duplicate-form-dialog.component';
 import { SlipassignmentFormDialogComponent } from './assignments/slipassignment-form-dialog/slipassignment-form-dialog.component';
-import { SlipassignmentAddFromDialogComponent } from './assignments/slipassignment-add-from-dialog/slipassignment-add-from-dialog.component';
+import { SlipassignmentAddFormDialogComponent } from './assignments/slipassignment-add-form-dialog/slipassignment-add-form-dialog.component';
 import { NoteFormDialogComponent } from './assignments/note-form-dialog/note-form-dialog.component';
 import { CrewswapFormDialogComponent } from './assignments/crewswap-form-dialog/crewswap-form-dialog.component';
 import { VesselassignmentFormDialogComponent } from './assignments/vesselassignment-form-dialog/vesselassignment-form-dialog.component';
@@ -142,7 +142,7 @@ import { BasicTableFormDialogComponent } from './manage-database/basic-table-for
     DateFormDialogComponent,
     DuplicateFormDialogComponent,
     SlipassignmentFormDialogComponent,
-    SlipassignmentAddFromDialogComponent,
+    SlipassignmentAddFormDialogComponent,
     NoteFormDialogComponent,
     CrewswapFormDialogComponent,
     VesselassignmentFormDialogComponent,
@@ -214,6 +214,7 @@ import { BasicTableFormDialogComponent } from './manage-database/basic-table-for
     DateFormDialogComponent,
     DuplicateFormDialogComponent,
     SlipassignmentFormDialogComponent,
+    SlipassignmentAddFormDialogComponent,
     NoteFormDialogComponent,
     CrewswapFormDialogComponent,
     VesselassignmentFormDialogComponent,
