@@ -129,9 +129,7 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
   // ];
   slipassignmentTableColumns = [
     { ...this.columnDefault, columnDef: 'slip', header: 'Slip', width: '30px', textAlign: 'center', cellFn: (row: any) => `${this.HString.toDefaultString(row.slip)}` },
-    { ...this.columnDefault, columnDef: 'vesselId', header: 'Vessel', textAlign: 'center', width: '179px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel)}`, fontColorFn: (row: any) => `${(row.vessel1Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel1Availability === '0' ? 'bold' : 'medium')}` }
-    // { ...this.columnDefault, columnDef: 'vessel2Id', header: 'Vessel 2', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel2)}`, fontColorFn: (row: any) => `${(row.vessel2Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel2Availability === '0' ? 'bold' : 'medium')}` },
-    // { ...this.columnDefault, columnDef: 'vessel3Id', header: 'Vessel 3', textAlign: 'center', width: '185px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel3)}`, fontColorFn: (row: any) => `${(row.vessel3Availability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vessel3Availability === '0' ? 'bold' : 'medium')}` },
+    { ...this.columnDefault, columnDef: 'vesselId', header: 'Vessel', textAlign: 'center', width: '179px', cellFn: (row: any) => `${this.HString.toDefaultString(row.vessel)}`, fontColorFn: (row: any) => `${(row.vesselAvailability === '0' ? '#FF5757' : '')}`, fontWeightFn: (row: any) => `${(row.vesselAvailability === '0' ? 'bold' : 'medium')}` }
   ];
 
   slipassignmentTableData = {
