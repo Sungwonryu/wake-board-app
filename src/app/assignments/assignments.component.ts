@@ -134,7 +134,8 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   slipassignmentTableData = {
     ...this.commonTableData,
-    tableView: { headerHeight: '40px', bodyHeight: '108px' },
+    // tableView: { headerHeight: '40px', bodyHeight: '108px' },
+    tableView: { headerHeight: '39px', bodyHeight: '108px' },
     tableTitle: 'ASSIGN SLIPS',
     dataType: 'slipassignment',
     tableColumns: [
@@ -145,7 +146,8 @@ export class AssignmentsComponent implements OnInit, OnDestroy {
 
   slipassignmentTableDataPast = {
     ...this.commonTableDataPast,
-    tableView: { headerHeight: '40px', bodyHeight: '108px' },
+    // tableView: { headerHeight: '40px', bodyHeight: '108px' },
+    tableView: { headerHeight: '39px', bodyHeight: '108px' },
     tableTitle: 'ASSIGN SLIPS',
     dataType: 'slipassignment',
     tableColumns: [
