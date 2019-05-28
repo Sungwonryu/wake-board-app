@@ -73,7 +73,7 @@
         <span class="table-cell slip">{{ slip }}</span>
         <span
           class="table-cell vessel"
-          [ngClass]="{ 'unavailable': getPropFromData(slip, 'vesselAvailability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vesselId')) || '-' }}</span>
+          [ngClass]="{ 'unavailable': getPropFromData(slip, 'vesselAvailability') === '0' }">{{ truncateVesselText(vesselService.getVesselName(getPropFromData(slip, 'vesselId')) || '-') }}</span>
         </span>
     </div>
   </div>
@@ -97,7 +97,7 @@
         <span class="table-cell slip">{{ slip }}</span>
         <span
           class="table-cell vessel"
-          [ngClass]="{ 'unavailable': getPropFromData(slip, 'vesselAvailability') === '0' }">{{ vesselService.getVesselName(getPropFromData(slip, 'vesselId')) || '-' }}</span>
+          [ngClass]="{ 'unavailable': getPropFromData(slip, 'vesselAvailability') === '0' }">{{ truncateVesselText(vesselService.getVesselName(getPropFromData(slip, 'vesselId')) || '-') }}</span>
       </span>
     </div>
   </div>

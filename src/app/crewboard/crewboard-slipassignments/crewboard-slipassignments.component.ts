@@ -48,6 +48,8 @@
 
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
+import { HString } from '../../shared/lib/h-string';
+
 import { VesselService } from '../../manage-database/vessel-table/vessel.service';
 
 @Component({
@@ -58,6 +60,8 @@ import { VesselService } from '../../manage-database/vessel-table/vessel.service
 export class CrewboardSlipassignmentsComponent implements OnDestroy, OnInit {
 
   @Input() data: any[] = [];
+
+  HString = HString;
 
   slipList = [
     ['1', '6', '11'],
@@ -102,5 +106,14 @@ export class CrewboardSlipassignmentsComponent implements OnDestroy, OnInit {
 
   changeVisibleTable() {
     this.visibleTableId = (this.visibleTableId === 0) ? 1 : 0;
+  }
+
+  truncateVesselText(vesselText: string) {
+    return this.HString.truncate({
+      string: vesselText,
+      maxLength: 15,
+      endString: '...',
+      splitString: ' '
+    });
   }
 }
