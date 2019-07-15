@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit  } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 // import { Message } from '../../messages/message.model';
 // import { MessageService } from '../../messages/message.service';
@@ -19,7 +19,7 @@ interface RouteData {
   templateUrl: './crewboard-vesselassignments.component.html',
   styleUrls: ['./crewboard-vesselassignments.component.scss']
 })
-export class CrewboardVesselassignmentsComponent implements OnDestroy, OnInit {
+export class CrewboardVesselassignmentsComponent implements OnChanges, OnDestroy, OnInit {
 
   @Input() data: any[] = [];
 
@@ -43,12 +43,22 @@ export class CrewboardVesselassignmentsComponent implements OnDestroy, OnInit {
     public vesselService: VesselService
   ) { }
 
+  // ngOnInit() {
+  //   console.log('Crewboard-vesselassign');
+  //   this.setTableDataList();
+  //   this.intervalId = setInterval(() => {
+  //     this.setTableDataList();
+  //   }, this.updateDelay);
+  // }
   ngOnInit() {
-    console.log('Crewboard-vesselassign');
-    this.setTableDataList();
-    this.intervalId = setInterval(() => {
-      this.setTableDataList();
-    }, this.updateDelay);
+    // console.log('Crewboard-vesselassign');
+    this.setTableDataList(this.data);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('Crewboard-vesselassign(ngOnChanges) data: ', changes.data.currentValue);
+    this.data = changes.data.currentValue;
+    this.setTableDataList(this.data);
   }
 
   ngOnDestroy() {
@@ -65,23 +75,25 @@ export class CrewboardVesselassignmentsComponent implements OnDestroy, OnInit {
     });
   }
 
-  setTableDataList() {
+  setTableDataList(data) {
     const currentTime = new Date();
     this.resetTableDataList();
-    // this._setRouteData(this.routeDataList[0], this.data, 'route', 'East River', 'callTime', currentTime);
-    // this._setRouteData(this.routeDataList[1], this.data, 'route', 'Rockaway', 'callTime', currentTime);
-    // this._setRouteData(this.routeDataList[2], this.data, 'route', 'Astoria', 'callTime', currentTime);
-    // this._setRouteData(this.routeDataList[3], this.data, 'route', 'South Brooklyn', 'callTime', currentTime);
-    // this._setRouteData(this.routeDataList[4], this.data, 'route', 'Lower East Side', 'callTime', currentTime);
-    // this._setRouteData(this.routeDataList[5], this.data, 'route', 'Soundview', 'callTime', currentTime);
-    // this._setRouteData(this.routeDataList[6], this.data, 'route', 'Backup', 'callTime', currentTime);
-    this._setRouteData(this.routeDataList[0], this.data, 'route', 'East River', 'callTimeDT', currentTime);
-    this._setRouteData(this.routeDataList[1], this.data, 'route', 'Rockaway', 'callTimeDT', currentTime);
-    this._setRouteData(this.routeDataList[2], this.data, 'route', 'Astoria', 'callTimeDT', currentTime);
-    this._setRouteData(this.routeDataList[3], this.data, 'route', 'South Brooklyn', 'callTimeDT', currentTime);
-    this._setRouteData(this.routeDataList[4], this.data, 'route', 'Lower East Side', 'callTimeDT', currentTime);
-    this._setRouteData(this.routeDataList[5], this.data, 'route', 'Soundview', 'callTimeDT', currentTime);
-    this._setRouteData(this.routeDataList[6], this.data, 'route', 'Backup', 'callTimeDT', currentTime);
+
+    // this._setRouteData(this.routeDataList[0], this.data, 'route', 'East River', 'callTimeDT', currentTime);
+    // this._setRouteData(this.routeDataList[1], this.data, 'route', 'Rockaway', 'callTimeDT', currentTime);
+    // this._setRouteData(this.routeDataList[2], this.data, 'route', 'Astoria', 'callTimeDT', currentTime);
+    // this._setRouteData(this.routeDataList[3], this.data, 'route', 'South Brooklyn', 'callTimeDT', currentTime);
+    // this._setRouteData(this.routeDataList[4], this.data, 'route', 'Lower East Side', 'callTimeDT', currentTime);
+    // this._setRouteData(this.routeDataList[5], this.data, 'route', 'Soundview', 'callTimeDT', currentTime);
+    // this._setRouteData(this.routeDataList[6], this.data, 'route', 'Backup', 'callTimeDT', currentTime);
+
+    this._setRouteData(this.routeDataList[0], data, 'route', 'East River', 'callTimeDT', currentTime);
+    this._setRouteData(this.routeDataList[1], data, 'route', 'Rockaway', 'callTimeDT', currentTime);
+    this._setRouteData(this.routeDataList[2], data, 'route', 'Astoria', 'callTimeDT', currentTime);
+    this._setRouteData(this.routeDataList[3], data, 'route', 'South Brooklyn', 'callTimeDT', currentTime);
+    this._setRouteData(this.routeDataList[4], data, 'route', 'Lower East Side', 'callTimeDT', currentTime);
+    this._setRouteData(this.routeDataList[5], data, 'route', 'Soundview', 'callTimeDT', currentTime);
+    this._setRouteData(this.routeDataList[6], data, 'route', 'Backup', 'callTimeDT', currentTime);
   }
 
   // _setRouteData(routeData: RouteData, data: any[], filterProp: string, filterVal: any, sortProp: string, currentTime: Date) {
