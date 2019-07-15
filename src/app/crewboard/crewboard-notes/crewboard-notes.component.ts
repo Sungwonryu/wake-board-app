@@ -79,7 +79,7 @@ export class CrewboardNotesComponent implements OnDestroy, OnInit {
     this.noncriticalNotes = this.data.filter((item: any) => {
       return item.priorityId !== '1';
     });
-    console.log('updateNotes(), noncriticalNotes: ', this.noncriticalNotes);
+    // console.log('updateNotes(), noncriticalNotes: ', this.noncriticalNotes);
   }
 
   startAnimation() {
@@ -108,7 +108,7 @@ export class CrewboardNotesComponent implements OnDestroy, OnInit {
       const $scrollNotes: any = document.getElementsByClassName('scroll-notes')[0];
       animationDuration = $scrollNotes.offsetWidth / this.animationSpeed;
     }
-    console.log('animationDuration: ', animationDuration);
+    // console.log('animationDuration: ', animationDuration);
     return animationDuration;
   }
 

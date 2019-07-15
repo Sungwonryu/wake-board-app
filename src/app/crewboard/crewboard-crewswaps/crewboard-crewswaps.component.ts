@@ -33,6 +33,7 @@ export class CrewboardCrewswapsComponent implements OnDestroy, OnInit {
   ngOnInit() {
     this.setTableDataList();
     this.intervalId = setInterval(() => {
+      this.resetTableDataList();
       this.setTableDataList();
     }, this.updateDelay);
   }

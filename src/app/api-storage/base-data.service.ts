@@ -303,7 +303,7 @@ export class BaseDataService {
   }
 
   apiToday(action: string, item?: any) {
-    console.log('apiToday', item);
+    // console.log('apiToday', item);
     let apiOpts = this.getApiOpts(action, item);
     // Reset baseParamsObj.date as today
     apiOpts.baseParamsObj['date'] = this.HDate.toDBDateString(new Date());
