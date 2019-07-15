@@ -40,7 +40,7 @@ export class CrewboardComponent implements OnDestroy, OnInit {
   vesselassignmentsData: any[] = [];
 
   // updateInterval = 1000; // 1 sec
-  updateInterval = 4000; // 1 sec
+  updateInterval = 30000; // 30 sec
   updateIntervalId: any = null;
 
   $notesListUpdateSub: Subscription;
@@ -102,7 +102,7 @@ export class CrewboardComponent implements OnDestroy, OnInit {
   }
 
   initDataUpdate() {
-    console.log('initDateUpdate() in crewboard.component.ts');
+    // console.log('initDateUpdate() in crewboard.component.ts');
     this.$notesListUpdateSub = this.noteService.$listUpdate.subscribe((listUpdate: ListUpdate) => {
       this.setData('notes', listUpdate);
     });
@@ -118,45 +118,49 @@ export class CrewboardComponent implements OnDestroy, OnInit {
   }
 
   setData(dataType?: string, listUpdate?: ListUpdate) {
+    // console.log('setData() in crewboard.component.ts, listUpdate: ', listUpdate);
     // if (listUpdate && listUpdate.isUpdated === true) {
-    // if(listUpdate && listUpdate.filteredList && listUpdate.filteredList.length) {
-    //   switch(dataType) {
-    //     case 'notes':
-    //       // this.notesData = this.noteService.getFilteredList();
-    //       this.notesData = listUpdate.filteredList;
-    //       break;
-    //     case 'crewswaps':
-    //       // this.crewswapsData = this.crewswapService.getFilteredList();
-    //       this.crewswapsData = listUpdate.filteredList;
-    //       break;
-    //     case 'slipassignments':
-    //       // this.slipassignmentsData = this.slipassignmentService.getFilteredList();
-    //       this.slipassignmentsData = listUpdate.filteredList;
-    //       break;
-    //     case 'vesselassignments':
-    //       // this.vesselassignmentsData = this.vesselassignmentService.getFilteredList();
-    //       this.vesselassignmentsData = listUpdate.filteredList;
-    //       break;
-    //   }
-    let targetList;
-    switch(dataType) {
-      case 'notes':
-        targetList = this.notesData;
-        break;
-      case 'crewswaps':
-        targetList = this.crewswapsData;
-        break;
-      case 'slipassignments':
-        targetList = this.slipassignmentsData;
-        break;
-      case 'vesselassignments':
-        targetList = this.vesselassignmentsData;
-        break;
+    if(listUpdate && listUpdate.filteredList && Array.isArray(listUpdate.filteredList)) {
+      console.log('setData() in CrewboardComponent - dataType: ' + dataType + ', listUpdate.filteredList: ', listUpdate.filteredList);
+      switch(dataType) {
+        case 'notes':
+          // this.notesData = this.noteService.getFilteredList();
+          this.notesData = listUpdate.filteredList;
+          break;
+        case 'crewswaps':
+          // this.crewswapsData = this.crewswapService.getFilteredList();
+          this.crewswapsData = listUpdate.filteredList;
+          break;
+        case 'slipassignments':
+          // this.slipassignmentsData = this.slipassignmentService.getFilteredList();
+          this.slipassignmentsData = listUpdate.filteredList;
+          break;
+        case 'vesselassignments':
+          // this.vesselassignmentsData = this.vesselassignmentService.getFilteredList();
+          this.vesselassignmentsData = listUpdate.filteredList;
+          break;
+      }
     }
 
-    if (!targetList.length || (listUpdate && listUpdate.isUpdated === true)) {
-      targetList = listUpdate.list;
-    }
+    // let targetList;
+    // switch(dataType) {
+    //   case 'notes':
+    //     targetList = this.notesData;
+    //     break;
+    //   case 'crewswaps':
+    //     targetList = this.crewswapsData;
+    //     break;
+    //   case 'slipassignments':
+    //     targetList = this.slipassignmentsData;
+    //     break;
+    //   case 'vesselassignments':
+    //     targetList = this.vesselassignmentsData;
+    //     break;
+    // }
+    //
+    // if (!targetList.length || (listUpdate && listUpdate.isUpdated === true)) {
+    //   targetList = listUpdate.list;
+    // }
   }
 
   requestDataFromApi() {
