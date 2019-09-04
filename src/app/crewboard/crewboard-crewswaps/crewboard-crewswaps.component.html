@@ -18,11 +18,11 @@
           {{ conditionalInterpolation(2, 0, ', ', false) }}{{ item.crewswaps[2].shift }}{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ' (', false) }}<span class="first-departure">{{ item.crewswaps[1].firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ')', false) }}
         </span>
       </div>
-      <div *ngIf="!item.callTime" class="table-cell time"></div>
-      <div *ngIf="item.callTime" class="table-cell time">{{ item.callTimeDT | date: 'HH:mm' }}</div>
+      <!-- <div *ngIf="!item.callTimeDT" class="table-cell time"></div>
+      <div *ngIf="item.callTimeDT" class="table-cell time">{{ item.callTimeDT | date: 'HH:mm' }}</div> -->
+      <div *ngIf="!item.crewswaps.length" class="table-cell time"></div>
+      <div *ngIf="item.crewswaps.length && item.callTimeDT" class="table-cell time">{{ item.callTimeDT | date: 'HH:mm' }}</div>
       <div *ngIf="!item.crewswaps.length" class="table-cell vessel"></div>
-      <!-- <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ item.crewswaps[0].vesselName || item.crewswaps[0].vesselNo }}</div> -->
-      <!-- <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ item.crewswaps[0].vesselId }}</div> -->
       <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ vesselService.getVesselName(item.crewswaps[0].vesselId) }}</div>
     </div>
   </div><!-- /.table -->
@@ -46,10 +46,11 @@
           {{ conditionalInterpolation(2, 0, ', ', false) }}{{ item.crewswaps[2].shift }}
         </span>
       </div>
-      <div *ngIf="!item.firstDeparture" class="table-cell time"></div>
-      <div *ngIf="item.firstDeparture" class="table-cell time">{{ conditionalInterpolation(item.firstDepartureDT, undefined, '(', false) }}<span class="first-departure">{{ item.firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.firstDepartureDT, undefined, ')', false) }}</div>
+      <!-- <div *ngIf="!item.firstDepartureDT" class="table-cell time"></div>
+      <div *ngIf="item.firstDepartureDT" class="table-cell time">{{ conditionalInterpolation(item.firstDepartureDT, undefined, '(', false) }}<span class="first-departure">{{ item.firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.firstDepartureDT, undefined, ')', false) }}</div> -->
+      <div *ngIf="!item.crewswaps.length" class="table-cell time">&nbsp;</div>
+      <div *ngIf="item.crewswaps.length && item.firstDepartureDT" class="table-cell time">{{ conditionalInterpolation(item.firstDepartureDT, undefined, '(', false) }}<span class="first-departure">{{ item.firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.firstDepartureDT, undefined, ')', false) }}</div>
       <div *ngIf="!item.crewswaps.length" class="table-cell vessel"></div>
-      <!-- <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ item.crewswaps[0].vesselName || item.crewswaps[0].vesselNo }}</div> -->
       <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ vesselService.getVesselName(item.crewswaps[0].vesselId) }}</div>
     </div>
   </div><!-- /.table -->
@@ -73,10 +74,11 @@
           {{ conditionalInterpolation(2, 0, ', ', false) }}{{ item.crewswaps[2].shift }}{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ' (', false) }}<span class="first-departure">{{ item.crewswaps[1].firstDepartureDT | date: 'HH:mm' }}</span>{{ conditionalInterpolation(item.crewswaps[1].firstDepartureDT, null, ')', false) }}
         </span>
       </div>
-      <div *ngIf="!item.callTime" class="table-cell time"></div>
-      <div *ngIf="item.callTime" class="table-cell time"><span>{{ item.callTimeDT | date: 'HH:mm' }}</span></div>
+      <!-- <div *ngIf="!item.callTimeDT" class="table-cell time"></div>
+      <div *ngIf="item.callTimeDT" class="table-cell time"><span>{{ item.callTimeDT | date: 'HH:mm' }}</span></div> -->
+      <div *ngIf="!item.crewswaps.length" class="table-cell time"></div>
+      <div *ngIf="item.crewswaps.length && item.callTimeDT" class="table-cell time"><span>{{ item.callTimeDT | date: 'HH:mm' }}</span></div>
       <div *ngIf="!item.crewswaps.length" class="table-cell vessel"></div>
-      <!-- <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ item.crewswaps[0].vesselName || item.crewswaps[0].vesselNo }}</div> -->
       <div *ngIf="item.crewswaps.length" class="table-cell vessel">{{ vesselService.getVesselName(item.crewswaps[0].vesselId) }}</div>
     </div>
   </div><!-- /.table -->

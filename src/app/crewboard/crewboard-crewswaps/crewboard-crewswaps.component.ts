@@ -57,13 +57,12 @@ export class CrewboardCrewswapsComponent implements OnDestroy, OnInit {
   setTableDataList() {
     const currentTime = new Date();
     this.resetTableDataList();
-    // this._setTableData(this.tableDataList[0], this.data, 'locationId', '1', 'callTime', 'firstDeparture', currentTime);
-    // this._setTableData(this.tableDataList[1], this.data, 'locationId', '2', 'firstDeparture', 'callTime', currentTime);
-    // this._setTableData(this.tableDataList[2], this.data, 'locationId', '3', 'callTime', 'firstDeparture', currentTime);
-    this._setTableData(this.tableDataList[0], this.data, 'location', 'GMD and Pier 11', 'callTimeDT', 'firstDepartureDT', currentTime);
-    // this._setTableData(this.tableDataList[1], this.data  , 'location', 'Pier11 Only', 'firstDepartureDT', 'callTimeDT', currentTime);
-    this._setTableData(this.tableDataList[1], this.data  , 'location', 'Pier11 Only', 'firstDepartureDT', 'firstDepartureDT', currentTime);
-    this._setTableData(this.tableDataList[2], this.data, 'location', 'GMD Only', 'callTimeDT', 'firstDepartureDT', currentTime);
+    // this._setTableData(this.tableDataList[0], this.data, 'location', 'GMD and Pier 11', 'callTimeDT', 'firstDepartureDT', currentTime);
+    // this._setTableData(this.tableDataList[1], this.data, 'location', 'Pier11 Only', 'firstDepartureDT', 'firstDepartureDT', currentTime);
+    // this._setTableData(this.tableDataList[2], this.data, 'location', 'GMD Only', 'callTimeDT', 'firstDepartureDT', currentTime);
+    this._setTableData(this.tableDataList[0], this.data, 'location', 'Homeport and Pier 11', 'callTimeDT', 'firstDepartureDT', currentTime);
+    this._setTableData(this.tableDataList[1], this.data, 'location', 'Pier11 Only', 'firstDepartureDT', 'firstDepartureDT', currentTime);
+    this._setTableData(this.tableDataList[2], this.data, 'location', 'Homeport Only', 'callTimeDT', 'firstDepartureDT', currentTime);
   }
 
   _setTableData(tableData: TableItem[], data: any[], filterProp: string, filterVal: any, sortProp1: string, sortProp2: string, currentTime: Date) {
