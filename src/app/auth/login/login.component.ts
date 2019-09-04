@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
   password: string = '';
   failed: boolean = false;
 
-  subtitle = 'Log in with your Windows Active Directory Account using the fields below.';
+  // subtitle = 'Log in with your Windows Active Directory Account using the fields below.';
+  subtitle = 'Log in using the fields below.';
 
   timeoutId: any = null;
   timeoutInterval = 400;
